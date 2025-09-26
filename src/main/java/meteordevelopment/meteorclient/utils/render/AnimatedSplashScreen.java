@@ -16,11 +16,11 @@ import java.util.Random;
 import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class AnimatedSplashScreen {
-    private static final int STAR_COUNT = 150;
-    private static final float STAR_SPEED = 0.5f;
-    private static final float PULSE_SPEED = 2.0f;
-    private static final float MIN_ALPHA = 0.1f;
-    private static final float MAX_ALPHA = 1.0f;
+    private static final int STAR_COUNT = 200;
+    private static final float STAR_SPEED = 0.3f;
+    private static final float PULSE_SPEED = 1.5f;
+    private static final float MIN_ALPHA = 0.05f;
+    private static final float MAX_ALPHA = 0.8f;
     
     private static final List<Star> stars = new ArrayList<>();
     private static final Random random = new Random();
@@ -38,11 +38,13 @@ public class AnimatedSplashScreen {
         }
         
         public void reset() {
-            this.x = random.nextFloat() * mc.getWindow().getScaledWidth();
+            // Start from left side of screen
+            this.x = -10;
             this.y = random.nextFloat() * mc.getWindow().getScaledHeight();
-            this.velocityX = (random.nextFloat() - 0.5f) * STAR_SPEED;
-            this.velocityY = (random.nextFloat() - 0.5f) * STAR_SPEED;
-            this.size = 0.5f + random.nextFloat() * 1.5f;
+            // Move primarily left to right with slight vertical variation
+            this.velocityX = STAR_SPEED + random.nextFloat() * STAR_SPEED;
+            this.velocityY = (random.nextFloat() - 0.5f) * STAR_SPEED * 0.3f;
+            this.size = 0.3f + random.nextFloat() * 1.2f;
             this.pulsePhase = random.nextFloat() * MathHelper.TAU;
             this.color = 0xFFFFFFFF; // White stars
         }
@@ -55,8 +57,8 @@ public class AnimatedSplashScreen {
             // Update pulse phase
             pulsePhase += PULSE_SPEED * deltaTime;
             
-            // Reset if star goes off screen
-            if (x < -10 || x > mc.getWindow().getScaledWidth() + 10 || 
+            // Reset if star goes off screen (only check right side since they start from left)
+            if (x > mc.getWindow().getScaledWidth() + 10 || 
                 y < -10 || y > mc.getWindow().getScaledHeight() + 10) {
                 reset();
             }
@@ -96,8 +98,8 @@ public class AnimatedSplashScreen {
             star.update(deltaTime);
         }
         
-        // Render black background overlay
-        context.fill(0, 0, mc.getWindow().getScaledWidth(), mc.getWindow().getScaledHeight(), 0x80000000);
+        // Render subtle black background overlay (more transparent)
+        context.fill(0, 0, mc.getWindow().getScaledWidth(), mc.getWindow().getScaledHeight(), 0x20000000);
         
         // Render stars
         for (Star star : stars) {
@@ -113,9 +115,9 @@ public class AnimatedSplashScreen {
                 color
             );
             
-            // Add a subtle glow effect
-            if (star.getAlpha() > 0.7f) {
-                int glowColor = (int) ((star.getAlpha() * 0.3f * 255)) << 24 | 0xFFFFFF;
+            // Add a subtle glow effect for brighter stars
+            if (star.getAlpha() > 0.5f) {
+                int glowColor = (int) ((star.getAlpha() * 0.2f * 255)) << 24 | 0xFFFFFF;
                 context.fill(
                     (int) (star.x - size), 
                     (int) (star.y - size), 
@@ -125,45 +127,6 @@ public class AnimatedSplashScreen {
                 );
             }
         }
-        
-        // Render Lodestar title
-        renderTitle(context);
-    }
-    
-    private static void renderTitle(DrawContext context) {
-        String title = "Lodestar Client";
-        int titleWidth = mc.textRenderer.getWidth(title);
-        int centerX = mc.getWindow().getScaledWidth() / 2;
-        int centerY = mc.getWindow().getScaledHeight() / 2;
-        
-        // Title shadow
-        context.drawTextWithShadow(
-            mc.textRenderer, 
-            title, 
-            centerX - titleWidth / 2 + 2, 
-            centerY - 20 + 2, 
-            0x40000000
-        );
-        
-        // Title text
-        context.drawTextWithShadow(
-            mc.textRenderer, 
-            title, 
-            centerX - titleWidth / 2, 
-            centerY - 20, 
-            0xFFFFFFFF
-        );
-        
-        // Subtitle
-        String subtitle = "Quality of Life Minecraft Mod";
-        int subtitleWidth = mc.textRenderer.getWidth(subtitle);
-        context.drawTextWithShadow(
-            mc.textRenderer, 
-            subtitle, 
-            centerX - subtitleWidth / 2, 
-            centerY + 5, 
-            0xFFAAAAAA
-        );
     }
     
     public static void reset() {

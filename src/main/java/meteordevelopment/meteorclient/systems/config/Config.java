@@ -59,7 +59,7 @@ public class Config extends System<Config> {
 
     public final Setting<Boolean> titleScreenCredits = sgVisual.add(new BoolSetting.Builder()
         .name("title-screen-credits")
-        .description("Show Lodestar animated splash screen on title screen")
+        .description("Show animated star background on title screen")
         .defaultValue(true)
         .build()
     );
