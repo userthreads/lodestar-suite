@@ -17,11 +17,15 @@ base {
     val suffix = if (project.hasProperty("build_number")) {
         project.findProperty("build_number")
     } else {
-        "local"
+        "" // Remove "local" suffix
     }
 
     val randomSuffix = generateRandomSuffix()
-    version = properties["minecraft_version"] as String + "-" + suffix + "-" + randomSuffix
+    version = if (suffix.toString().isNotEmpty()) {
+        properties["minecraft_version"] as String + "-" + suffix + "-" + randomSuffix
+    } else {
+        properties["minecraft_version"] as String + "-" + randomSuffix
+    }
 }
 
 repositories {
