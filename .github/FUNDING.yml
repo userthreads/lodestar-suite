@@ -1,1 +1,14 @@
-custom: ['https://meteorclient.com/donate']
+# Funding configuration for Lodestar Client
+# This file disables all funding options
+
+# Disable all funding options
+github: []
+patreon: ""
+open_collective: ""
+ko_fi: ""
+tidelift: ""
+community_bridge: ""
+liberapay: ""
+issuehunt: ""
+otechie: ""
+custom: []
