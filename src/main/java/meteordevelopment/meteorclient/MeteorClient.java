@@ -86,8 +86,8 @@ public class MeteorClient implements ClientModInitializer {
         // Global minecraft client accessor
         mc = MinecraftClient.getInstance();
 
-        // Set default FOV to 120
-        if (mc.options != null) {
+        // Set default FOV to 120 (with null safety)
+        if (mc.options != null && mc.options.getFov() != null) {
             mc.options.getFov().setValue(120);
         }
 

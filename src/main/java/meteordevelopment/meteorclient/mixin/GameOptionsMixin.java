@@ -34,9 +34,14 @@ public abstract class GameOptionsMixin {
     @Inject(method = "<init>", at = @At(value = "FIELD", target = "Lnet/minecraft/client/option/GameOptions;allKeys:[Lnet/minecraft/client/option/KeyBinding;", opcode = Opcodes.PUTFIELD, shift = At.Shift.AFTER))
     private void onInitAfterKeysAll(MinecraftClient client, File optionsFile, CallbackInfo info) {
         allKeys = KeyBinds.apply(allKeys);
-        
-        // Set default FOV to 120
-        getFov().setValue(120);
+    }
+
+    @Inject(method = "<init>", at = @At("TAIL"))
+    private void onInitTail(MinecraftClient client, File optionsFile, CallbackInfo info) {
+        // Set default FOV to 120 after everything is initialized
+        if (getFov() != null) {
+            getFov().setValue(120);
+        }
     }
 
     @Inject(method = "setPerspective", at = @At("HEAD"), cancellable = true)
