@@ -1,6 +1,6 @@
 /*
- * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
- * Copyright (c) Meteor Development.
+ * This file is part of the Lodestar Client distribution (https://github.com/copiuum/lodestar-client).
+ * Copyright (c) copiuum.
  */
 
 package meteordevelopment.meteorclient.mixin;
@@ -24,26 +24,26 @@ public abstract class SplashTextResourceSupplierMixin {
     @Unique
     private static final Random random = new Random();
     @Unique
-    private final List<String> meteorSplashes = getMeteorSplashes();
+    private final List<String> lodestarSplashes = getLodestarSplashes();
 
     @Inject(method = "get", at = @At("HEAD"), cancellable = true)
     private void onApply(CallbackInfoReturnable<SplashTextRenderer> cir) {
         if (Config.get() == null || !Config.get().titleScreenSplashes.get()) return;
 
-        if (override) cir.setReturnValue(new SplashTextRenderer(meteorSplashes.get(random.nextInt(meteorSplashes.size()))));
+        if (override) cir.setReturnValue(new SplashTextRenderer(lodestarSplashes.get(random.nextInt(lodestarSplashes.size()))));
         override = !override;
     }
 
     @Unique
-    private static List<String> getMeteorSplashes() {
+    private static List<String> getLodestarSplashes() {
         return List.of(
-                "Meteor on Crack!",
-                "Star Meteor Client on GitHub!",
-                "Based utility mod.",
-                "§6MineGame159 §fbased god",
-                "§4meteorclient.com",
-                "§4Meteor on Crack!",
-                "§6Meteor on Crack!"
+                "Lodestar Client!",
+                "Quality of Life Mod!",
+                "Fair Play Minecraft!",
+                "§6copiuum §fbased developer",
+                "§4github.com/copiuum/lodestar-client",
+                "§4Lodestar on GitHub!",
+                "§6Lodestar Client!"
         );
     }
 
