@@ -4,7 +4,7 @@
 </p>
 
 <h1 align="center">Lodestar</h1>
-<p align="center">The Fabric Minecraft mod with quality of life modules and tools, for everyone.</p>
+<p align="center">The Fabric Minecraft mod with quality of life modules and tools for fair play compliance, for everyone.</p>
 
 <div align="center">
     <img src="https://img.shields.io/github/last-commit/copiuum/lodestar-client" alt="GitHub last commit"/>
