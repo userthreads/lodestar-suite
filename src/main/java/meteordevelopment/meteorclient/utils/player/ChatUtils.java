@@ -1,6 +1,6 @@
 /*
- * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
- * Copyright (c) Meteor Development.
+ * This file is part of the Lodestar Client distribution (https://github.com/copiuum/lodestar-client).
+ * Copyright (c) copiuum.
  */
 
 package meteordevelopment.meteorclient.utils.player;
@@ -34,18 +34,18 @@ public class ChatUtils {
     @PostInit
     public static void init() {
         PREFIX = Text.empty()
-            .setStyle(Style.EMPTY.withFormatting(Formatting.GRAY))
+            .setStyle(Style.EMPTY.withFormatting(Formatting.BLACK))
             .append("[")
-            .append(Text.literal("Meteor").setStyle(Style.EMPTY.withColor(TextColor.fromRgb(MeteorClient.ADDON.color.getPacked()))))
+            .append(Text.literal("Lodestar").setStyle(Style.EMPTY.withFormatting(Formatting.WHITE)))
             .append("] ");
     }
 
-    public static Text getMeteorPrefix() {
+    public static Text getLodestarPrefix() {
         return PREFIX;
     }
 
     /**
-     * Registers a custom prefix to be used when calling from a class in the specified package. When null is returned from the supplier the default Meteor prefix is used.
+     * Registers a custom prefix to be used when calling from a class in the specified package. When null is returned from the supplier the default Lodestar prefix is used.
      */
     @SuppressWarnings("unused")
     public static void registerCustomPrefix(String packageName, Supplier<Text> supplier) {

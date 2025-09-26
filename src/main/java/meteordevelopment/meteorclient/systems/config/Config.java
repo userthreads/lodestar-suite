@@ -130,7 +130,7 @@ public class Config extends System<Config> {
 
     public final Setting<Boolean> chatFeedback = sgChat.add(new BoolSetting.Builder()
         .name("chat-feedback")
-        .description("Sends chat feedback when meteor performs certain actions.")
+        .description("Sends chat feedback when lodestar performs certain actions.")
         .defaultValue(true)
         .build()
     );

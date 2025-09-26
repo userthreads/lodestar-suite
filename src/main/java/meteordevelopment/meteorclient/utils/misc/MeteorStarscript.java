@@ -88,7 +88,7 @@ public class MeteorStarscript {
             .set("is_module_active", MeteorStarscript::isModuleActive)
             .set("get_module_info", MeteorStarscript::getModuleInfo)
             .set("get_module_setting", MeteorStarscript::getModuleSetting)
-            .set("prefix", MeteorStarscript::getMeteorPrefix)
+            .set("prefix", MeteorStarscript::getLodestarPrefix)
         );
 
         // Camera
@@ -398,7 +398,7 @@ public class MeteorStarscript {
         return Value.number(count);
     }
 
-    private static Value getMeteorPrefix() {
+    private static Value getLodestarPrefix() {
         if (Config.get() == null) return Value.null_();
         return Value.string(Config.get().prefix.get());
     }
