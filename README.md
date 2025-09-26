@@ -41,14 +41,24 @@ The [Fabric Team](https://github.com/FabricMC) for [Fabric](https://github.com/F
 ## Releases
 
 ### Latest Release: v1.0.0
-- **Download**: [lodestar-client-1.21.8-local.jar](https://github.com/copiuum/lodestar-client/releases/latest/download/lodestar-client-1.21.8-local.jar)
+- **Download**: [Latest Release](https://github.com/copiuum/lodestar-client/releases/latest)
+- **File Format**: `lodestar-client-{minecraft_version}-{build_type}-{random_suffix}.jar`
+- **Example**: `lodestar-client-1.21.8-local-073ym.jar`
 - **Compatible with**: Minecraft 1.21.6, 1.21.7, 1.21.8
 - **Requires**: Fabric Loader 0.16.0+
+- **Note**: Each build generates a unique random 5-character suffix for file identification
 
 ### Installation
 1. Download the latest JAR file from the [Releases](https://github.com/copiuum/lodestar-client/releases) page
 2. Place the JAR file in your Minecraft `mods` folder
 3. Launch Minecraft with Fabric Loader
+
+### Dynamic File Naming
+Each build automatically generates a unique filename with the following format:
+- **Pattern**: `lodestar-client-{minecraft_version}-{build_type}-{random_suffix}.jar`
+- **Random Suffix**: 5 characters using letters (a-z) and numbers (0-9)
+- **Purpose**: Ensures each build has a unique identifier for tracking and distribution
+- **Example**: `lodestar-client-1.21.8-local-073ym.jar`
 
 ## Features
 - **Player**: AutoClicker

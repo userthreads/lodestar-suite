@@ -4,6 +4,12 @@ plugins {
     id("com.gradleup.shadow") version "9.0.0-beta11"
 }
 
+// Function to generate random 5-character suffix (a-z, 0-9)
+fun generateRandomSuffix(): String {
+    val chars = "abcdefghijklmnopqrstuvwxyz0123456789"
+    return (1..5).map { chars.random() }.joinToString("")
+}
+
 base {
     archivesName = properties["archives_base_name"] as String
     group = properties["maven_group"] as String
@@ -14,7 +20,8 @@ base {
         "local"
     }
 
-    version = properties["minecraft_version"] as String + "-" + suffix
+    val randomSuffix = generateRandomSuffix()
+    version = properties["minecraft_version"] as String + "-" + suffix + "-" + randomSuffix
 }
 
 repositories {
