@@ -42,7 +42,6 @@ public class Commands {
         add(new MacroCommand());
         add(new ModulesCommand());
         add(new NameHistoryCommand());
-        add(new FovCommand());
         add(new RotationCommand());
         add(new WaypointCommand());
 
