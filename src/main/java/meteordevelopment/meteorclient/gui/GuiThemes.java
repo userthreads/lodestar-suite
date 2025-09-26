@@ -1,6 +1,6 @@
 /*
- * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
- * Copyright (c) Meteor Development.
+ * This file is part of the Lodestar Client distribution (https://github.com/copiuum/lodestar-client).
+ * Copyright (c) copiuum.
  */
 
 package meteordevelopment.meteorclient.gui;
@@ -46,7 +46,7 @@ public class GuiThemes {
             }
         }
 
-        if (theme == null) select("Meteor");
+        if (theme == null) select("Lodestar");
     }
 
     public static void add(GuiTheme theme) {
