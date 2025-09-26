@@ -38,10 +38,32 @@ Please provide as much information as you can to best help us understand your is
 [Cabaletta](https://github.com/cabaletta) and [WagYourTail](https://github.com/wagyourtail) for [Baritone](https://github.com/cabaletta/baritone)  
 The [Fabric Team](https://github.com/FabricMC) for [Fabric](https://github.com/FabricMC/fabric-loader) and [Yarn](https://github.com/FabricMC/yarn)
 
-## Licensing
-This project is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html). 
+## Releases
 
-If you use **ANY** code from the source:
-- You must disclose the source code of your modified work and the source code you took from this project. This means you are not allowed to use code from this project (even partially) in a closed-source and/or obfuscated application.
-- You must state clearly and obviously to all end users that you are using code from this project.
-- Your application must also be licensed under the same license.
+### Latest Release: v1.0.0
+- **Download**: [lodestar-client-1.21.8-local.jar](https://github.com/copiuum/lodestar-client/releases/latest/download/lodestar-client-1.21.8-local.jar)
+- **Compatible with**: Minecraft 1.21.6, 1.21.7, 1.21.8
+- **Requires**: Fabric Loader 0.16.0+
+
+### Installation
+1. Download the latest JAR file from the [Releases](https://github.com/copiuum/lodestar-client/releases) page
+2. Place the JAR file in your Minecraft `mods` folder
+3. Launch Minecraft with Fabric Loader
+
+## Features
+- **Player**: AutoClicker
+- **Render**: BetterTab, BetterTooltips, BlockSelection, Blur, BossStack, BreakIndicators, FreeLook, Fullbright, HandView, ItemHighlight, ItemPhysics, NoRender, TimeChanger, Zoom
+- **World**: Ambience
+- **Misc**: AutoReconnect, BetterBeacons, BetterChat, DiscordPresence, ServerSpoof
+
+## Licensing
+This project is licensed under the [BSD 2-Clause License](LICENSE).
+
+You are free to:
+- Use this software for any purpose
+- Modify and distribute the software
+- Distribute modified versions
+
+The only requirements are:
+- Include the original copyright notice
+- Include the license text
