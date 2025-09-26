@@ -16,7 +16,6 @@ import java.util.Random;
 import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class AnimatedSplashScreen {
-    private static final int STAR_COUNT = 100;
     private static final float STAR_SPEED = 2.0f;
     private static final float PULSE_SPEED = 3.0f;
     private static final float MIN_ALPHA = 0.0f;
