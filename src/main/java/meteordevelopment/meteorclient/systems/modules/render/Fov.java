@@ -14,6 +14,8 @@ import meteordevelopment.meteorclient.systems.modules.Categories;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 
+import static meteordevelopment.meteorclient.MeteorClient.mc;
+
 public class Fov extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
 
@@ -43,7 +45,7 @@ public class Fov extends Module {
     @Override
     public void onDeactivate() {
         if (mc.options != null && mc.options.getFov() != null) {
-            ((ISimpleOption) (Object) mc.options.getFov()).meteor$set(70); // Reset to default FOV
+            ((ISimpleOption) (Object) mc.options.getFov()).meteor$set(120); // Reset to default FOV
         }
     }
 
