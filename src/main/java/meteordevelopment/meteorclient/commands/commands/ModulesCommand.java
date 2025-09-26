@@ -1,6 +1,6 @@
 /*
- * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
- * Copyright (c) Meteor Development.
+ * This file is part of the Lodestar Client distribution (https://github.com/copiuum/lodestar-client).
+ * Copyright (c) copiuum.
  */
 
 package meteordevelopment.meteorclient.commands.commands;
@@ -24,7 +24,7 @@ public class ModulesCommand extends Command {
     @Override
     public void build(LiteralArgumentBuilder<CommandSource> builder) {
         builder.executes(context -> {
-            ChatUtils.info("--- Modules ((highlight)%d(default)) ---", Modules.get().getCount());
+            ChatUtils.info("--- Lodestar Modules ((highlight)%d(default)) ---", Modules.get().getCount());
 
             Modules.loopCategories().forEach(category -> {
                 MutableText categoryMessage = Text.literal("");
