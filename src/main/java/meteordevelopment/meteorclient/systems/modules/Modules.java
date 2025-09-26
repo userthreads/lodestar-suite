@@ -31,6 +31,7 @@ import meteordevelopment.meteorclient.systems.modules.render.BlockSelection;
 import meteordevelopment.meteorclient.systems.modules.render.BossStack;
 import meteordevelopment.meteorclient.systems.modules.render.Blur;
 import meteordevelopment.meteorclient.systems.modules.render.BreakIndicators;
+import meteordevelopment.meteorclient.systems.modules.render.Fov;
 import meteordevelopment.meteorclient.systems.modules.render.FreeLook;
 import meteordevelopment.meteorclient.systems.modules.render.Fullbright;
 import meteordevelopment.meteorclient.systems.modules.render.HandView;
@@ -413,6 +414,7 @@ public class Modules extends System<Modules> {
         add(new Blur());
         add(new BreakIndicators());
         add(new FreeLook());
+        add(new Fov());
         add(new Fullbright());
         add(new HandView());
         add(new ItemHighlight());
