@@ -17,10 +17,10 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class AnimatedSplashScreen {
     private static final int STAR_COUNT = 200;
-    private static final float STAR_SPEED = 0.3f;
-    private static final float PULSE_SPEED = 1.5f;
-    private static final float MIN_ALPHA = 0.05f;
-    private static final float MAX_ALPHA = 0.8f;
+    private static final float STAR_SPEED = 1.0f;
+    private static final float PULSE_SPEED = 2.0f;
+    private static final float MIN_ALPHA = 0.3f;
+    private static final float MAX_ALPHA = 1.0f;
     
     private static final List<Star> stars = new ArrayList<>();
     private static final Random random = new Random();
@@ -43,8 +43,8 @@ public class AnimatedSplashScreen {
             this.y = random.nextFloat() * mc.getWindow().getScaledHeight();
             // Move primarily left to right with slight vertical variation
             this.velocityX = STAR_SPEED + random.nextFloat() * STAR_SPEED;
-            this.velocityY = (random.nextFloat() - 0.5f) * STAR_SPEED * 0.3f;
-            this.size = 0.3f + random.nextFloat() * 1.2f;
+            this.velocityY = (random.nextFloat() - 0.5f) * STAR_SPEED * 0.2f;
+            this.size = 1.0f + random.nextFloat() * 2.0f;
             this.pulsePhase = random.nextFloat() * MathHelper.TAU;
             this.color = 0xFFFFFFFF; // White stars
         }
@@ -91,15 +91,18 @@ public class AnimatedSplashScreen {
         
         if (!initialized) init();
         
-        float deltaTime = 1.0f / 60.0f; // Approximate 60 FPS
+        float deltaTime = 1.0f / 20.0f; // Use a fixed delta time for more consistent animation
         
         // Update stars
         for (Star star : stars) {
             star.update(deltaTime);
         }
         
-        // Render subtle black background overlay (more transparent)
-        context.fill(0, 0, mc.getWindow().getScaledWidth(), mc.getWindow().getScaledHeight(), 0x20000000);
+        // Render more visible black background overlay
+        context.fill(0, 0, mc.getWindow().getScaledWidth(), mc.getWindow().getScaledHeight(), 0x60000000);
+        
+        // Debug: Render a test rectangle to verify rendering works
+        context.fill(10, 10, 50, 50, 0xFFFF0000); // Red test rectangle
         
         // Render stars
         for (Star star : stars) {
@@ -115,9 +118,9 @@ public class AnimatedSplashScreen {
                 color
             );
             
-            // Add a subtle glow effect for brighter stars
-            if (star.getAlpha() > 0.5f) {
-                int glowColor = (int) ((star.getAlpha() * 0.2f * 255)) << 24 | 0xFFFFFF;
+            // Add a more visible glow effect for brighter stars
+            if (star.getAlpha() > 0.6f) {
+                int glowColor = (int) ((star.getAlpha() * 0.4f * 255)) << 24 | 0xFFFFFF;
                 context.fill(
                     (int) (star.x - size), 
                     (int) (star.y - size), 
