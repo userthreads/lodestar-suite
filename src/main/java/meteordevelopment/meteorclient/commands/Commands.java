@@ -10,7 +10,6 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.commands.commands.*;
 import meteordevelopment.meteorclient.events.game.GameJoinedEvent;
-import meteordevelopment.meteorclient.pathing.PathManagers;
 import meteordevelopment.meteorclient.utils.PostInit;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -27,7 +26,7 @@ public class Commands {
     public static final List<Command> COMMANDS = new ArrayList<>();
     public static CommandDispatcher<CommandSource> DISPATCHER = new CommandDispatcher<>();
 
-    @PostInit(dependencies = PathManagers.class)
+    @PostInit
     public static void init() {
         // Client-side commands only (server-side commands removed)
         add(new FriendsCommand());

@@ -8,7 +8,6 @@ package meteordevelopment.meteorclient.utils.misc;
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.mixin.ClientPlayerInteractionManagerAccessor;
 import meteordevelopment.meteorclient.mixin.MinecraftClientAccessor;
-import meteordevelopment.meteorclient.pathing.PathManagers;
 import meteordevelopment.meteorclient.systems.config.Config;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.systems.modules.Modules;
@@ -68,7 +67,7 @@ public class MeteorStarscript {
 
     private static final BlockPos.Mutable BP = new BlockPos.Mutable();
 
-    @PreInit(dependencies = PathManagers.class)
+    @PreInit
     public static void init() {
         StandardLib.init(ss);
 
