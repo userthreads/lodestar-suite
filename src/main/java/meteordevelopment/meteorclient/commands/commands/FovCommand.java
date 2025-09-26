@@ -13,6 +13,8 @@ import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.systems.modules.render.Fov;
 import net.minecraft.command.CommandSource;
 
+import static meteordevelopment.meteorclient.MeteorClient.mc;
+
 public class FovCommand extends Command {
     public FovCommand() {
         super("fov", "Changes your fov.");
