@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "name": "Lodestar Client",
+  "id": "lodestar-client",
+  "version": "${version}",
+  "description": "Based utility mod.",
+  "authors": [
+    "copiuum"
+  ],
+  "contact": {
+    "homepage": "https://github.com/copiuum/lodestar-client",
+    "issues": "https://github.com/copiuum/lodestar-client/issues",
+    "sources": "https://github.com/copiuum/lodestar-client"
+  },
+  "license": "GPL-3.0",
+  "icon": "assets/lodestar-client/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "meteordevelopment.meteorclient.MeteorClient"
+    ],
+    "modmenu": [
+      "meteordevelopment.meteorclient.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "lodestar-client.mixins.json",
+    "lodestar-client-indigo.mixins.json",
+    "lodestar-client-sodium.mixins.json",
+    "lodestar-client-lithium.mixins.json",
+    "lodestar-client-viafabricplus.mixins.json"
+  ],
+  "accessWidener": "lodestar-client.accesswidener",
+  "custom": {
+    "lodestar-client:build_number": "${build_number}",
+    "lodestar-client:color": "145,61,226",
+    "lodestar-client:commit": "${commit}",
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://github.com/copiuum/lodestar-client"
+      }
+    }
+  },
+  "depends": {
+    "java": ">=21",
+    "minecraft": ["${minecraft_version}", "1.21.7", "1.21.6"],
+    "fabricloader": ">=${loader_version}"
+  },
+  "breaks": {
+    "optifabric": "*",
+    "feather": "*",
+    "origins": "*",
+    "sodium": "<0.6.12",
+    "morechathistory": "*"
+  }
+}
