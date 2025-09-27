@@ -12,7 +12,15 @@
     <img src="https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/copiuum/lodestar-client/badge?filter=.java$&label=lines%20of%20code&color=blue" alt="GitHub lines of code"/>
 </div>
 
-## Usage
+## Important notice: There might be leftover code from Meteor client unfair advantage modules, but you are free to review if it is fair play compatible or not.
+
+## Questions and Answers:
+Q: Why utilize Meteor code and not make yourself original client?
+A: Meteor itself is highly advanced, hence you can edit and make amazing stuff out of it, therefore importantly, I came up with fair play version.
+Q: Are there any hidden unfair advantage modules?
+A: No, you can review the code.
+Q: Any plans for different UI? Like the ones in NoRisk, Lunar or CheatBreaker?
+A: Yes, but here's a catch: It is hard to implement it because current Meteor UI is already great and flexible for future ideas.
 
 ### Building
 - Clone this repository
@@ -20,8 +28,6 @@
 
 ## Credits
 The [Fabric Team](https://github.com/FabricMC) for [Fabric](https://github.com/FabricMC/fabric-loader) and [Yarn](https://github.com/FabricMC/yarn)
-
-## Important notice: There might be leftover code from Meteor client unfair advantage modules, but you are free to review if it is fair play compatible or not.
 
 ## Releases
 
