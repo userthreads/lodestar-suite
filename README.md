@@ -15,7 +15,7 @@
 ## Important notice: There might be leftover code from Meteor client unfair advantage modules, but you are free to review if it is fair play compatible or not.
 
 ## Questions and Answers:
-<p align="center">
+<p align="left">
 Q: Why utilize Meteor code and not make yourself original client?<br>
 A: Meteor itself is highly advanced, hence you can edit and make amazing stuff out of it, therefore importantly, I came up with fair play version.<br>
 <br>
@@ -35,11 +35,11 @@ The [Fabric Team](https://github.com/FabricMC) for [Fabric](https://github.com/F
 
 ## Releases
 
-### Latest Release: v1.0.0
+### Latest Release: see the release section
 - **Download**: [Latest Release](https://github.com/copiuum/lodestar-client/releases/latest)
 - **File Format**: `lodestar-client-{minecraft_version}-{random_suffix}.jar`
 - **Example**: `lodestar-client-1.21.8-qg6z4.jar`
-- **Compatible with**: Minecraft 1.21.6, 1.21.7, 1.21.8
+- **Compatible with**: Minecraft 1.21.8
 - **Requires**: Fabric Loader 0.16.0+
 - **Note**: Each build generates a unique random 5-character suffix for file identification
 
