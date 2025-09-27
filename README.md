@@ -26,9 +26,6 @@ Q: Any plans for different UI? Like the ones in NoRisk, Lunar or CheatBreaker?<b
 A: Yes, but here's a catch: It is hard to implement it because current Meteor UI is already great and flexible for future ideas.
 </p>
 
-### Building
-- Clone this repository
-- Run `./gradlew build`
 
 ## Credits
 The [Fabric Team](https://github.com/FabricMC) for [Fabric](https://github.com/FabricMC/fabric-loader) and [Yarn](https://github.com/FabricMC/yarn)
@@ -42,6 +39,10 @@ The [Fabric Team](https://github.com/FabricMC) for [Fabric](https://github.com/F
 - **Compatible with**: Minecraft 1.21.8
 - **Requires**: Fabric Loader 0.16.0+
 - **Note**: Each build generates a unique random 5-character suffix for file identification
+
+- ### Building
+- Clone this repository
+- Run `./gradlew build`
 
 ### Installation
 1. Download the latest JAR file from the [Releases](https://github.com/copiuum/lodestar-client/releases) page
