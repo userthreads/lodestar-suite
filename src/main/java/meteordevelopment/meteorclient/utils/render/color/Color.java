@@ -333,10 +333,10 @@ public class Color implements ICopyable<Color>, ISerializable<Color> {
 
     @Override
     public Color fromTag(NbtCompound tag) {
-        r = tag.getInt("r", 0);
-        g = tag.getInt("g", 0);
-        b = tag.getInt("b", 0);
-        a = tag.getInt("a", 0);
+        r = tag.contains("r") ? tag.getInt("r").orElse(0) : 0;
+        g = tag.contains("g") ? tag.getInt("g").orElse(0) : 0;
+        b = tag.contains("b") ? tag.getInt("b").orElse(0) : 0;
+        a = tag.contains("a") ? tag.getInt("a").orElse(0) : 0;
 
         validate();
         return this;

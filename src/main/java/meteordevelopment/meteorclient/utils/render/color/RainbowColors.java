@@ -21,7 +21,6 @@ import meteordevelopment.orbit.EventHandler;
 
 import java.util.List;
 
-import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class RainbowColors {
     private static final List<Setting<SettingColor>> colorSettings = new UnorderedArrayList<>();
@@ -66,7 +65,7 @@ public class RainbowColors {
 
     @EventHandler
     private static void onTick(TickEvent.Post event) {
-        GLOBAL.setSpeed(Config.get().rainbowSpeed.get() / 100);
+        GLOBAL.setSpeed(Config.get().rainbowSpeed.get() / 100.0);
         GLOBAL.getNext();
 
         for (Setting<SettingColor> setting : colorSettings) {
@@ -87,7 +86,7 @@ public class RainbowColors {
             waypoint.color.get().update();
         }
 
-        if (mc.currentScreen instanceof WidgetScreen) {
+        if (MeteorClient.mc.currentScreen instanceof WidgetScreen) {
             for (SettingGroup group : GuiThemes.get().settings) {
                 for (Setting<?> setting : group) {
                     if (setting instanceof ColorSetting) ((SettingColor) setting.get()).update();

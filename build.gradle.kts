@@ -10,21 +10,29 @@ fun generateRandomSuffix(): String {
     return (1..5).map { chars.random() }.joinToString("")
 }
 
+// Function to generate deterministic suffix for CI builds
+fun generateDeterministicSuffix(): String {
+    val buildNumber = project.findProperty("build_number")?.toString() ?: "local"
+    val hash = buildNumber.hashCode().toString().takeLast(5).padStart(5, '0')
+    return hash
+}
+
 base {
     archivesName = properties["archives_base_name"] as String
     group = properties["maven_group"] as String
 
-    val suffix = if (project.hasProperty("build_number")) {
-        project.findProperty("build_number")
+    val suffix = project.findProperty("build_number")?.toString().orEmpty()
+    val isCI = providers.environmentVariable("CI").map { it.toBoolean() }.getOrElse(false)
+    val versionSuffix = if (isCI) {
+        generateDeterministicSuffix()
     } else {
-        "" // Remove "local" suffix
+        generateRandomSuffix()
     }
-
-    val randomSuffix = generateRandomSuffix()
-    version = if (suffix.toString().isNotEmpty()) {
-        properties["minecraft_version"] as String + "-" + suffix + "-" + randomSuffix
+    
+    version = if (suffix.isNotEmpty()) {
+        (properties["minecraft_version"] as String) + "-" + suffix + "-" + versionSuffix
     } else {
-        properties["minecraft_version"] as String + "-" + randomSuffix
+        (properties["minecraft_version"] as String) + "-" + versionSuffix
     }
 }
 
@@ -155,8 +163,12 @@ tasks {
     java {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
+        
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
 
-        if (System.getenv("CI")?.toBoolean() == true) {
+        if (providers.environmentVariable("CI").map { it.toBoolean() }.getOrElse(false)) {
             withSourcesJar()
             withJavadocJar()
         }
@@ -198,7 +210,7 @@ tasks {
     }
 
     build {
-        if (System.getenv("CI")?.toBoolean() == true) {
+        if (providers.environmentVariable("CI").map { it.toBoolean() }.getOrElse(false)) {
             dependsOn("javadocJar")
         }
     }

@@ -161,7 +161,7 @@ public class Zoom extends Module {
         time = MathHelper.clamp(time, 0, 1);
     }
 
-    @EventHandler
+    @EventHandler(priority = 500) // Lower priority to run before FOV module
     private void onGetFov(GetFovEvent event) {
         event.fov /= (float) getScaling();
 

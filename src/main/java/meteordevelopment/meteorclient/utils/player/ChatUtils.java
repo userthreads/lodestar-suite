@@ -48,9 +48,10 @@ public class ChatUtils {
      */
     @SuppressWarnings("unused")
     public static void registerCustomPrefix(String packageName, Supplier<Text> supplier) {
-        for (Pair<String, Supplier<Text>> pair : customPrefixes) {
+        for (int i = 0; i < customPrefixes.size(); i++) {
+            Pair<String, Supplier<Text>> pair = customPrefixes.get(i);
             if (pair.getLeft().equals(packageName)) {
-                pair.setRight(supplier);
+                customPrefixes.set(i, new Pair<>(packageName, supplier));
                 return;
             }
         }
@@ -252,7 +253,7 @@ public class ChatUtils {
             }
         }
 
-        if (!result.isEmpty()) text.append(Text.literal(result.toString()).setStyle(style));
+        if (result.length() != 0) text.append(Text.literal(result.toString()).setStyle(style));
 
         return text;
     }

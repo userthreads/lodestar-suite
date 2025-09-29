@@ -14,7 +14,7 @@ import meteordevelopment.meteorclient.systems.modules.Categories;
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.orbit.EventHandler;
 
-import static meteordevelopment.meteorclient.MeteorClient.mc;
+import meteordevelopment.meteorclient.MeteorClient;
 
 public class Fov extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
@@ -37,19 +37,19 @@ public class Fov extends Module {
 
     @Override
     public void onActivate() {
-        if (mc.options != null && mc.options.getFov() != null) {
-            ((ISimpleOption) (Object) mc.options.getFov()).meteor$set(fov.get());
+        if (MeteorClient.mc.options != null && MeteorClient.mc.options.getFov() != null) {
+            ((ISimpleOption) (Object) MeteorClient.mc.options.getFov()).meteor$set(fov.get());
         }
     }
 
     @Override
     public void onDeactivate() {
-        if (mc.options != null && mc.options.getFov() != null) {
-            ((ISimpleOption) (Object) mc.options.getFov()).meteor$set(120); // Reset to default FOV
+        if (MeteorClient.mc.options != null && MeteorClient.mc.options.getFov() != null) {
+            ((ISimpleOption) (Object) MeteorClient.mc.options.getFov()).meteor$set(120); // Reset to default FOV
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = 1000) // High priority to run after Zoom module
     private void onGetFov(GetFovEvent event) {
         if (isActive()) {
             event.fov = fov.get();
@@ -57,8 +57,8 @@ public class Fov extends Module {
     }
 
     private void onFovChanged(Integer value) {
-        if (isActive() && mc.options != null && mc.options.getFov() != null) {
-            ((ISimpleOption) (Object) mc.options.getFov()).meteor$set(value);
+        if (isActive() && MeteorClient.mc.options != null && MeteorClient.mc.options.getFov() != null) {
+            ((ISimpleOption) (Object) MeteorClient.mc.options.getFov()).meteor$set(value);
         }
     }
 }

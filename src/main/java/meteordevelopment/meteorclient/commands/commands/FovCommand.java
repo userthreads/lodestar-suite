@@ -13,7 +13,7 @@ import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.systems.modules.render.Fov;
 import net.minecraft.command.CommandSource;
 
-import static meteordevelopment.meteorclient.MeteorClient.mc;
+import meteordevelopment.meteorclient.MeteorClient;
 
 public class FovCommand extends Command {
     public FovCommand() {
@@ -32,8 +32,8 @@ public class FovCommand extends Command {
             }
             
             // Also update the game options directly
-            if (mc.options != null && mc.options.getFov() != null) {
-                ((ISimpleOption) (Object) mc.options.getFov()).meteor$set(fovValue);
+            if (MeteorClient.mc.options != null && MeteorClient.mc.options.getFov() != null) {
+                ((ISimpleOption) (Object) MeteorClient.mc.options.getFov()).meteor$set(fovValue);
             }
             
             return SINGLE_SUCCESS;

@@ -20,7 +20,6 @@ import meteordevelopment.meteorclient.systems.System;
 import meteordevelopment.meteorclient.systems.Systems;
 import meteordevelopment.meteorclient.systems.config.Config;
 import meteordevelopment.meteorclient.systems.modules.misc.AutoReconnect;
-import meteordevelopment.meteorclient.systems.modules.misc.BetterBeacons;
 import meteordevelopment.meteorclient.systems.modules.misc.BetterChat;
 import meteordevelopment.meteorclient.systems.modules.misc.DiscordPresence;
 import meteordevelopment.meteorclient.systems.modules.misc.ServerSpoof;
@@ -430,7 +429,6 @@ public class Modules extends System<Modules> {
 
     private void initMisc() {
         add(new AutoReconnect());
-        add(new BetterBeacons());
         add(new BetterChat());
         add(new DiscordPresence());
         add(new ServerSpoof());

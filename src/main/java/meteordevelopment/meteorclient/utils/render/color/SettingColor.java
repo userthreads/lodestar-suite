@@ -95,7 +95,7 @@ public class SettingColor extends Color {
     @Override
     public SettingColor fromTag(NbtCompound tag) {
         super.fromTag(tag);
-        rainbow = tag.getBoolean("rainbow", false);
+        rainbow = tag.contains("rainbow") ? tag.getBoolean("rainbow").orElse(false) : false;
         return this;
     }
 
