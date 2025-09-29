@@ -43,6 +43,8 @@ public class Commands {
         add(new ModulesCommand());
         add(new NameHistoryCommand());
         add(new FovCommand());
+        add(new HalloweenCommand());
+        add(new ChristmasCommand());
         add(new RotationCommand());
         add(new WaypointCommand());
 

@@ -170,6 +170,12 @@ public class MeteorGuiTheme extends GuiTheme {
 
         settingsFactory = new DefaultSettingsWidgetFactory(this);
     }
+    
+    public MeteorGuiTheme(String name) {
+        super(name);
+
+        settingsFactory = new DefaultSettingsWidgetFactory(this);
+    }
 
     private Setting<SettingColor> color(SettingGroup group, String name, String description, SettingColor color) {
         return group.add(new ColorSetting.Builder()

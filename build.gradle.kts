@@ -21,19 +21,10 @@ base {
     archivesName = properties["archives_base_name"] as String
     group = properties["maven_group"] as String
 
-    val suffix = project.findProperty("build_number")?.toString().orEmpty()
-    val isCI = providers.environmentVariable("CI").map { it.toBoolean() }.getOrElse(false)
-    val versionSuffix = if (isCI) {
-        generateDeterministicSuffix()
-    } else {
-        generateRandomSuffix()
-    }
+    // Always use random 5-character suffix for JAR naming
+    val versionSuffix = generateRandomSuffix()
     
-    version = if (suffix.isNotEmpty()) {
-        (properties["minecraft_version"] as String) + "-" + suffix + "-" + versionSuffix
-    } else {
-        (properties["minecraft_version"] as String) + "-" + versionSuffix
-    }
+    version = (properties["minecraft_version"] as String) + "-" + versionSuffix
 }
 
 repositories {

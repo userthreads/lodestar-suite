@@ -18,6 +18,9 @@ import meteordevelopment.meteorclient.MeteorClient;
 
 public class Fov extends Module {
     private final SettingGroup sgGeneral = settings.getDefaultGroup();
+    
+    // Static flag to track when we're rendering hands
+    private static boolean renderingHands = false;
 
     public final Setting<Integer> fov = sgGeneral.add(new IntSetting.Builder()
         .name("fov")
@@ -51,9 +54,18 @@ public class Fov extends Module {
 
     @EventHandler(priority = 1000) // High priority to run after Zoom module
     private void onGetFov(GetFovEvent event) {
-        if (isActive()) {
+        if (isActive() && !renderingHands) {
             event.fov = fov.get();
         }
+    }
+    
+    // Static methods to control hand rendering state
+    public static void setRenderingHands(boolean rendering) {
+        renderingHands = rendering;
+    }
+    
+    public static boolean isRenderingHands() {
+        return renderingHands;
     }
 
     private void onFovChanged(Integer value) {

@@ -104,6 +104,7 @@
     "HeadFeatureRendererMixin",
     "HeldItemRendererMixin",
     "HorseScreenHandlerAccessor",
+    "InGameAnimationsMixin",
     "InGameHudMixin",
     "InGameOverlayRendererMixin",
     "ItemEntityRendererMixin",

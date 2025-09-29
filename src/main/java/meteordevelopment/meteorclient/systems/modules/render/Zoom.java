@@ -17,6 +17,7 @@ import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.systems.modules.Categories;
 import meteordevelopment.meteorclient.systems.modules.Module;
+import meteordevelopment.meteorclient.systems.modules.render.Fov;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.glfw.GLFW;
@@ -163,7 +164,10 @@ public class Zoom extends Module {
 
     @EventHandler(priority = 500) // Lower priority to run before FOV module
     private void onGetFov(GetFovEvent event) {
-        event.fov /= (float) getScaling();
+        // Don't apply zoom scaling when rendering hands
+        if (!Fov.isRenderingHands()) {
+            event.fov /= (float) getScaling();
+        }
 
         if (lastFov != event.fov) mc.worldRenderer.scheduleTerrainUpdate();
         lastFov = event.fov;

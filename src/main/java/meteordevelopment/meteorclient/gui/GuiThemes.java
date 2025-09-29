@@ -6,7 +6,11 @@
 package meteordevelopment.meteorclient.gui;
 
 import meteordevelopment.meteorclient.MeteorClient;
+import meteordevelopment.meteorclient.gui.themes.meteor.ChristmasGuiTheme;
+import meteordevelopment.meteorclient.gui.themes.meteor.HalloweenGuiTheme;
 import meteordevelopment.meteorclient.gui.themes.meteor.MeteorGuiTheme;
+import meteordevelopment.meteorclient.systems.christmas.ChristmasMode;
+import meteordevelopment.meteorclient.systems.halloween.HalloweenMode;
 import meteordevelopment.meteorclient.utils.PostInit;
 import meteordevelopment.meteorclient.utils.PreInit;
 import net.minecraft.nbt.NbtCompound;
@@ -32,6 +36,8 @@ public class GuiThemes {
     @PreInit
     public static void init() {
         add(new MeteorGuiTheme());
+        add(new HalloweenGuiTheme());
+        add(new ChristmasGuiTheme());
     }
 
     @PostInit
@@ -47,6 +53,50 @@ public class GuiThemes {
         }
 
         if (theme == null) select("Lodestar");
+        
+        // Check for seasonal themes
+        checkSeasonalThemes();
+    }
+    
+    public static void checkSeasonalThemes() {
+        // Note: Seasonal themes are now manually selectable from GUI
+        // This method is kept for backward compatibility but doesn't auto-switch themes
+        // Users can now select Halloween, Christmas, or Panorama themes directly from the theme menu
+    }
+    
+    private static void selectThemeByClass(Class<? extends GuiTheme> themeClass) {
+        for (GuiTheme t : themes) {
+            if (themeClass.isInstance(t)) {
+                select(t.name);
+                return;
+            }
+        }
+    }
+    
+    public static void checkHalloweenMode() {
+        checkSeasonalThemes();
+    }
+    
+    public static void checkChristmasMode() {
+        checkSeasonalThemes();
+    }
+    
+    private static void updateAnimationsForTheme(GuiTheme theme) {
+        // Enable/disable animations based on theme selection
+        if (theme instanceof HalloweenGuiTheme) {
+            // Enable Halloween animations
+            HalloweenMode.get().enabled.set(true);
+            MeteorClient.LOG.info("Halloween theme selected - enabling Halloween animations");
+        } else if (theme instanceof ChristmasGuiTheme) {
+            // Enable Christmas animations
+            ChristmasMode.get().enabled.set(true);
+            MeteorClient.LOG.info("Christmas theme selected - enabling Christmas animations");
+        } else {
+            // Disable all seasonal animations when selecting normal themes
+            HalloweenMode.get().enabled.set(false);
+            ChristmasMode.get().enabled.set(false);
+            MeteorClient.LOG.info("Normal theme selected - disabling seasonal animations");
+        }
     }
 
     public static void add(GuiTheme theme) {
@@ -91,6 +141,9 @@ public class GuiThemes {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            // Auto-enable/disable animations based on theme selection
+            updateAnimationsForTheme(theme);
 
             // Save global gui settings with the new theme
             saveGlobal();

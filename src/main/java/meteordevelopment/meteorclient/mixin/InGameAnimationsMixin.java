@@ -6,15 +6,13 @@
 package meteordevelopment.meteorclient.mixin;
 
 import meteordevelopment.meteorclient.MeteorClient;
-import meteordevelopment.meteorclient.renderer.Renderer2D;
 import meteordevelopment.meteorclient.systems.christmas.ChristmasMode;
-import meteordevelopment.meteorclient.systems.config.Config;
 import meteordevelopment.meteorclient.systems.halloween.HalloweenMode;
-import meteordevelopment.meteorclient.utils.render.AnimatedSplashScreen;
+import meteordevelopment.meteorclient.renderer.Renderer2D;
 import meteordevelopment.meteorclient.utils.render.color.Color;
+import meteordevelopment.meteorclient.gui.WidgetScreen;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,26 +23,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Mixin(TitleScreen.class)
-public abstract class TitleScreenMixin extends Screen {
+@Mixin(WidgetScreen.class)
+public abstract class InGameAnimationsMixin extends Screen {
     private static final Random random = new Random();
     private static final List<Bat> bats = new ArrayList<>();
     private static final List<Snowflake> snowflakes = new ArrayList<>();
 
-    public TitleScreenMixin(Text title) {
+    public InGameAnimationsMixin(Text title) {
         super(title);
     }
 
     @Inject(method = "render", at = @At("TAIL"))
     private void onRender(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        if (Config.get().titleScreenCredits.get()) AnimatedSplashScreen.render(context);
-        
-        // Seasonal animations
-        MeteorClient.LOG.info("TitleScreenMixin.onRender() - TitleScreen render called");
+        MeteorClient.LOG.info("InGameAnimationsMixin.onRender() - WidgetScreen render called");
         
         // Update and render Halloween bats
         if (HalloweenMode.get().isActive()) {
-            MeteorClient.LOG.info("Halloween mode active, updating bats");
+            MeteorClient.LOG.info("Halloween mode active in-game, updating bats");
             updateBats();
             renderBats(context);
         } else {
@@ -53,7 +48,7 @@ public abstract class TitleScreenMixin extends Screen {
         
         // Update and render Christmas snowflakes
         if (ChristmasMode.get().isActive()) {
-            MeteorClient.LOG.info("Christmas mode active, updating snowflakes");
+            MeteorClient.LOG.info("Christmas mode active in-game, updating snowflakes");
             updateSnowflakes();
             renderSnowflakes(context);
         } else {
@@ -66,8 +61,8 @@ public abstract class TitleScreenMixin extends Screen {
         int screenWidth = MeteorClient.mc.getWindow().getScaledWidth();
         int screenHeight = MeteorClient.mc.getWindow().getScaledHeight();
         float screenArea = screenWidth * screenHeight;
-        float baseSpawnRate = 0.0001f; // Base rate per pixel
-        float spawnRate = Math.min(0.08f, baseSpawnRate * screenArea / 100000f); // Cap at 8%
+        float baseSpawnRate = 0.00006f; // Base rate per pixel (less than panorama)
+        float spawnRate = Math.min(0.05f, baseSpawnRate * screenArea / 100000f); // Cap at 5%
         
         // Spawn new bats with dynamic rate
         if (random.nextFloat() < spawnRate) {
@@ -83,9 +78,9 @@ public abstract class TitleScreenMixin extends Screen {
         
         // Always spawn from top of screen
         float x = random.nextFloat() * screenWidth;
-        float y = -30; // Start higher above screen
-        float vx = (random.nextFloat() - 0.5f) * 3; // Slower horizontal movement
-        float vy = random.nextFloat() * 1.5f + 0.8f; // Slower downward movement
+        float y = -25; // Start higher above screen
+        float vx = (random.nextFloat() - 0.5f) * 2; // Slower horizontal movement
+        float vy = random.nextFloat() * 1.2f + 0.6f; // Slower downward movement
         
         bats.add(new Bat(x, y, vx, vy));
     }
@@ -105,8 +100,8 @@ public abstract class TitleScreenMixin extends Screen {
         int screenWidth = MeteorClient.mc.getWindow().getScaledWidth();
         int screenHeight = MeteorClient.mc.getWindow().getScaledHeight();
         float screenArea = screenWidth * screenHeight;
-        float baseSpawnRate = 0.00008f; // Base rate per pixel (slightly less than bats)
-        float spawnRate = Math.min(0.06f, baseSpawnRate * screenArea / 100000f); // Cap at 6%
+        float baseSpawnRate = 0.00004f; // Base rate per pixel (less than panorama)
+        float spawnRate = Math.min(0.04f, baseSpawnRate * screenArea / 100000f); // Cap at 4%
         
         // Spawn new snowflakes with dynamic rate
         if (random.nextFloat() < spawnRate) {
@@ -122,9 +117,9 @@ public abstract class TitleScreenMixin extends Screen {
         
         // Always spawn from top of screen
         float x = random.nextFloat() * screenWidth;
-        float y = -20; // Start higher above screen
-        float vx = (random.nextFloat() - 0.5f) * 0.8f; // Slightly more horizontal drift
-        float vy = random.nextFloat() * 0.8f + 0.3f; // Slower downward fall
+        float y = -15; // Start higher above screen
+        float vx = (random.nextFloat() - 0.5f) * 0.5f; // Slightly more horizontal drift
+        float vy = random.nextFloat() * 0.5f + 0.1f; // Slower downward fall
         
         snowflakes.add(new Snowflake(x, y, vx, vy));
     }
@@ -139,7 +134,7 @@ public abstract class TitleScreenMixin extends Screen {
         Renderer2D.COLOR.render();
     }
 
-    // Bat class for Halloween animations
+    // Inner classes for animations
     private static class Bat {
         private float x, y, vx, vy;
         private float life = 1.0f;
@@ -151,35 +146,35 @@ public abstract class TitleScreenMixin extends Screen {
             this.y = y;
             this.vx = vx;
             this.vy = vy;
-            this.color = new Color(255, 165, 0, 200); // Orange bat
+            this.color = new Color(255, 165, 0, 150); // Orange bat (more transparent in-game)
         }
 
         public boolean update() {
             x += vx;
             y += vy;
-            life -= 0.002f; // Even slower fade for longer life
+            life -= 0.003f; // Even slower fade for longer life
             
             // Add some random movement
-            vx += (random.nextFloat() - 0.5f) * 0.03f; // Less random movement
-            vy += (random.nextFloat() - 0.5f) * 0.03f;
+            vx += (random.nextFloat() - 0.5f) * 0.02f; // Less random movement
+            vy += (random.nextFloat() - 0.5f) * 0.02f;
             
             // Clamp velocity
-            vx = Math.max(-2.5f, Math.min(2.5f, vx)); // Slower max velocity
-            vy = Math.max(-2.5f, Math.min(2.5f, vy));
+            vx = Math.max(-2.2f, Math.min(2.2f, vx)); // Slower max velocity
+            vy = Math.max(-2.2f, Math.min(2.2f, vy));
             
             // Only remove if life is over AND it's fallen far below screen
             int screenHeight = MeteorClient.mc.getWindow().getScaledHeight();
-            return life > 0 && y < screenHeight + 100; // Allow falling 100px below screen
+            return life > 0 && y < screenHeight + 80; // Allow falling 80px below screen
         }
 
         public void render() {
             if (life <= 0) return;
 
             // Simple bat shape - two triangles
-            float size = 8 * life;
-            float alpha = life * 200;
+            float size = 6 * life;
+            float alpha = life * 150;
             
-            // Main body (triangle)
+            // Body
             Renderer2D.COLOR.quad(
                 x - size/2, y - size/2, size, size,
                 new Color((int)(color.r), (int)(color.g), (int)(color.b), (int)alpha)
@@ -187,7 +182,6 @@ public abstract class TitleScreenMixin extends Screen {
         }
     }
 
-    // Snowflake class for Christmas animations
     private static class Snowflake {
         private float x, y, vx, vy;
         private float life = 1.0f;
@@ -199,32 +193,32 @@ public abstract class TitleScreenMixin extends Screen {
             this.y = y;
             this.vx = vx;
             this.vy = vy;
-            this.color = new Color(255, 255, 255, 200); // White snowflake
+            this.color = new Color(255, 255, 255, 150); // White snowflake (more transparent in-game)
         }
 
         public boolean update() {
             x += vx;
             y += vy;
-            life -= 0.0008f; // Even slower fade for longer life
+            life -= 0.0015f; // Even slower fade for longer life
             
             // Gentle swaying motion
-            vx += (random.nextFloat() - 0.5f) * 0.008f; // Less swaying
+            vx += (random.nextFloat() - 0.5f) * 0.004f; // Less swaying
             
             // Clamp velocity
-            vx = Math.max(-1.2f, Math.min(1.2f, vx)); // Slower max velocity
-            vy = Math.max(0.3f, Math.min(1.2f, vy));
+            vx = Math.max(-0.7f, Math.min(0.7f, vx)); // Slower max velocity
+            vy = Math.max(0.2f, Math.min(0.7f, vy));
             
             // Only remove if life is over AND it's fallen far below screen
             int screenHeight = MeteorClient.mc.getWindow().getScaledHeight();
-            return life > 0 && y < screenHeight + 150; // Allow falling 150px below screen
+            return life > 0 && y < screenHeight + 100; // Allow falling 100px below screen
         }
 
         public void render() {
             if (life <= 0) return;
 
             // Simple snowflake shape - small white dot
-            float size = 4 * life;
-            float alpha = life * 200;
+            float size = 2 * life;
+            float alpha = life * 150;
             
             Renderer2D.COLOR.quad(
                 x - size/2, y - size/2, size, size,
