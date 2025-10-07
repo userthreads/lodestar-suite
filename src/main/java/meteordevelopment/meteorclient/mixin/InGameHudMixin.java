@@ -1,6 +1,6 @@
 /*
- * This file is part of the Lodestar Client distribution (https://github.com/copiuum/lodestar-client).
- * Copyright (c) copiuum.
+ * This file is part of the Lodestar Client distribution (https://github.com/waythread/lodestar-client).
+ * Copyright (c) waythread.
  */
 
 package meteordevelopment.meteorclient.mixin;
@@ -51,20 +51,12 @@ public abstract class InGameHudMixin {
         if (Modules.get().get(NoRender.class).noPotionIcons()) info.cancel();
     }
 
-    @Inject(method = "renderPortalOverlay", at = @At("HEAD"), cancellable = true)
-    private void onRenderPortalOverlay(DrawContext context, float nauseaStrength, CallbackInfo ci) {
-        if (Modules.get().get(NoRender.class).noPortalOverlay()) ci.cancel();
-    }
 
     @ModifyArgs(method = "renderMiscOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderOverlay(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/util/Identifier;F)V", ordinal = 0))
     private void onRenderPumpkinOverlay(Args args) {
         if (Modules.get().get(NoRender.class).noPumpkinOverlay()) args.set(2, 0f);
     }
 
-    @ModifyArgs(method = "renderMiscOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderOverlay(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/util/Identifier;F)V", ordinal = 1))
-    private void onRenderPowderedSnowOverlay(Args args) {
-        if (Modules.get().get(NoRender.class).noPowderedSnowOverlay()) args.set(2, 0f);
-    }
 
     @Inject(method = "renderVignetteOverlay", at = @At("HEAD"), cancellable = true)
     private void onRenderVignetteOverlay(DrawContext context, Entity entity, CallbackInfo ci) {
@@ -81,10 +73,6 @@ public abstract class InGameHudMixin {
         if (Modules.get().get(NoRender.class).noScoreboard()) ci.cancel();
     }
 
-    @Inject(method = "renderSpyglassOverlay", at = @At("HEAD"), cancellable = true)
-    private void onRenderSpyglassOverlay(DrawContext context, float scale, CallbackInfo ci) {
-        if (Modules.get().get(NoRender.class).noSpyglassOverlay()) ci.cancel();
-    }
 
     @ModifyExpressionValue(method = "renderCrosshair", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/Perspective;isFirstPerson()Z"))
     private boolean alwaysRenderCrosshairInFreecam(boolean firstPerson) {
@@ -114,8 +102,4 @@ public abstract class InGameHudMixin {
         }
     }
 
-    @Inject(method = "renderNauseaOverlay", at = @At("HEAD"), cancellable = true)
-    private void onRenderNausea(DrawContext context, float distortionStrength, CallbackInfo ci) {
-        if (Modules.get().get(NoRender.class).noNausea()) ci.cancel();
-    }
 }

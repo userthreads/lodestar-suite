@@ -1,6 +1,6 @@
 /*
- * This file is part of the Lodestar Client distribution (https://github.com/copiuum/lodestar-client).
- * Copyright (c) copiuum.
+ * This file is part of the Lodestar Client distribution (https://github.com/waythread/lodestar-client).
+ * Copyright (c) waythread.
  */
 
 package meteordevelopment.meteorclient.mixin;
@@ -40,8 +40,8 @@ public abstract class SplashTextResourceSupplierMixin {
                 "Lodestar Client!",
                 "Quality of Life Mod!",
                 "Fair Play Minecraft!",
-                "§6copiuum §fbased developer",
-                "§4github.com/copiuum/lodestar-client",
+                "§6waythread §fbased developer",
+                "§4github.com/waythread/lodestar-client",
                 "§4Lodestar on GitHub!",
                 "§6Lodestar Client!"
         );

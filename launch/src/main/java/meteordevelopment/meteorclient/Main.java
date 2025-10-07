@@ -1,6 +1,6 @@
 /*
- * This file is part of the Lodestar Client distribution (https://github.com/copiuum/lodestar-client).
- * Copyright (c) copiuum.
+ * This file is part of the Lodestar Client distribution (https://github.com/waythread/lodestar-client).
+ * Copyright (c) waythread.
  */
 
 package meteordevelopment.meteorclient;
@@ -30,7 +30,7 @@ public class Main {
         );
 
         switch (option) {
-            case 0: getOS().open("https://github.com/copiuum/lodestar-client/wiki/installation"); break;
+            case 0: getOS().open("https://github.com/waythread/lodestar-client/wiki/installation"); break;
             case 1: {
                 String path;
 

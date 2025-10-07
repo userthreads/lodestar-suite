@@ -1,15 +1,15 @@
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/copiuum/lodestar-client/master/src/main/resources/assets/lodestar-client/icon.png" alt="lodestar-client-logo" width="15%"/>
+<img src="https://raw.githubusercontent.com/waythread/lodestar-client/master/src/main/resources/assets/lodestar-client/icon.png" alt="lodestar-client-logo" width="15%"/>
 </p>
 
 <h1 align="center">Lodestar</h1>
 <p align="center">The Fabric Minecraft mod based off Meteor Client, with quality of life modules and tools for fair play compliance, for everyone.</p>
 
 <div align="center">
-    <img src="https://img.shields.io/github/last-commit/copiuum/lodestar-client" alt="GitHub last commit"/>
-    <img src="https://img.shields.io/github/languages/code-size/copiuum/lodestar-client" alt="GitHub code size in bytes"/>
-    <img src="https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/copiuum/lodestar-client/badge?filter=.java$&label=lines%20of%20code&color=blue" alt="GitHub lines of code"/>
+    <img src="https://img.shields.io/github/last-commit/waythread/lodestar-client" alt="GitHub last commit"/>
+    <img src="https://img.shields.io/github/languages/code-size/waythread/lodestar-client" alt="GitHub code size in bytes"/>
+    <img src="https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/waythread/lodestar-client/badge?filter=.java$&label=lines%20of%20code&color=blue" alt="GitHub lines of code"/>
 </div>
 
 ## Important notice: There might be leftover code from Meteor client unfair advantage modules, but you are free to review if it is fair play compatible or not.
@@ -33,7 +33,7 @@ The [Fabric Team](https://github.com/FabricMC) for [Fabric](https://github.com/F
 ## Releases
 
 ### Latest Release: see the release section
-- **Download**: [Latest Release](https://github.com/copiuum/lodestar-client/releases/latest)
+- **Download**: [Latest Release](https://github.com/waythread/lodestar-client/releases/latest)
 - **File Format**: `lodestar-client-{minecraft_version}-{random_suffix}.jar`
 - **Example**: `lodestar-client-1.21.8-qg6z4.jar`
 - **Compatible with**: Minecraft 1.21.8
@@ -45,7 +45,7 @@ The [Fabric Team](https://github.com/FabricMC) for [Fabric](https://github.com/F
 - Run `./gradlew build`
 
 ### Installation
-1. Download the latest JAR file from the [Releases](https://github.com/copiuum/lodestar-client/releases) page
+1. Download the latest JAR file from the [Releases](https://github.com/waythread/lodestar-client/releases) page
 2. Place the JAR file in your Minecraft `mods` folder
 3. Launch Minecraft with Fabric Loader
 

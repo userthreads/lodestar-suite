@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-group = "copiuum"
+group = "waythread"
 version = "0.1.0"
 
 java {

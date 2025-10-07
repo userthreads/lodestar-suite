@@ -3,14 +3,14 @@
   "name": "Lodestar Client",
   "id": "lodestar-client",
   "version": "${version}",
-  "description": "Based utility mod.",
+  "description": "W utility mod.",
   "authors": [
-    "copiuum"
+    "waythread"
   ],
   "contact": {
-    "homepage": "https://github.com/copiuum/lodestar-client",
-    "issues": "https://github.com/copiuum/lodestar-client/issues",
-    "sources": "https://github.com/copiuum/lodestar-client"
+    "homepage": "https://github.com/waythread/lodestar-client",
+    "issues": "https://github.com/waythread/lodestar-client/issues",
+    "sources": "https://github.com/waythread/lodestar-client"
   },
   "license": "GPL-3.0",
   "icon": "assets/lodestar-client/icon.png",
@@ -37,7 +37,7 @@
     "lodestar-client:commit": "${commit}",
     "modmenu": {
       "links": {
-        "modmenu.discord": "https://github.com/copiuum/lodestar-client"
+        "modmenu.discord": "https://github.com/waythread/lodestar-client"
       }
     }
   },

@@ -1,6 +1,6 @@
 /*
- * This file is part of the Lodestar Client distribution (https://github.com/copiuum/lodestar-client).
- * Copyright (c) copiuum.
+ * This file is part of the Lodestar Client distribution (https://github.com/waythread/lodestar-client).
+ * Copyright (c) waythread.
  */
 
 package meteordevelopment.meteorclient.commands.commands;

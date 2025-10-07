@@ -1,6 +1,6 @@
 /*
- * This file is part of the Lodestar Client distribution (https://github.com/copiuum/lodestar-client).
- * Copyright (c) copiuum.
+ * This file is part of the Lodestar Client distribution (https://github.com/waythread/lodestar-client).
+ * Copyright (c) waythread.
  */
 
 package meteordevelopment.meteorclient.mixin;
@@ -37,10 +37,6 @@ public abstract class CameraMixin implements ICamera {
     @Unique
     private float tickDelta;
 
-    @Inject(method = "getSubmersionType", at = @At("HEAD"), cancellable = true)
-    private void getSubmergedFluidState(CallbackInfoReturnable<CameraSubmersionType> ci) {
-        if (Modules.get().get(NoRender.class).noLiquidOverlay()) ci.setReturnValue(CameraSubmersionType.NONE);
-    }
 
     @ModifyVariable(method = "clipToSpace", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     private float modifyClipToSpace(float d) {

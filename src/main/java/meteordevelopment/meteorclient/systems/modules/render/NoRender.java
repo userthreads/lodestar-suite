@@ -31,27 +31,6 @@ public class NoRender extends Module {
 
     // Overlay
 
-    private final Setting<Boolean> noPortalOverlay = sgOverlay.add(new BoolSetting.Builder()
-        .name("portal-overlay")
-        .description("Disables rendering of the nether portal overlay.")
-        .defaultValue(false)
-        .build()
-    );
-
-    private final Setting<Boolean> noSpyglassOverlay = sgOverlay.add(new BoolSetting.Builder()
-        .name("spyglass-overlay")
-        .description("Disables rendering of the spyglass overlay.")
-        .defaultValue(false)
-        .build()
-    );
-
-    private final Setting<Boolean> noNausea = sgOverlay.add(new BoolSetting.Builder()
-        .name("nausea")
-        .description("Disables rendering of the nausea overlay.")
-        .defaultValue(false)
-        .build()
-    );
-
     private final Setting<Boolean> noPumpkinOverlay = sgOverlay.add(new BoolSetting.Builder()
         .name("pumpkin-overlay")
         .description("Disables rendering of the pumpkin head overlay")
@@ -59,33 +38,9 @@ public class NoRender extends Module {
         .build()
     );
 
-    private final Setting<Boolean> noPowderedSnowOverlay = sgOverlay.add(new BoolSetting.Builder()
-        .name("powdered-snow-overlay")
-        .description("Disables rendering of the powdered snow overlay.")
-        .defaultValue(false)
-        .build()
-    );
 
-    private final Setting<Boolean> noFireOverlay = sgOverlay.add(new BoolSetting.Builder()
-        .name("fire-overlay")
-        .description("Disables rendering of the fire overlay.")
-        .defaultValue(false)
-        .build()
-    );
 
-    private final Setting<Boolean> noLiquidOverlay = sgOverlay.add(new BoolSetting.Builder()
-        .name("liquid-overlay")
-        .description("Disables rendering of the liquid overlay.")
-        .defaultValue(false)
-        .build()
-    );
 
-    private final Setting<Boolean> noInWallOverlay = sgOverlay.add(new BoolSetting.Builder()
-        .name("in-wall-overlay")
-        .description("Disables rendering of the overlay when inside blocks.")
-        .defaultValue(false)
-        .build()
-    );
 
     private final Setting<Boolean> noVignette = sgOverlay.add(new BoolSetting.Builder()
         .name("vignette")
@@ -402,37 +357,16 @@ public class NoRender extends Module {
 
     // Overlay
 
-    public boolean noPortalOverlay() {
-        return isActive() && noPortalOverlay.get();
-    }
 
-    public boolean noSpyglassOverlay() {
-        return isActive() && noSpyglassOverlay.get();
-    }
 
-    public boolean noNausea() {
-        return isActive() && noNausea.get();
-    }
 
     public boolean noPumpkinOverlay() {
         return isActive() && noPumpkinOverlay.get();
     }
 
-    public boolean noFireOverlay() {
-        return isActive() && noFireOverlay.get();
-    }
 
-    public boolean noLiquidOverlay() {
-        return isActive() && noLiquidOverlay.get();
-    }
 
-    public boolean noPowderedSnowOverlay() {
-        return isActive() && noPowderedSnowOverlay.get();
-    }
 
-    public boolean noInWallOverlay() {
-        return isActive() && noInWallOverlay.get();
-    }
 
     public boolean noVignette() {
         return isActive() && noVignette.get();

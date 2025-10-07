@@ -1,11 +1,11 @@
 /*
- * This file is part of the Lodestar Client distribution (https://github.com/copiuum/lodestar-client).
- * Copyright (c) copiuum.
+ * This file is part of the Lodestar Client distribution (https://github.com/waythread/lodestar-client).
+ * Copyright (c) waythread.
  */
 
 package meteordevelopment.meteorclient.systems.modules.misc;
 
-//Created by copiuum
+//Created by waythread
 
 import meteordevelopment.discordipc.DiscordIPC;
 import meteordevelopment.discordipc.RichPresence;
@@ -154,7 +154,7 @@ public class DiscordPresence extends Module {
         if (!MeteorClient.BUILD_NUMBER.isEmpty()) largeText += " Build: " + MeteorClient.BUILD_NUMBER;
         rpc.setLargeImage("lodestar_client", largeText);
 
-        currentSmallImage = SmallImage.copiuum;
+        currentSmallImage = SmallImage.waythread;
 
         recompileLine1();
         recompileLine2();
@@ -290,13 +290,13 @@ public class DiscordPresence extends Module {
     @Override
     public WWidget getWidget(GuiTheme theme) {
         WButton help = theme.button("Open documentation.");
-        help.action = () -> Util.getOperatingSystem().open("https://github.com/copiuum/lodestar-client/wiki/Starscript");
+        help.action = () -> Util.getOperatingSystem().open("https://github.com/waythread/lodestar-client/wiki/Starscript");
 
         return help;
     }
 
     private enum SmallImage {
-        copiuum("copiuum", "copiuum");
+        waythread("waythread", "waythread");
 
         private final String key, text;
 
@@ -310,7 +310,7 @@ public class DiscordPresence extends Module {
         }
 
         SmallImage next() {
-            return copiuum;
+            return waythread;
         }
     }
 }
