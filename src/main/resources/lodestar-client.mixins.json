@@ -71,6 +71,7 @@
     "DefaultSkinHelperMixin",
     "DirectionAccessor",
     "DisconnectedScreenMixin",
+    "DownloaderMixin",
     "DrawContextMixin",
     "EnchantingTableBlockEntityRendererMixin",
     "EndCrystalEntityModelMixin",
