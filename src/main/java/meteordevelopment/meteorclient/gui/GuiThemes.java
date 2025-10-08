@@ -64,14 +64,6 @@ public class GuiThemes {
         // Users can now select Halloween, Christmas, or Panorama themes directly from the theme menu
     }
     
-    private static void selectThemeByClass(Class<? extends GuiTheme> themeClass) {
-        for (GuiTheme t : themes) {
-            if (themeClass.isInstance(t)) {
-                select(t.name);
-                return;
-            }
-        }
-    }
     
     public static void checkHalloweenMode() {
         checkSeasonalThemes();

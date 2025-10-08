@@ -9,8 +9,6 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import meteordevelopment.meteorclient.commands.Command;
 import meteordevelopment.meteorclient.mixininterface.ISimpleOption;
-import meteordevelopment.meteorclient.systems.modules.Modules;
-import meteordevelopment.meteorclient.systems.modules.render.Fov;
 import net.minecraft.command.CommandSource;
 
 import meteordevelopment.meteorclient.MeteorClient;
@@ -25,13 +23,7 @@ public class FovCommand extends Command {
         builder.then(argument("fov", IntegerArgumentType.integer(0, 180)).executes(context -> {
             int fovValue = context.getArgument("fov", Integer.class);
             
-            // Update the FOV module setting if it exists
-            Fov fovModule = Modules.get().get(Fov.class);
-            if (fovModule != null) {
-                fovModule.fov.set(fovValue);
-            }
-            
-            // Also update the game options directly
+            // Update the game options directly (FOV module removed, using Minecraft's built-in FOV)
             if (MeteorClient.mc.options != null && MeteorClient.mc.options.getFov() != null) {
                 ((ISimpleOption) (Object) MeteorClient.mc.options.getFov()).meteor$set(fovValue);
             }

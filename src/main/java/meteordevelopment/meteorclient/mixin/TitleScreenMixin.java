@@ -30,6 +30,8 @@ public abstract class TitleScreenMixin extends Screen {
     private static final Random random = new Random();
     private static final List<Bat> bats = new ArrayList<>();
     private static final List<Snowflake> snowflakes = new ArrayList<>();
+    private static long lastRenderLogTime = 0;
+    private static final long RENDER_LOG_INTERVAL = 30 * 1000L; // 30 seconds for render logs
 
     public TitleScreenMixin(Text title) {
         super(title);
@@ -40,11 +42,15 @@ public abstract class TitleScreenMixin extends Screen {
         if (Config.get().titleScreenCredits.get()) AnimatedSplashScreen.render(context);
         
         // Seasonal animations
-        MeteorClient.LOG.info("TitleScreenMixin.onRender() - TitleScreen render called");
+        // Rate limit render logs to every 30 seconds
+        long currentTime = java.time.Instant.now().toEpochMilli();
+        if (currentTime - lastRenderLogTime >= RENDER_LOG_INTERVAL) {
+            MeteorClient.LOG.info("TitleScreenMixin.onRender() - TitleScreen render called");
+            lastRenderLogTime = currentTime;
+        }
         
         // Update and render Halloween bats
         if (HalloweenMode.get().isActive()) {
-            MeteorClient.LOG.info("Halloween mode active, updating bats");
             updateBats();
             renderBats(context);
         } else {
@@ -53,7 +59,6 @@ public abstract class TitleScreenMixin extends Screen {
         
         // Update and render Christmas snowflakes
         if (ChristmasMode.get().isActive()) {
-            MeteorClient.LOG.info("Christmas mode active, updating snowflakes");
             updateSnowflakes();
             renderSnowflakes(context);
         } else {

@@ -11,11 +11,8 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Style;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.math.Vec3d;
-import org.joml.Vector3f;
 import org.joml.Vector4f;
 
-@SuppressWarnings("unused")
 public class Color implements ICopyable<Color>, ISerializable<Color> {
     public static final Color CLEAR = new Color(0, 0, 0, 0);
     public static final Color WHITE = new Color(java.awt.Color.WHITE);
@@ -285,9 +282,6 @@ public class Color implements ICopyable<Color>, ISerializable<Color> {
         return Style.EMPTY.withColor(toTextColor());
     }
 
-    public Style styleWith(Style style) {
-        return style.withColor(toTextColor());
-    }
 
     public void validate() {
         if (r < 0) r = 0;
@@ -303,13 +297,6 @@ public class Color implements ICopyable<Color>, ISerializable<Color> {
         else if (a > 255) a = 255;
     }
 
-    public Vec3d getVec3d() {
-        return new Vec3d(r / 255.0, g / 255.0, b / 255.0);
-    }
-
-    public Vector3f getVec3f() {
-        return new Vector3f(r / 255.0f, g / 255.0f, b / 255.0f);
-    }
 
     public Vector4f getVec4f() {
         return new Vector4f(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);

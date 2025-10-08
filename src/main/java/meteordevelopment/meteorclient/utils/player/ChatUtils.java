@@ -46,7 +46,6 @@ public class ChatUtils {
     /**
      * Registers a custom prefix to be used when calling from a class in the specified package. When null is returned from the supplier the default Lodestar prefix is used.
      */
-    @SuppressWarnings("unused")
     public static void registerCustomPrefix(String packageName, Supplier<Text> supplier) {
         for (int i = 0; i < customPrefixes.size(); i++) {
             Pair<String, Supplier<Text>> pair = customPrefixes.get(i);
@@ -62,7 +61,6 @@ public class ChatUtils {
     /**
      * The package name must match exactly to the one provided through {@link #registerCustomPrefix(String, Supplier)}.
      */
-    @SuppressWarnings("unused")
     public static void unregisterCustomPrefix(String packageName) {
         customPrefixes.removeIf(pair -> pair.getLeft().equals(packageName));
     }

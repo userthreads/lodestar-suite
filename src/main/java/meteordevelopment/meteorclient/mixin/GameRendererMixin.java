@@ -16,7 +16,6 @@ import meteordevelopment.meteorclient.events.render.RenderAfterWorldEvent;
 import meteordevelopment.meteorclient.renderer.MeteorRenderPipelines;
 import meteordevelopment.meteorclient.renderer.Renderer3D;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-import meteordevelopment.meteorclient.systems.modules.render.Fov;
 import meteordevelopment.meteorclient.systems.modules.render.NoRender;
 import meteordevelopment.meteorclient.systems.modules.render.Zoom;
 import meteordevelopment.meteorclient.utils.Utils;
@@ -160,12 +159,12 @@ public abstract class GameRendererMixin {
         }
         
         // Set flag to indicate we're rendering hands
-        Fov.setRenderingHands(true);
+        Zoom.setRenderingHands(true);
     }
     
     @Inject(method = "renderHand", at = @At("TAIL"))
     private void renderHandTail(float tickProgress, boolean sleeping, Matrix4f positionMatrix, CallbackInfo ci) {
         // Clear flag when done rendering hands
-        Fov.setRenderingHands(false);
+        Zoom.setRenderingHands(false);
     }
 }

@@ -28,6 +28,8 @@ public abstract class InGameAnimationsMixin extends Screen {
     private static final Random random = new Random();
     private static final List<Bat> bats = new ArrayList<>();
     private static final List<Snowflake> snowflakes = new ArrayList<>();
+    private static long lastRenderLogTime = 0;
+    private static final long RENDER_LOG_INTERVAL = 30 * 1000L; // 30 seconds for render logs
 
     public InGameAnimationsMixin(Text title) {
         super(title);
@@ -35,11 +37,15 @@ public abstract class InGameAnimationsMixin extends Screen {
 
     @Inject(method = "render", at = @At("TAIL"))
     private void onRender(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        MeteorClient.LOG.info("InGameAnimationsMixin.onRender() - WidgetScreen render called");
+        // Rate limit render logs to every 30 seconds
+        long currentTime = java.time.Instant.now().toEpochMilli();
+        if (currentTime - lastRenderLogTime >= RENDER_LOG_INTERVAL) {
+            MeteorClient.LOG.info("InGameAnimationsMixin.onRender() - WidgetScreen render called");
+            lastRenderLogTime = currentTime;
+        }
         
         // Update and render Halloween bats
         if (HalloweenMode.get().isActive()) {
-            MeteorClient.LOG.info("Halloween mode active in-game, updating bats");
             updateBats();
             renderBats(context);
         } else {
@@ -48,7 +54,6 @@ public abstract class InGameAnimationsMixin extends Screen {
         
         // Update and render Christmas snowflakes
         if (ChristmasMode.get().isActive()) {
-            MeteorClient.LOG.info("Christmas mode active in-game, updating snowflakes");
             updateSnowflakes();
             renderSnowflakes(context);
         } else {

@@ -18,14 +18,15 @@ fun generateDeterministicSuffix(): String {
 }
 
 base {
-    archivesName = properties["archives_base_name"] as String
     group = properties["maven_group"] as String
-
-    // Always use random 5-character suffix for JAR naming
-    val versionSuffix = generateRandomSuffix()
-    
-    version = (properties["minecraft_version"] as String) + "-" + versionSuffix
+    version = "1.0.0"
 }
+
+// Custom JAR naming with random suffix
+val versionSuffix = generateRandomSuffix()
+val baseName = properties["archives_base_name"] as String
+val minecraftVersion = properties["minecraft_version"] as String
+val customArchivesName = "${baseName}-${minecraftVersion}-${versionSuffix}"
 
 repositories {
     maven {
@@ -140,10 +141,10 @@ tasks {
     }
 
     jar {
-        inputs.property("archivesName", project.base.archivesName.get())
-
+        archiveFileName.set("${customArchivesName}.jar")
+        
         from("LICENSE") {
-            rename { "${it}_${inputs.properties["archivesName"]}" }
+            rename { "${it}_${customArchivesName}" }
         }
 
         manifest {
@@ -173,11 +174,10 @@ tasks {
 
     shadowJar {
         configurations = listOf(project.configurations.shadow.get())
-
-        inputs.property("archivesName", project.base.archivesName.get())
+        archiveFileName.set("${customArchivesName}-all.jar")
 
         from("LICENSE") {
-            rename { "${it}_${inputs.properties["archivesName"]}" }
+            rename { "${it}_${customArchivesName}" }
         }
 
         dependencies {
@@ -190,6 +190,7 @@ tasks {
     remapJar {
         dependsOn(shadowJar)
         inputFile.set(shadowJar.get().archiveFile)
+        archiveFileName.set("${customArchivesName}.jar")
     }
 
     javadoc {
@@ -213,7 +214,7 @@ publishing {
             from(components["java"])
             artifactId = "lodestar-client"
 
-            version = properties["minecraft_version"] as String + "-SNAPSHOT"
+            version = project.version.toString()
         }
     }
 }

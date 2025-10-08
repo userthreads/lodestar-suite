@@ -17,7 +17,6 @@ import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.systems.modules.Categories;
 import meteordevelopment.meteorclient.systems.modules.Module;
-import meteordevelopment.meteorclient.systems.modules.render.Fov;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.glfw.GLFW;
@@ -69,6 +68,9 @@ public class Zoom extends Module {
         .visible(() -> !hideHud.get())
         .build()
     );
+
+    // Static flag to track when we're rendering hands (replaces FOV module functionality)
+    private static boolean renderingHands = false;
 
     private boolean enabled;
     private boolean preCinematic;
@@ -162,10 +164,10 @@ public class Zoom extends Module {
         time = MathHelper.clamp(time, 0, 1);
     }
 
-    @EventHandler(priority = 500) // Lower priority to run before FOV module
+    @EventHandler(priority = 500)
     private void onGetFov(GetFovEvent event) {
         // Don't apply zoom scaling when rendering hands
-        if (!Fov.isRenderingHands()) {
+        if (!renderingHands) {
             event.fov /= (float) getScaling();
         }
 
@@ -180,5 +182,14 @@ public class Zoom extends Module {
 
     public boolean renderHands() {
         return !isActive() || renderHands.get();
+    }
+
+    // Static methods to control hand rendering state (replaces FOV module functionality)
+    public static void setRenderingHands(boolean rendering) {
+        renderingHands = rendering;
+    }
+    
+    public static boolean isRenderingHands() {
+        return renderingHands;
     }
 }
