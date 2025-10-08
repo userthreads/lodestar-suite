@@ -60,7 +60,6 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 public class Modules extends System<Modules> {
     private static final List<Category> CATEGORIES = new ArrayList<>();
 
-    private final List<Module> modules = new ArrayList<>();
     private final Map<Class<? extends Module>, Module> moduleInstances = new Reference2ReferenceOpenHashMap<>();
     private final Map<Category, List<Module>> groups = new Reference2ReferenceOpenHashMap<>();
 
@@ -101,7 +100,6 @@ public class Modules extends System<Modules> {
         for (List<Module> modules : groups.values()) {
             modules.sort(Comparator.comparing(o -> o.title));
         }
-        modules.sort(Comparator.comparing(o -> o.title));
     }
 
     public static void registerCategory(Category category) {
@@ -140,13 +138,6 @@ public class Modules extends System<Modules> {
         return moduleInstances.values();
     }
 
-    /**
-     * @deprecated Use {@link Modules#getAll()} instead.
-     */
-    @Deprecated(forRemoval = true)
-    public List<Module> getList() {
-        return modules;
-    }
 
     public int getCount() {
         return moduleInstances.size();
@@ -385,7 +376,6 @@ public class Modules extends System<Modules> {
 
         // Add the module
         moduleInstances.put(module.getClass(), module);
-        modules.add(module);
         getGroup(module.category).add(module);
 
         // Register color settings for the module
