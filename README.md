@@ -17,7 +17,7 @@
 ## Questions and Answers:
 <p align="left">
 Q: Why utilize Meteor code and not make yourself original client?<br>
-A: Meteor itself is highly advanced, hence you can edit and make amazing stuff out of it, therefore importantly, I came up with fair play version.<br>
+A: Meteor itself is highly advanced, hence you can edit and make amazing stuff out of it.. though I am migrating the functionality of it to my own, therefore importantly, I came up with fair play version.<br>
 <br>
 Q: Are there any hidden unfair advantage modules?<br>
 A: No, you can review the code.<br>
