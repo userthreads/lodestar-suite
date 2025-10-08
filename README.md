@@ -1,6 +1,5 @@
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/waythread/lodestar-client/master/src/main/resources/assets/lodestar-client/icon.png" alt="lodestar-client-logo" width="15%"/>
 </p>
 
 <h1 align="center">Lodestar</h1>
