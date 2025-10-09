@@ -15,9 +15,9 @@
 
 ## Advantages over Meteor Client;
 <p align="left">
-Seasonal holiday themes (Halloween, Christmas)<br>
-UI animations and effects<br>
-No cheats<br>
+- Seasonal holiday themes (Halloween, Christmas)<br>
+- UI animations and effects<br>
+- No cheats<br>
 </p>
 
 
