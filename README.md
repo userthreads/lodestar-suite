@@ -18,7 +18,7 @@
 Seasonal holiday themes (Halloween, Christmas)
 UI animations and effects
 No cheats
-
+</p>
 
 
 ## Questions and Answers:
