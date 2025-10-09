@@ -24,10 +24,18 @@ public class PacketInflaterTransformer extends AsmTransformer {
 
     @Override
     public void transform(ClassNode klass) {
-        MethodNode method = getMethod(klass, decodeMethod);
-        if (method == null) error("[Lodestar Client] Could not find method PacketInflater.decode()");
+        try {
+            MethodNode method = getMethod(klass, decodeMethod);
+            if (method == null) {
+                // Silently skip if method doesn't exist (class might not exist in this Minecraft version)
+                return;
+            }
 
-        // AntiPacketKick module removed - no packet kick protection
-        // This transformer is kept for future compatibility but does nothing
+            // AntiPacketKick module removed - no packet kick protection
+            // This transformer is kept for future compatibility but does nothing
+        } catch (Exception e) {
+            // Silently handle any transformation errors
+            // This prevents crashes when the target class doesn't exist or has changed
+        }
     }
 }

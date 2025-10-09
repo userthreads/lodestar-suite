@@ -54,40 +54,23 @@ public class GuiThemes {
 
         if (theme == null) select("Lodestar");
         
-        // Check for seasonal themes
+        // Check for seasonal themes and auto-switch if appropriate
         checkSeasonalThemes();
     }
     
     public static void checkSeasonalThemes() {
-        // Note: Seasonal themes are now manually selectable from GUI
-        // This method is kept for backward compatibility but doesn't auto-switch themes
-        // Users can now select Halloween, Christmas, or Panorama themes directly from the theme menu
-    }
-    
-    
-    public static void checkHalloweenMode() {
-        checkSeasonalThemes();
-    }
-    
-    public static void checkChristmasMode() {
-        checkSeasonalThemes();
-    }
-    
-    private static void updateAnimationsForTheme(GuiTheme theme) {
-        // Enable/disable animations based on theme selection
-        if (theme instanceof HalloweenGuiTheme) {
-            // Enable Halloween animations
-            HalloweenMode.get().enabled.set(true);
-            MeteorClient.LOG.info("Halloween theme selected - enabling Halloween animations");
-        } else if (theme instanceof ChristmasGuiTheme) {
-            // Enable Christmas animations
-            ChristmasMode.get().enabled.set(true);
-            MeteorClient.LOG.info("Christmas theme selected - enabling Christmas animations");
-        } else {
-            // Disable all seasonal animations when selecting normal themes
-            HalloweenMode.get().enabled.set(false);
-            ChristmasMode.get().enabled.set(false);
-            MeteorClient.LOG.info("Normal theme selected - disabling seasonal animations");
+        // Auto-switch to seasonal themes based on date
+        if (HalloweenMode.get().isActive() && !(get() instanceof HalloweenGuiTheme)) {
+            select("Halloween");
+            MeteorClient.LOG.info("Auto-switched to Halloween theme for Halloween week!");
+        } else if (ChristmasMode.get().isActive() && !(get() instanceof ChristmasGuiTheme)) {
+            select("Christmas");
+            MeteorClient.LOG.info("Auto-switched to Christmas theme for Christmas season!");
+        } else if (!HalloweenMode.get().isActive() && !ChristmasMode.get().isActive() && 
+                   (get() instanceof HalloweenGuiTheme || get() instanceof ChristmasGuiTheme)) {
+            // Switch back to default theme when not in seasonal periods
+            select("Lodestar");
+            MeteorClient.LOG.info("Auto-switched back to default theme - seasonal period ended");
         }
     }
 
@@ -134,8 +117,6 @@ public class GuiThemes {
                 e.printStackTrace();
             }
 
-            // Auto-enable/disable animations based on theme selection
-            updateAnimationsForTheme(theme);
 
             // Save global gui settings with the new theme
             saveGlobal();

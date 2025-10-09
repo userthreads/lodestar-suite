@@ -90,6 +90,11 @@ public class MeteorStarscript {
             .set("prefix", MeteorStarscript::getLodestarPrefix)
         );
 
+        // GUI
+        ss.set("gui", new ValueMap()
+            .set("theme", () -> Value.string(meteordevelopment.meteorclient.gui.GuiThemes.get().name))
+        );
+
         // Camera
         ss.set("camera", new ValueMap()
             .set("pos", new ValueMap()

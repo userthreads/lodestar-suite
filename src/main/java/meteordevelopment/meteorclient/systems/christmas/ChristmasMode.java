@@ -34,7 +34,7 @@ public class ChristmasMode extends System<ChristmasMode> {
     
     public final Setting<Boolean> enabled = sgGeneral.add(new BoolSetting.Builder()
         .name("enabled")
-        .description("Enable Christmas mode animations regardless of date.")
+        .description("Enable Christmas theme regardless of date.")
         .defaultValue(false)
         .build()
     );

@@ -51,18 +51,24 @@ public class Asm {
     public byte[] transform(String name, byte[] bytes) {
         AsmTransformer transformer = transformers.get(name);
 
-        if (transformer != null) {
-            ClassNode klass = new ClassNode();
-            ClassReader reader = new ClassReader(bytes);
-            reader.accept(klass, ClassReader.EXPAND_FRAMES);
+        if (transformer != null && bytes != null) {
+            try {
+                ClassNode klass = new ClassNode();
+                ClassReader reader = new ClassReader(bytes);
+                reader.accept(klass, ClassReader.EXPAND_FRAMES);
 
-            transformer.transform(klass);
+                transformer.transform(klass);
 
-            ClassWriter writer = new MixinClassWriter(reader, ClassWriter.COMPUTE_FRAMES);
-            klass.accept(writer);
-            bytes = writer.toByteArray();
+                ClassWriter writer = new MixinClassWriter(reader, ClassWriter.COMPUTE_FRAMES);
+                klass.accept(writer);
+                bytes = writer.toByteArray();
 
-            export(name, bytes);
+                export(name, bytes);
+            } catch (Exception e) {
+                MeteorClient.LOG.warn("Failed to transform class {}: {}", name, e.getMessage());
+                // Return original bytes if transformation fails
+                return bytes;
+            }
         }
 
         return bytes;
@@ -101,7 +107,10 @@ public class Asm {
         @Override
         public byte[] transformClassBytes(String name, String transformedName, byte[] basicClass) {
             basicClass = delegate.transformClassBytes(name, transformedName, basicClass);
-            return Asm.INSTANCE.transform(name, basicClass);
+            if (Asm.INSTANCE != null) {
+                return Asm.INSTANCE.transform(name, basicClass);
+            }
+            return basicClass;
         }
 
         @Override

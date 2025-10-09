@@ -34,7 +34,7 @@ public class HalloweenMode extends System<HalloweenMode> {
     
     public final Setting<Boolean> enabled = sgGeneral.add(new BoolSetting.Builder()
         .name("enabled")
-        .description("Enable Halloween mode animations regardless of date.")
+        .description("Enable Halloween theme regardless of date.")
         .defaultValue(false)
         .build()
     );
