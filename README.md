@@ -13,6 +13,14 @@
 
 ## Important notice: There might be leftover code from Meteor client unfair advantage modules, but you are free to review if it is fair play compatible or not.
 
+## Advantages over Meteor Client;
+<p align="left">
+Seasonal holiday themes (Halloween, Christmas)
+UI animations and effects
+No cheats
+
+
+
 ## Questions and Answers:
 <p align="left">
 Q: Why utilize Meteor code and not make yourself original client?<br>
