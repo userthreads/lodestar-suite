@@ -2,7 +2,7 @@
 <p align="center">
 </p>
 
-<h1 align="center">Lodestar</h1>
+<h1 align="center">Lodestar Client</h1>
 <p align="center">The Fabric Minecraft mod based off Meteor Client, with quality of life modules and tools for fair play compliance, for everyone.</p>
 
 <div align="center">
