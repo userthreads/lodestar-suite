@@ -20,6 +20,7 @@ import meteordevelopment.meteorclient.utils.misc.ByteCountDataOutput;
 import meteordevelopment.meteorclient.utils.misc.Keybind;
 import meteordevelopment.meteorclient.utils.player.EChestMemory;
 import meteordevelopment.meteorclient.utils.render.color.Color;
+import meteordevelopment.meteorclient.utils.render.color.SettingColor;
 import meteordevelopment.meteorclient.utils.tooltip.*;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.component.DataComponentTypes;
@@ -195,6 +196,33 @@ public class BetterTooltips extends Module {
         .name("tooltip-components")
         .description("Shows tooltip components when they're hidden - e.g. enchantments, attributes, lore, etc.")
         .defaultValue(false)
+        .build()
+    );
+
+    // Blur settings
+    private final Setting<Boolean> blurBackground = sgGeneral.add(new BoolSetting.Builder()
+        .name("blur-background")
+        .description("Adds a blur backdrop behind tooltips for better readability.")
+        .defaultValue(true)
+        .build()
+    );
+
+    private final Setting<Double> blurIntensity = sgGeneral.add(new DoubleSetting.Builder()
+        .name("blur-intensity")
+        .description("Intensity of the blur effect for tooltip background.")
+        .defaultValue(1.5)
+        .min(0.0)
+        .max(5.0)
+        .sliderRange(0.0, 5.0)
+        .visible(blurBackground::get)
+        .build()
+    );
+
+    private final Setting<SettingColor> blurTintColor = sgGeneral.add(new ColorSetting.Builder()
+        .name("blur-tint")
+        .description("Color to tint the blur effect for tooltip background.")
+        .defaultValue(new SettingColor(0, 0, 0, 80))
+        .visible(blurBackground::get)
         .build()
     );
 
@@ -458,6 +486,29 @@ public class BetterTooltips extends Module {
     public enum DisplayWhen {
         Keybind,
         Always
+    }
+
+    /**
+     * Renders a blur backdrop for tooltips if enabled
+     * This method should be called from tooltip rendering mixins
+     */
+    public void renderTooltipBlurBackdrop(double x, double y, double width, double height) {
+        if (!isActive() || !blurBackground.get()) return;
+
+        // Convert SettingColor to Color
+        Color blurColor = new Color(
+            blurTintColor.get().r,
+            blurTintColor.get().g,
+            blurTintColor.get().b,
+            blurTintColor.get().a
+        );
+
+        // Render blur backdrop
+        meteordevelopment.meteorclient.gui.renderer.BlurRenderer.getInstance().renderSimpleBlurBackdrop(
+            x, y, width, height,
+            blurIntensity.get().floatValue(),
+            blurColor
+        );
     }
 
     public enum SortSize {

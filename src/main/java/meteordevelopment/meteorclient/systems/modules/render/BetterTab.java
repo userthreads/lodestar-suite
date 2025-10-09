@@ -78,6 +78,32 @@ public class BetterTab extends Module {
         .build()
     );
 
+    private final Setting<Boolean> blurBackground = sgGeneral.add(new BoolSetting.Builder()
+        .name("blur-background")
+        .description("Adds a blur backdrop behind the tab list for better readability.")
+        .defaultValue(true)
+        .build()
+    );
+
+    private final Setting<Double> blurIntensity = sgGeneral.add(new DoubleSetting.Builder()
+        .name("blur-intensity")
+        .description("Intensity of the blur effect for tab list background.")
+        .defaultValue(2.0)
+        .min(0.0)
+        .max(5.0)
+        .sliderRange(0.0, 5.0)
+        .visible(blurBackground::get)
+        .build()
+    );
+
+    private final Setting<SettingColor> blurTintColor = sgGeneral.add(new ColorSetting.Builder()
+        .name("blur-tint")
+        .description("Color to tint the blur effect for tab list background.")
+        .defaultValue(new SettingColor(0, 0, 0, 120))
+        .visible(blurBackground::get)
+        .build()
+    );
+
 
     public BetterTab() {
         super(Categories.Render, "better-tab", "Various improvements to the tab list.");
@@ -126,6 +152,29 @@ public class BetterTab extends Module {
         }
 
         return name;
+    }
+
+    /**
+     * Renders a blur backdrop for the tab list if enabled
+     * This method should be called from the tab list rendering mixin
+     */
+    public void renderTabListBlurBackdrop(double x, double y, double width, double height) {
+        if (!isActive() || !blurBackground.get()) return;
+
+        // Convert SettingColor to Color
+        Color blurColor = new Color(
+            blurTintColor.get().r,
+            blurTintColor.get().g,
+            blurTintColor.get().b,
+            blurTintColor.get().a
+        );
+
+        // Render blur backdrop
+        meteordevelopment.meteorclient.gui.renderer.BlurRenderer.getInstance().renderSimpleBlurBackdrop(
+            x, y, width, height,
+            blurIntensity.get().floatValue(),
+            blurColor
+        );
     }
 
 }

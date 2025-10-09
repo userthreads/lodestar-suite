@@ -84,9 +84,35 @@ public class MeteorGuiTheme extends GuiTheme {
         .build()
     );
 
+    public final Setting<Boolean> blurEnabled = sgGeneral.add(new BoolSetting.Builder()
+        .name("blur-enabled")
+        .description("Enable blur backdrop effects for UI elements.")
+        .defaultValue(true)
+        .build()
+    );
+
+    public final Setting<Double> blurIntensity = sgGeneral.add(new DoubleSetting.Builder()
+        .name("blur-intensity")
+        .description("Intensity of the blur effect.")
+        .defaultValue(2.0)
+        .min(0.0)
+        .max(5.0)
+        .sliderRange(0.0, 5.0)
+        .build()
+    );
+
+    public final Setting<SettingColor> blurTintColor = color(sgGeneral, "blur-tint", "Color to tint the blur effect.", new SettingColor(0, 0, 0, 100));
+
+    public final Setting<Boolean> blurAdvancedMode = sgGeneral.add(new BoolSetting.Builder()
+        .name("blur-advanced-mode")
+        .description("Use advanced blur with screen capture (may impact performance).")
+        .defaultValue(false)
+        .build()
+    );
+
     // Colors
 
-    public final Setting<SettingColor> accentColor = color("accent", "Main color of the GUI.", new SettingColor(220, 220, 220));
+    public final Setting<SettingColor> accentColor = color("accent", "Main color of the GUI.", new SettingColor(0, 0, 0));
     public final Setting<SettingColor> checkboxColor = color("checkbox", "Color of checkbox.", new SettingColor(240, 240, 240));
     public final Setting<SettingColor> plusColor = color("plus", "Color of plus button.", new SettingColor(50, 255, 50));
     public final Setting<SettingColor> minusColor = color("minus", "Color of minus button.", new SettingColor(255, 50, 50));
@@ -299,6 +325,14 @@ public class MeteorGuiTheme extends GuiTheme {
     @Override
     public WFavorite favorite(boolean checked) {
         return w(new WMeteorFavorite(checked));
+    }
+
+    public BlurBackdropWidget blurBackdrop() {
+        BlurBackdropWidget widget = w(new BlurBackdropWidget());
+        widget.setBlurIntensity(blurIntensity.get().floatValue());
+        widget.setTintColor(blurTintColor.get());
+        widget.setUseAdvancedBlur(blurAdvancedMode.get());
+        return widget;
     }
 
     // Colors

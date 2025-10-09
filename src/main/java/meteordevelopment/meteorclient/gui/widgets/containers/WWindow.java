@@ -6,6 +6,7 @@
 package meteordevelopment.meteorclient.gui.widgets.containers;
 
 import meteordevelopment.meteorclient.gui.renderer.GuiRenderer;
+import meteordevelopment.meteorclient.gui.renderer.BlurRenderer;
 import meteordevelopment.meteorclient.gui.utils.Cell;
 import meteordevelopment.meteorclient.gui.utils.WindowConfig;
 import meteordevelopment.meteorclient.gui.widgets.WWidget;
@@ -113,12 +114,32 @@ public abstract class WWindow extends WVerticalList {
     public boolean render(GuiRenderer renderer, double mouseX, double mouseY, double delta) {
         if (!visible) return true;
 
+        // Render blur backdrop if enabled in theme
+        renderBlurBackdrop(renderer);
+
         boolean scissor = (animProgress != 0 && animProgress != 1) || (expanded && animProgress != 1);
         if (scissor) renderer.scissorStart(x, y, width, (height - header.height) * animProgress + header.height);
         boolean toReturn = super.render(renderer, mouseX, mouseY, delta);
         if (scissor) renderer.scissorEnd();
 
         return toReturn;
+    }
+
+    protected void renderBlurBackdrop(GuiRenderer renderer) {
+        // Check if blur is enabled in the theme
+        if (theme instanceof meteordevelopment.meteorclient.gui.themes.meteor.MeteorGuiTheme) {
+            meteordevelopment.meteorclient.gui.themes.meteor.MeteorGuiTheme meteorTheme = 
+                (meteordevelopment.meteorclient.gui.themes.meteor.MeteorGuiTheme) theme;
+            
+            if (meteorTheme.blurEnabled.get()) {
+                // Render blur backdrop for the window
+                BlurRenderer.getInstance().renderSimpleBlurBackdrop(
+                    x, y, width, height,
+                    meteorTheme.blurIntensity.get().floatValue(),
+                    meteorTheme.blurTintColor.get()
+                );
+            }
+        }
     }
 
     @Override

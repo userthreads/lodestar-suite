@@ -1,7 +1,6 @@
 plugins {
     id("fabric-loom") version "1.10-SNAPSHOT"
     id("maven-publish")
-    id("com.gradleup.shadow") version "9.0.0-beta11"
 }
 
 // Function to generate random 5-character suffix (a-z, 0-9)
@@ -17,16 +16,16 @@ fun generateDeterministicSuffix(): String {
     return hash
 }
 
-base {
-    group = properties["maven_group"] as String
-    version = "1.0.0"
-}
-
 // Custom JAR naming with random suffix
 val versionSuffix = generateRandomSuffix()
 val baseName = properties["archives_base_name"] as String
 val minecraftVersion = properties["minecraft_version"] as String
 val customArchivesName = "${baseName}-${minecraftVersion}-${versionSuffix}"
+
+base {
+    group = properties["maven_group"] as String
+    version = versionSuffix
+}
 
 repositories {
     maven {
@@ -57,7 +56,6 @@ repositories {
 }
 
 val modInclude: Configuration by configurations.creating
-val library: Configuration by configurations.creating
 
 configurations {
     // include mods
@@ -66,14 +64,6 @@ configurations {
     }
     include.configure {
         extendsFrom(modInclude)
-    }
-
-    // include libraries
-    implementation.configure {
-        extendsFrom(library)
-    }
-    shadow.configure {
-        extendsFrom(library)
     }
 }
 
@@ -98,17 +88,34 @@ dependencies {
     // ModMenu (https://github.com/TerraformersMC/ModMenu)
     modCompileOnly("com.terraformersmc:modmenu:${properties["modmenu_version"] as String}")
 
-    // Libraries
-    library("meteordevelopment:orbit:${properties["orbit_version"] as String}")
-    library("org.meteordev:starscript:${properties["starscript_version"] as String}")
-    library("meteordevelopment:discord-ipc:${properties["discordipc_version"] as String}")
-    library("org.reflections:reflections:${properties["reflections_version"] as String}")
-    library("io.netty:netty-handler-proxy:${properties["netty_version"] as String}") { isTransitive = false }
-    library("io.netty:netty-codec-socks:${properties["netty_version"] as String}") { isTransitive = false }
-    library("de.florianmichael:WaybackAuthLib:${properties["waybackauthlib_version"] as String}")
+    // Libraries - include in jar and make available for compilation
+    implementation("meteordevelopment:orbit:${properties["orbit_version"] as String}")
+    include("meteordevelopment:orbit:${properties["orbit_version"] as String}")
+    
+    implementation("org.meteordev:starscript:${properties["starscript_version"] as String}")
+    include("org.meteordev:starscript:${properties["starscript_version"] as String}")
+    
+    implementation("meteordevelopment:discord-ipc:${properties["discordipc_version"] as String}")
+    include("meteordevelopment:discord-ipc:${properties["discordipc_version"] as String}")
+    
+    implementation("org.reflections:reflections:${properties["reflections_version"] as String}")
+    include("org.reflections:reflections:${properties["reflections_version"] as String}")
+    
+    // Javassist is a transitive dependency of Reflections
+    implementation("org.javassist:javassist:3.30.2-GA")
+    include("org.javassist:javassist:3.30.2-GA")
+    
+    implementation("io.netty:netty-handler-proxy:${properties["netty_version"] as String}") { isTransitive = false }
+    include("io.netty:netty-handler-proxy:${properties["netty_version"] as String}") { isTransitive = false }
+    
+    implementation("io.netty:netty-codec-socks:${properties["netty_version"] as String}") { isTransitive = false }
+    include("io.netty:netty-codec-socks:${properties["netty_version"] as String}") { isTransitive = false }
+    
+    implementation("de.florianmichael:WaybackAuthLib:${properties["waybackauthlib_version"] as String}")
+    include("de.florianmichael:WaybackAuthLib:${properties["waybackauthlib_version"] as String}")
 
     // Launch sub project
-    shadow(project(":launch"))
+    implementation(project(":launch"))
 }
 
 loom {
@@ -172,24 +179,7 @@ tasks {
         options.compilerArgs.add("-Xlint:unchecked")
     }
 
-    shadowJar {
-        configurations = listOf(project.configurations.shadow.get())
-        archiveFileName.set("${customArchivesName}-all.jar")
-
-        from("LICENSE") {
-            rename { "${it}_${customArchivesName}" }
-        }
-
-        dependencies {
-            exclude {
-                it.moduleGroup == "org.slf4j"
-            }
-        }
-    }
-
     remapJar {
-        dependsOn(shadowJar)
-        inputFile.set(shadowJar.get().archiveFile)
         archiveFileName.set("${customArchivesName}.jar")
     }
 
