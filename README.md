@@ -23,6 +23,8 @@
 
 ## Questions and Answers:
 <p align="left">
+Q: Why "client"?<br>
+A: It has client-like features that would require many mods (.jar files) to "install".<br>
 Q: Why utilize Meteor code and not make yourself original client?<br>
 A: Meteor itself is highly advanced, hence you can edit and make amazing stuff out of it.. though I am migrating the functionality of it to my own, therefore importantly, I came up with fair play version.<br>
 <br>
@@ -35,6 +37,9 @@ A: Yes, but here's a catch: It is hard to implement it because current Meteor UI
 
 
 ## Credits
+Thanks to Meteor Client and the Meteor Development team + contributors for their incredible work.
+- Meteor Client GitHub: https://github.com/MeteorDevelopment/meteor-client
+- Meteor Development: https://meteorclient.com
 The [Fabric Team](https://github.com/FabricMC) for [Fabric](https://github.com/FabricMC/fabric-loader) and [Yarn](https://github.com/FabricMC/yarn)
 
 ## Releases
