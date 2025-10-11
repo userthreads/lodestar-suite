@@ -7,18 +7,19 @@ package meteordevelopment.meteorclient.utils.misc;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.function.Supplier;
 
 public class Pool<T> {
     private final Queue<T> items = new ArrayDeque<>();
-    private final Producer<T> producer;
+    private final Supplier<T> producer;
 
     public Pool(Producer<T> producer) {
-        this.producer = producer;
+        this.producer = producer::create;
     }
 
     public synchronized T get() {
         if (!items.isEmpty()) return items.poll();
-        return producer.create();
+        return producer.get();
     }
 
     public synchronized void free(T obj) {
