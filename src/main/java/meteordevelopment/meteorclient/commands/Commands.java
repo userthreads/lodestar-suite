@@ -10,7 +10,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.commands.commands.*;
 import meteordevelopment.meteorclient.events.game.GameJoinedEvent;
-import meteordevelopment.meteorclient.pathing.PathManagers;
+// PathManagers removed - no pathfinding functionality
 import meteordevelopment.meteorclient.utils.PostInit;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
