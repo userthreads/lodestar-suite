@@ -47,12 +47,13 @@ The [Fabric Team](https://github.com/FabricMC) for [Fabric](https://github.com/F
 ## Releases
 
 ### Latest Release: see the release section
+- **Note**: Each build generates a unique random 5-character suffix for file identification matching mod version random 5-character suffix
 - **Download**: [Latest Release](https://github.com/waythread/lodestar-client/releases/latest)
 - **File Format**: `lodestar-client-{minecraft_version}-{random_suffix}.jar`
 - **Example**: `lodestar-client-1.21.8-qg6z4.jar`
 - **Compatible with**: Minecraft 1.21.8
 - **Requires**: Fabric Loader 0.16.0+
-- **Note**: Each build generates a unique random 5-character suffix for file identification matching mod version random 5-character suffix
+
 
 
 
