@@ -9,13 +9,6 @@ fun generateRandomSuffix(): String {
     return (1..5).map { chars.random() }.joinToString("")
 }
 
-// Function to generate deterministic suffix for CI builds
-fun generateDeterministicSuffix(): String {
-    val buildNumber = project.findProperty("build_number")?.toString() ?: "local"
-    val hash = buildNumber.hashCode().toString().takeLast(5).padStart(5, '0')
-    return hash
-}
-
 // Custom JAR naming with random suffix
 val versionSuffix = generateRandomSuffix()
 val baseName = properties["archives_base_name"] as String
@@ -105,14 +98,9 @@ dependencies {
     implementation("org.javassist:javassist:3.30.2-GA")
     include("org.javassist:javassist:3.30.2-GA")
     
-    implementation("io.netty:netty-handler-proxy:${properties["netty_version"] as String}") { isTransitive = false }
-    include("io.netty:netty-handler-proxy:${properties["netty_version"] as String}") { isTransitive = false }
+    // Proxy system removed for security reasons
     
-    implementation("io.netty:netty-codec-socks:${properties["netty_version"] as String}") { isTransitive = false }
-    include("io.netty:netty-codec-socks:${properties["netty_version"] as String}") { isTransitive = false }
-    
-    implementation("de.florianmichael:WaybackAuthLib:${properties["waybackauthlib_version"] as String}")
-    include("de.florianmichael:WaybackAuthLib:${properties["waybackauthlib_version"] as String}")
+    // Account system removed for security reasons
 
     // Launch sub project
     implementation(project(":launch"))

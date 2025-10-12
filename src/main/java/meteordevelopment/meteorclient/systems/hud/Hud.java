@@ -196,8 +196,8 @@ public class Hud extends System<Hud> implements Iterable<HudElement> {
         add(MeteorTextHud.PING, 4, 4 + h * 3, XAnchor.Left, YAnchor.Top);
         add(MeteorTextHud.SPEED, 4, 4 + h * 4, XAnchor.Left, YAnchor.Top);
 
-        // Top Right
-        add(ActiveModulesHud.INFO, -4, 4, XAnchor.Right, YAnchor.Top);
+        // Center
+        add(ActiveModulesHud.INFO, 0, 4, XAnchor.Center, YAnchor.Top);
 
         // Bottom Right
         add(MeteorTextHud.POSITION, -4, -4, XAnchor.Right, YAnchor.Bottom);

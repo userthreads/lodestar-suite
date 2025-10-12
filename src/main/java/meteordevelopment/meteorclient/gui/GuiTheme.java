@@ -8,8 +8,7 @@ package meteordevelopment.meteorclient.gui;
 import meteordevelopment.meteorclient.gui.renderer.packer.GuiTexture;
 import meteordevelopment.meteorclient.gui.screens.ModuleScreen;
 import meteordevelopment.meteorclient.gui.screens.ModulesScreen;
-import meteordevelopment.meteorclient.gui.screens.ProxiesScreen;
-import meteordevelopment.meteorclient.gui.screens.accounts.AccountsScreen;
+// Proxy and account systems removed for security reasons
 import meteordevelopment.meteorclient.gui.tabs.TabScreen;
 import meteordevelopment.meteorclient.gui.utils.CharFilter;
 import meteordevelopment.meteorclient.gui.utils.SettingsWidgetFactory;
@@ -21,7 +20,7 @@ import meteordevelopment.meteorclient.gui.widgets.pressable.*;
 import meteordevelopment.meteorclient.renderer.Texture;
 import meteordevelopment.meteorclient.renderer.text.TextRenderer;
 import meteordevelopment.meteorclient.settings.Settings;
-import meteordevelopment.meteorclient.systems.accounts.Account;
+// Account system removed for security reasons
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.misc.ISerializable;
 import meteordevelopment.meteorclient.utils.misc.Keybind;
@@ -152,7 +151,7 @@ public abstract class GuiTheme implements ISerializable<GuiTheme> {
         return section(title, true);
     }
 
-    public abstract WAccount account(WidgetScreen screen, Account<?> account);
+    // Account system removed for security reasons
 
     public abstract WWidget module(Module module);
 
@@ -228,15 +227,7 @@ public abstract class GuiTheme implements ISerializable<GuiTheme> {
         return new ModuleScreen(this, module);
     }
 
-    public WidgetScreen accountsScreen() {
-        return new AccountsScreen(this);
-    }
-
-    // NotebotSongsScreen removed - notebot module deleted
-
-    public WidgetScreen proxiesScreen() {
-        return new ProxiesScreen(this);
-    }
+    // Account and proxy systems removed for security reasons
 
     // Colors
 

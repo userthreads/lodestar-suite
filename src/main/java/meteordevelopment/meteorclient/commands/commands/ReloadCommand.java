@@ -11,7 +11,7 @@ import meteordevelopment.meteorclient.renderer.Fonts;
 import meteordevelopment.meteorclient.systems.Systems;
 import meteordevelopment.meteorclient.systems.friends.Friend;
 import meteordevelopment.meteorclient.systems.friends.Friends;
-import meteordevelopment.meteorclient.utils.network.Capes;
+// Capes system removed - client-sided mod should not have network functionality
 import meteordevelopment.meteorclient.utils.network.MeteorExecutor;
 import net.minecraft.command.CommandSource;
 
@@ -26,7 +26,6 @@ public class ReloadCommand extends Command {
             warning("Reloading systems, this may take a while.");
 
             Systems.load();
-            Capes.init();
             Fonts.refresh();
             MeteorExecutor.execute(() -> Friends.get().forEach(Friend::updateInfo));
 

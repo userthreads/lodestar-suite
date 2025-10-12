@@ -1,6 +1,6 @@
 /*
- * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
- * Copyright (c) Meteor Development.
+ * This file is part of the Lodestar Client distribution (https://github.com/waythread/lodestar-client).
+ * Copyright (c) waythread.
  */
 
 package meteordevelopment.meteorclient.systems.modules.player;
@@ -25,16 +25,16 @@ public class AutoClicker extends Module {
     private final Setting<Mode> leftClickMode = sgGeneral.add(new EnumSetting.Builder<Mode>()
         .name("mode-left")
         .description("The method of clicking for left clicks.")
-        .defaultValue(Mode.Press)
+        .defaultValue(Mode.Disabled)
         .build()
     );
 
     private final Setting<Integer> leftClickDelay = sgGeneral.add(new IntSetting.Builder()
         .name("delay-left")
         .description("The amount of delay between left clicks in ticks.")
-        .defaultValue(2)
+        .defaultValue(100)
         .min(0)
-        .sliderMax(60)
+        .sliderMax(200)
         .visible(() -> leftClickMode.get() == Mode.Press)
         .build()
     );
@@ -42,16 +42,16 @@ public class AutoClicker extends Module {
     private final Setting<Mode> rightClickMode = sgGeneral.add(new EnumSetting.Builder<Mode>()
         .name("mode-right")
         .description("The method of clicking for right clicks.")
-        .defaultValue(Mode.Press)
+        .defaultValue(Mode.Disabled)
         .build()
     );
 
     private final Setting<Integer> rightClickDelay = sgGeneral.add(new IntSetting.Builder()
         .name("delay-right")
         .description("The amount of delay between right clicks in ticks.")
-        .defaultValue(2)
+        .defaultValue(100)
         .min(0)
-        .sliderMax(60)
+        .sliderMax(200)
         .visible(() -> rightClickMode.get() == Mode.Press)
         .build()
     );

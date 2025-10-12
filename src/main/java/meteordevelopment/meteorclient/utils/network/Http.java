@@ -29,7 +29,9 @@ public class Http {
     public static final int FORBIDDEN = 403;
     public static final int NOT_FOUND = 404;
 
-    private static final HttpClient CLIENT = HttpClient.newHttpClient();
+    private static final HttpClient CLIENT = HttpClient.newBuilder()
+        .followRedirects(HttpClient.Redirect.NORMAL)
+        .build();
 
     private static final Gson GSON = new GsonBuilder()
         .registerTypeAdapter(Date.class, new JsonDateDeserializer())
@@ -47,10 +49,25 @@ public class Http {
 
         private Request(Method method, String url) {
             try {
-                this.builder = HttpRequest.newBuilder().uri(new URI(url)).header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36");
+                URI uri = new URI(url);
+                
+                // Validate URL scheme for security
+                String scheme = uri.getScheme();
+                if (scheme == null || (!scheme.equals("http") && !scheme.equals("https"))) {
+                    throw new IllegalArgumentException("Invalid URL scheme: " + scheme);
+                }
+                
+                // Prefer HTTPS for security
+                if (scheme.equals("http")) {
+                    System.err.println("Warning: Using HTTP instead of HTTPS for URL: " + url);
+                }
+                
+                this.builder = HttpRequest.newBuilder()
+                    .uri(uri)
+                    .header("User-Agent", "Lodestar-Client/1.0");
                 this.method = method;
             } catch (URISyntaxException e) {
-                throw new IllegalArgumentException(e);
+                throw new IllegalArgumentException("Invalid URL: " + url, e);
             }
         }
 

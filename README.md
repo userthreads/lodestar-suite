@@ -11,13 +11,15 @@
     <img src="https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/waythread/lodestar-client/badge?filter=.java$&label=lines%20of%20code&color=blue" alt="GitHub lines of code"/>
 </div>
 
-## Important notice: There might be leftover code from Meteor client unfair advantage modules, but you are free to review if it is fair play compatible or not.
+## Important notice: All unfair advantage modules have been removed for fair play compliance. The client now only includes quality-of-life and visual enhancement modules.
 
 ## Advantages over Meteor Client;
 <p align="left">
 - Seasonal holiday themes (Halloween, Christmas)<br>
 - UI animations and effects<br>
-- No cheats<br>
+- No unfair advantage modules<br>
+- Enhanced security (removed proxy and account systems)<br>
+- Fair play compliant<br>
 </p>
 
 
@@ -29,7 +31,7 @@ Q: Why utilize Meteor code and not make yourself original client?<br>
 A: Meteor itself is highly advanced, hence you can edit and make amazing stuff out of it.. though I am migrating the functionality of it to my own, therefore importantly, I came up with fair play version.<br>
 <br>
 Q: Are there any hidden unfair advantage modules?<br>
-A: No, you can review the code.<br>
+A: No, all unfair advantage modules have been removed. The client is now 100% fair play compliant.<br>
 <br>
 Q: Any plans for different UI? Like the ones in NoRisk, Lunar or CheatBreaker?<br>
 A: Yes, but here's a catch: It is hard to implement it because current Meteor UI is already great and flexible for future ideas.

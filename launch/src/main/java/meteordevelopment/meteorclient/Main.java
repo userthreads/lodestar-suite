@@ -77,7 +77,9 @@ public class Main {
 
         public void open(URL url) {
             try {
-                Runtime.getRuntime().exec(getURLOpenCommand(url));
+                // Use ProcessBuilder for better security
+                ProcessBuilder pb = new ProcessBuilder(getURLOpenCommand(url));
+                pb.start();
             } catch (IOException e) {
                 e.printStackTrace();
             }

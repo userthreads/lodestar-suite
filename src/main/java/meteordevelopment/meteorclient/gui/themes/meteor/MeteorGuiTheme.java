@@ -26,7 +26,7 @@ import meteordevelopment.meteorclient.gui.widgets.input.WTextBox;
 import meteordevelopment.meteorclient.gui.widgets.pressable.*;
 import meteordevelopment.meteorclient.renderer.text.TextRenderer;
 import meteordevelopment.meteorclient.settings.*;
-import meteordevelopment.meteorclient.systems.accounts.Account;
+// Account system removed for security reasons
 import meteordevelopment.meteorclient.systems.modules.Module;
 import meteordevelopment.meteorclient.utils.render.color.Color;
 import meteordevelopment.meteorclient.utils.render.color.SettingColor;
@@ -302,10 +302,7 @@ public class MeteorGuiTheme extends GuiTheme {
         return w(new WMeteorSection(title, expanded, headerWidget));
     }
 
-    @Override
-    public WAccount account(WidgetScreen screen, Account<?> account) {
-        return w(new WMeteorAccount(screen, account));
-    }
+    // Account system removed for security reasons
 
     @Override
     public WWidget module(Module module) {

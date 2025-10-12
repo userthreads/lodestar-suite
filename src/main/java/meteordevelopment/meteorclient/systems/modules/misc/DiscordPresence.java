@@ -48,13 +48,14 @@ public class DiscordPresence extends Module {
 
     private final SettingGroup sgLine1 = settings.createGroup("Line 1");
     private final SettingGroup sgLine2 = settings.createGroup("Line 2");
+    private final SettingGroup sgLine3 = settings.createGroup("Line 3");
 
     // Line 1
 
     private final Setting<List<String>> line1Strings = sgLine1.add(new StringListSetting.Builder()
         .name("line-1-messages")
         .description("Messages used for the first line.")
-        .defaultValue("{player}", "{server}", "Using {gui.theme} theme", "{gui.theme} user")
+        .defaultValue("{player}", "{server}")
         .onChanged(strings -> recompileLine1())
         .renderer(StarscriptTextBoxRenderer.class)
         .build()
@@ -81,7 +82,7 @@ public class DiscordPresence extends Module {
     private final Setting<List<String>> line2Strings = sgLine2.add(new StringListSetting.Builder()
         .name("line-2-messages")
         .description("Messages used for the second line.")
-        .defaultValue("lodestar on top", "{round(server.tps, 1)} TPS", "Playing on {server.difficulty} difficulty.", "{server.player_count} Players online", "Theme: {gui.theme}", "Styling with {gui.theme}", "{gui.theme} vibes")
+        .defaultValue("lodestar on top", "{round(server.tps, 1)} TPS", "Playing on {server.difficulty} difficulty.", "{server.player_count} Players online")
         .onChanged(strings -> recompileLine2())
         .renderer(StarscriptTextBoxRenderer.class)
         .build()
@@ -90,7 +91,7 @@ public class DiscordPresence extends Module {
     private final Setting<Integer> line2UpdateDelay = sgLine2.add(new IntSetting.Builder()
         .name("line-2-update-delay")
         .description("How fast to update the second line in ticks.")
-        .defaultValue(60)
+        .defaultValue(100)
         .min(10)
         .sliderRange(10, 200)
         .build()
@@ -99,6 +100,33 @@ public class DiscordPresence extends Module {
     private final Setting<SelectMode> line2SelectMode = sgLine2.add(new EnumSetting.Builder<SelectMode>()
         .name("line-2-select-mode")
         .description("How to select messages for the second line.")
+        .defaultValue(SelectMode.Sequential)
+        .build()
+    );
+
+    // Line 3
+
+    private final Setting<List<String>> line3Strings = sgLine3.add(new StringListSetting.Builder()
+        .name("line-3-messages")
+        .description("Messages used for the third line.")
+        .defaultValue("vibe coded, unstable")
+        .onChanged(strings -> recompileLine3())
+        .renderer(StarscriptTextBoxRenderer.class)
+        .build()
+    );
+
+    private final Setting<Integer> line3UpdateDelay = sgLine3.add(new IntSetting.Builder()
+        .name("line-3-update-delay")
+        .description("How fast to update the third line in ticks.")
+        .defaultValue(200)
+        .min(10)
+        .sliderRange(10, 200)
+        .build()
+    );
+
+    private final Setting<SelectMode> line3SelectMode = sgLine3.add(new EnumSetting.Builder<SelectMode>()
+        .name("line-3-select-mode")
+        .description("How to select messages for the third line.")
         .defaultValue(SelectMode.Sequential)
         .build()
     );
@@ -113,6 +141,9 @@ public class DiscordPresence extends Module {
 
     private final List<Script> line2Scripts = new ArrayList<>();
     private int line2Ticks, line2I;
+
+    private final List<Script> line3Scripts = new ArrayList<>();
+    private int line3Ticks, line3I;
 
     public static final List<Pair<String, String>> customStates = new ArrayList<>();
 
@@ -158,14 +189,17 @@ public class DiscordPresence extends Module {
 
         recompileLine1();
         recompileLine2();
+        recompileLine3();
 
         ticks = 0;
         line1Ticks = 0;
         line2Ticks = 0;
+        line3Ticks = 0;
         lastWasInMainMenu = false;
 
         line1I = 0;
         line2I = 0;
+        line3I = 0;
     }
 
     @Override
@@ -190,6 +224,10 @@ public class DiscordPresence extends Module {
 
     private void recompileLine2() {
         recompile(line2Strings.get(), line2Scripts);
+    }
+
+    private void recompileLine3() {
+        recompile(line3Strings.get(), line3Scripts);
     }
 
     @EventHandler
@@ -240,6 +278,26 @@ public class DiscordPresence extends Module {
 
                 line2Ticks = 0;
             } else line2Ticks++;
+
+            // Line 3 - Combine with Line 2 since Discord RPC only supports 2 text fields
+            if (line3Ticks >= line3UpdateDelay.get() || forceUpdate) {
+                if (!line3Scripts.isEmpty()) {
+                    int i = Utils.random(0, line3Scripts.size());
+                    if (line3SelectMode.get() == SelectMode.Sequential) {
+                        if (line3I >= line3Scripts.size()) line3I = 0;
+                        i = line3I++;
+                    }
+
+                    String line3Message = MeteorStarscript.run(line3Scripts.get(i));
+                    if (line3Message != null) {
+                        // Use line 3 as alternative state or combine with line 2
+                        rpc.setState(line3Message);
+                    }
+                }
+                update = true;
+
+                line3Ticks = 0;
+            } else line3Ticks++;
         }
         else {
             if (!lastWasInMainMenu) {

@@ -7,17 +7,10 @@ package meteordevelopment.meteorclient.mixin;
 
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelPipeline;
-import io.netty.handler.proxy.Socks4ProxyHandler;
-import io.netty.handler.proxy.Socks5ProxyHandler;
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.events.packets.PacketEvent;
 import meteordevelopment.meteorclient.events.world.ServerConnectEndEvent;
-import meteordevelopment.meteorclient.systems.proxies.Proxies;
-import meteordevelopment.meteorclient.systems.proxies.Proxy;
 import net.minecraft.network.ClientConnection;
-import net.minecraft.network.NetworkSide;
-import net.minecraft.network.handler.PacketSizeLogger;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BundleS2CPacket;
@@ -60,16 +53,5 @@ public abstract class ClientConnectionMixin {
         MeteorClient.EVENT_BUS.post(new PacketEvent.Sent(packet, (ClientConnection) (Object) this));
     }
 
-    @Inject(method = "addHandlers", at = @At("RETURN"))
-    private static void onAddHandlers(ChannelPipeline pipeline, NetworkSide side, boolean local, PacketSizeLogger packetSizeLogger, CallbackInfo ci) {
-        if (side != NetworkSide.CLIENTBOUND) return;
-
-        Proxy proxy = Proxies.get().getEnabled();
-        if (proxy == null) return;
-
-        switch (proxy.type.get()) {
-            case Socks4 -> pipeline.addFirst(new Socks4ProxyHandler(new InetSocketAddress(proxy.address.get(), proxy.port.get()), proxy.username.get()));
-            case Socks5 -> pipeline.addFirst(new Socks5ProxyHandler(new InetSocketAddress(proxy.address.get(), proxy.port.get()), proxy.username.get(), proxy.password.get()));
-        }
-    }
+    // Proxy system removed for security reasons
 }

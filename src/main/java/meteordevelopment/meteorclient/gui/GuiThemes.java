@@ -6,6 +6,7 @@
 package meteordevelopment.meteorclient.gui;
 
 import meteordevelopment.meteorclient.MeteorClient;
+import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.gui.themes.meteor.ChristmasGuiTheme;
 import meteordevelopment.meteorclient.gui.themes.meteor.HalloweenGuiTheme;
 import meteordevelopment.meteorclient.gui.themes.meteor.MeteorGuiTheme;
@@ -13,6 +14,7 @@ import meteordevelopment.meteorclient.systems.christmas.ChristmasMode;
 import meteordevelopment.meteorclient.systems.halloween.HalloweenMode;
 import meteordevelopment.meteorclient.utils.PostInit;
 import meteordevelopment.meteorclient.utils.PreInit;
+import meteordevelopment.orbit.EventHandler;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtIo;
 
@@ -56,6 +58,9 @@ public class GuiThemes {
         
         // Check for seasonal themes and auto-switch if appropriate
         checkSeasonalThemes();
+        
+        // Subscribe to game events for theme saving
+        MeteorClient.EVENT_BUS.subscribe(GuiThemes.class);
     }
     
     public static void checkSeasonalThemes() {
@@ -167,5 +172,11 @@ public class GuiThemes {
     public static void save() {
         saveTheme();
         saveGlobal();
+    }
+    
+    @EventHandler
+    private static void onGameLeft(GameLeftEvent event) {
+        // Save themes when leaving game session
+        save();
     }
 }
