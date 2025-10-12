@@ -39,7 +39,7 @@ A: Yes, but here's a catch: It is hard to implement it because current Meteor UI
 
 
 ## Credits
-Thanks to Meteor Client and the Meteor Development team + contributors for their incredible work.
+Thanks to Meteor Client and the Meteor Development team for their incredible work.
 - Meteor Client GitHub: https://github.com/MeteorDevelopment/meteor-client
 - Meteor Development: https://meteorclient.com
 The [Fabric Team](https://github.com/FabricMC) for [Fabric](https://github.com/FabricMC/fabric-loader) and [Yarn](https://github.com/FabricMC/yarn)
