@@ -37,7 +37,6 @@
     "BrewingStandScreenMixin",
     "BrightnessGetterMixin",
     "BundleItemMixin",
-    "BundleTooltipSubmenuHandlerMixin",
     "CameraMixin",
     "CapabilityTrackerMixin",
     "ChatHudAccessor",
