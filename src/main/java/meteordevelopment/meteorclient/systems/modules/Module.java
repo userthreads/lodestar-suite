@@ -6,8 +6,6 @@
 package meteordevelopment.meteorclient.systems.modules;
 
 import meteordevelopment.meteorclient.MeteorClient;
-import meteordevelopment.meteorclient.addons.AddonManager;
-import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.gui.GuiTheme;
 import meteordevelopment.meteorclient.gui.widgets.WWidget;
 import meteordevelopment.meteorclient.settings.Settings;
@@ -36,7 +34,6 @@ public abstract class Module implements ISerializable<Module>, Comparable<Module
     public final String[] aliases;
     public final Color color;
 
-    public final MeteorAddon addon;
     public final Settings settings = new Settings();
 
     private boolean active;
@@ -61,15 +58,6 @@ public abstract class Module implements ISerializable<Module>, Comparable<Module
         this.aliases = aliases;
         this.color = Color.fromHsv(Utils.random(0.0, 360.0), 0.35, 1);
 
-        String classname = this.getClass().getName();
-        for (MeteorAddon addon : AddonManager.ADDONS) {
-            if (classname.startsWith(addon.getPackage())) {
-                this.addon = addon;
-                return;
-            }
-        }
-
-        this.addon = null;
     }
 
     public Module(Category category, String name, String desc) {

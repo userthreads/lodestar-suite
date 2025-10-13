@@ -1,5 +1,5 @@
 /*
- * This file is part of the Lodestar Client distribution (https://github.com/waythread/lodestar-client).
+ * This file is part of the Lodestar Suite distribution (https://github.com/waythread/lodestar-suite).
  * Copyright (c) waythread.
  */
 
@@ -20,8 +20,8 @@ public class Main {
 
         int option = JOptionPane.showOptionDialog(
                 null,
-                "To install Lodestar Client you need to put it in your mods folder and run Fabric for latest Minecraft version.",
-                "Lodestar Client",
+                "To install Lodestar Suite you need to put it in your mods folder and run Fabric for latest Minecraft version.",
+                "Lodestar Suite",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.ERROR_MESSAGE,
                 null,
@@ -30,7 +30,7 @@ public class Main {
         );
 
         switch (option) {
-            case 0: getOS().open("https://github.com/waythread/lodestar-client/wiki/installation"); break;
+            case 0: getOS().open("https://github.com/waythread/lodestar-suite/wiki/installation"); break;
             case 1: {
                 String path;
 

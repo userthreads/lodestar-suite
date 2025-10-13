@@ -1,5 +1,5 @@
 /*
- * This file is part of the Lodestar Client distribution (https://github.com/waythread/lodestar-client).
+ * This file is part of the Lodestar Suite distribution (https://github.com/waythread/lodestar-suite).
  * Copyright (c) waythread.
  */
 
@@ -37,13 +37,13 @@ public abstract class SplashTextResourceSupplierMixin {
     @Unique
     private static List<String> getLodestarSplashes() {
         return List.of(
-                "Lodestar Client!",
+                "Lodestar Suite!",
                 "Quality of Life Mod!",
                 "Fair Play Minecraft!",
                 "§6waythread §fbased developer",
-                "§4github.com/waythread/lodestar-client",
+                "§4github.com/waythread/lodestar-suite",
                 "§4Lodestar on GitHub!",
-                "§6Lodestar Client!"
+                "§6Lodestar Suite!"
         );
     }
 

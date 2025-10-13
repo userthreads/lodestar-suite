@@ -1,5 +1,5 @@
 /*
- * This file is part of the Lodestar Client distribution (https://github.com/waythread/lodestar-client).
+ * This file is part of the Lodestar Suite distribution (https://github.com/waythread/lodestar-suite).
  * Copyright (c) waythread.
  */
 
@@ -16,6 +16,7 @@ import meteordevelopment.meteorclient.gui.GuiTheme;
 import meteordevelopment.meteorclient.gui.WidgetScreen;
 import meteordevelopment.meteorclient.gui.utils.StarscriptTextBoxRenderer;
 import meteordevelopment.meteorclient.gui.widgets.WWidget;
+import meteordevelopment.meteorclient.gui.widgets.containers.WVerticalList;
 import meteordevelopment.meteorclient.gui.widgets.pressable.WButton;
 import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.modules.Categories;
@@ -49,6 +50,7 @@ public class DiscordPresence extends Module {
     private final SettingGroup sgLine1 = settings.createGroup("Line 1");
     private final SettingGroup sgLine2 = settings.createGroup("Line 2");
     private final SettingGroup sgLine3 = settings.createGroup("Line 3");
+    private final SettingGroup sgNameMC = settings.createGroup("NameMC");
 
     // Line 1
 
@@ -131,6 +133,15 @@ public class DiscordPresence extends Module {
         .build()
     );
 
+    // NameMC
+
+    private final Setting<Boolean> showNameMCLink = sgNameMC.add(new BoolSetting.Builder()
+        .name("show-namemc-link")
+        .description("Show NameMC link in Discord presence.")
+        .defaultValue(true)
+        .build()
+    );
+
     private static final RichPresence rpc = new RichPresence();
     private SmallImage currentSmallImage;
     private int ticks;
@@ -181,7 +192,7 @@ public class DiscordPresence extends Module {
 
         rpc.setStart(System.currentTimeMillis() / 1000L);
 
-        String largeText = "Lodestar Client " + MeteorClient.VERSION;
+        String largeText = "Lodestar Suite " + MeteorClient.VERSION;
         if (!MeteorClient.BUILD_NUMBER.isEmpty()) largeText += " Build: " + MeteorClient.BUILD_NUMBER;
         rpc.setLargeImage("lodestar_client", largeText);
 
@@ -255,7 +266,14 @@ public class DiscordPresence extends Module {
                     }
 
                     String message = MeteorStarscript.run(line1Scripts.get(i));
-                    if (message != null) rpc.setDetails(message);
+                    if (message != null) {
+                        // Add NameMC link if enabled and message contains player name
+                        if (showNameMCLink.get() && message.contains("{player}") && mc.player != null) {
+                            String playerName = mc.player.getGameProfile().getName();
+                            message = message.replace("{player}", playerName + " (namemc.com/" + playerName + ")");
+                        }
+                        rpc.setDetails(message);
+                    }
                 }
                 update = true;
 
@@ -301,7 +319,7 @@ public class DiscordPresence extends Module {
         }
         else {
             if (!lastWasInMainMenu) {
-                rpc.setDetails("Lodestar Client " + (MeteorClient.BUILD_NUMBER.isEmpty() ? MeteorClient.VERSION : MeteorClient.VERSION + " " + MeteorClient.BUILD_NUMBER));
+                rpc.setDetails("Lodestar Suite " + (MeteorClient.BUILD_NUMBER.isEmpty() ? MeteorClient.VERSION : MeteorClient.VERSION + " " + MeteorClient.BUILD_NUMBER));
 
                 if (mc.currentScreen instanceof TitleScreen) rpc.setState("Looking at splash screen");
                 else if (mc.currentScreen instanceof SelectWorldScreen) rpc.setState("Selecting world");
@@ -347,10 +365,18 @@ public class DiscordPresence extends Module {
 
     @Override
     public WWidget getWidget(GuiTheme theme) {
-        WButton help = theme.button("Open documentation.");
-        help.action = () -> Util.getOperatingSystem().open("https://github.com/waythread/lodestar-client/wiki/Starscript");
-
-        return help;
+        WVerticalList list = theme.verticalList();
+        
+        WButton help = list.add(theme.button("Open documentation.")).expandX().widget();
+        help.action = () -> Util.getOperatingSystem().open("https://github.com/waythread/lodestar-suite/wiki/Starscript");
+        
+        if (mc.player != null) {
+            String playerName = mc.player.getGameProfile().getName();
+            WButton nameMC = list.add(theme.button("Open NameMC: " + playerName)).expandX().widget();
+            nameMC.action = () -> Util.getOperatingSystem().open("https://namemc.com/" + playerName);
+        }
+        
+        return list;
     }
 
     private enum SmallImage {

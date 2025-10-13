@@ -8,15 +8,12 @@ package meteordevelopment.meteorclient.utils.network;
 import net.minecraft.network.packet.BundlePacket;
 import net.minecraft.network.packet.BundleSplitterPacket;
 import net.minecraft.network.packet.Packet;
-import org.reflections.Reflections;
-import org.reflections.scanners.Scanners;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Comparator;
-import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.function.Predicate;
@@ -120,10 +117,9 @@ public class PacketUtilsUtil {
             .comparing((Class<?> cls) -> cls.getName().substring(cls.getName().lastIndexOf('.') + 1))
             .thenComparing(Class::getName);
 
-        Reflections reflections = new Reflections(packageName, Scanners.SubTypes);
-        Set<Class<? extends Packet>> packets = reflections.getSubTypesOf(Packet.class);
+        // Reflections library removed - this utility is no longer functional
+        // This was used for generating packet mappings but is not needed for runtime
         SortedSet<Class<? extends Packet>> sortedPackets = new TreeSet<>(packetsComparator);
-        sortedPackets.addAll(packets);
 
         for (Class<? extends Packet> packet : sortedPackets) {
             if (exclusionFilter.test(packet)) continue;

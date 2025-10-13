@@ -115,6 +115,9 @@ public class WaypointsModule extends Module {
                 switch (waypoint.actionWhenNear.get()) {
                     case Hide -> waypoint.visible.set(false);
                     case Delete -> it.remove();
+                    case Disabled -> {
+                        // Do nothing when disabled
+                    }
                 }
             }
 

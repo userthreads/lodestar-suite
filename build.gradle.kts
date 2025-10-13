@@ -91,12 +91,6 @@ dependencies {
     implementation("meteordevelopment:discord-ipc:${properties["discordipc_version"] as String}")
     include("meteordevelopment:discord-ipc:${properties["discordipc_version"] as String}")
     
-    implementation("org.reflections:reflections:${properties["reflections_version"] as String}")
-    include("org.reflections:reflections:${properties["reflections_version"] as String}")
-    
-    // Javassist is a transitive dependency of Reflections
-    implementation("org.javassist:javassist:3.30.2-GA")
-    include("org.javassist:javassist:3.30.2-GA")
     
     // Proxy system removed for security reasons
     
@@ -107,7 +101,7 @@ dependencies {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/lodestar-client.accesswidener")
+    accessWidenerPath = file("src/main/resources/lodestar-suite.accesswidener")
 }
 
 afterEvaluate {
@@ -190,7 +184,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
-            artifactId = "lodestar-client"
+            artifactId = "lodestar-suite"
 
             version = project.version.toString()
         }

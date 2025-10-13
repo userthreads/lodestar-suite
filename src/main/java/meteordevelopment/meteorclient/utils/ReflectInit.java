@@ -1,84 +1,52 @@
 /*
- * This file is part of the Lodestar Client distribution (https://github.com/waythread/lodestar-client).
+ * This file is part of the Lodestar Suite distribution (https://github.com/waythread/lodestar-suite).
  * Copyright (c) waythread.
  */
 
 package meteordevelopment.meteorclient.utils;
 
-import meteordevelopment.meteorclient.addons.AddonManager;
-import meteordevelopment.meteorclient.addons.MeteorAddon;
-import org.reflections.Reflections;
-import org.reflections.scanners.Scanners;
-
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class ReflectInit {
-    private static final List<Reflections> reflections = new ArrayList<>();
-
     private ReflectInit() {
     }
 
     public static void registerPackages() {
-        for (MeteorAddon addon : AddonManager.ADDONS) {
-            try {
-                add(addon);
-            } catch (AbstractMethodError e) {
-                throw new RuntimeException("Addon \"%s\" is too old and cannot be ran.".formatted(addon.name), e);
-            }
-        }
-    }
-
-    private static void add(MeteorAddon addon) {
-        String pkg = addon.getPackage();
-        if (pkg == null || pkg.isBlank()) return;
-        reflections.add(new Reflections(pkg, Scanners.MethodsAnnotated));
+        // No longer needed - we'll call init methods directly
     }
 
     public static void init(Class<? extends Annotation> annotation) {
-        for (Reflections reflection : reflections) {
-            Set<Method> initTasks = reflection.getMethodsAnnotatedWith(annotation);
-            if (initTasks == null) return;
-
-            Map<Class<?>, List<Method>> byClass = initTasks.stream().collect(Collectors.groupingBy(Method::getDeclaringClass));
-            Set<Method> left = new HashSet<>(initTasks);
-
-            for (Method m; (m = left.stream().findAny().orElse(null)) != null; ) {
-                reflectInit(m, annotation, left, byClass);
-            }
+        // Since we removed the addon system, we can call the init methods directly
+        // This is much simpler and doesn't require reflection scanning
+        
+        if (annotation == PreInit.class) {
+            // Call PreInit methods directly
+            meteordevelopment.meteorclient.utils.Utils.init();
+            meteordevelopment.meteorclient.gui.tabs.Tabs.init();
+            meteordevelopment.meteorclient.gui.GuiThemes.init();
+            meteordevelopment.meteorclient.utils.world.BlockIterator.init();
+            meteordevelopment.meteorclient.utils.world.BlockUtils.init();
+            meteordevelopment.meteorclient.utils.player.Rotations.init();
+            meteordevelopment.meteorclient.utils.player.EChestMemory.init();
+            meteordevelopment.meteorclient.utils.render.postprocess.PostProcessShaders.init();
+            meteordevelopment.meteorclient.utils.network.MeteorExecutor.init();
+            meteordevelopment.meteorclient.utils.misc.Names.init();
+            meteordevelopment.meteorclient.utils.misc.CPSUtils.init();
+            meteordevelopment.meteorclient.utils.misc.MeteorStarscript.init();
+            meteordevelopment.meteorclient.utils.misc.FakeClientPlayer.init();
+            meteordevelopment.meteorclient.renderer.FullScreenRenderer.init();
+            meteordevelopment.meteorclient.renderer.Renderer2D.init();
+            meteordevelopment.meteorclient.renderer.Fonts.refresh();
+        } else if (annotation == PostInit.class) {
+            // Call PostInit methods directly
+            meteordevelopment.meteorclient.commands.Commands.init();
+            meteordevelopment.meteorclient.utils.render.RenderUtils.init();
+            meteordevelopment.meteorclient.gui.GuiThemes.postInit();
+            meteordevelopment.meteorclient.utils.player.ChatUtils.init();
+            meteordevelopment.meteorclient.utils.render.color.RainbowColors.init();
+            meteordevelopment.meteorclient.utils.render.PlayerHeadUtils.init();
+            meteordevelopment.meteorclient.gui.renderer.GuiRenderer.init();
         }
     }
 
-    private static <T extends Annotation> void reflectInit(Method task, Class<T> annotation, Set<Method> left, Map<Class<?>, List<Method>> byClass) {
-        left.remove(task);
-
-        for (Class<?> clazz : getDependencies(task, annotation)) {
-            for (Method m : byClass.getOrDefault(clazz, Collections.emptyList())) {
-                if (left.contains(m)) {
-                    reflectInit(m, annotation, left, byClass);
-                }
-            }
-        }
-
-        try {
-            task.invoke(null);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new IllegalStateException("Error running @%s task '%s.%s'".formatted(annotation.getSimpleName(), task.getDeclaringClass().getSimpleName(), task.getName()), e);
-        } catch (NullPointerException e) {
-            throw new RuntimeException("Method \"%s\" using Init annotations from non-static context".formatted(task.getName()), e);
-        }
-    }
-
-    private static <T extends Annotation> Class<?>[] getDependencies(Method task, Class<T> annotation) {
-        T init = task.getAnnotation(annotation);
-
-        return switch (init) {
-            case PreInit pre -> pre.dependencies();
-            case PostInit post -> post.dependencies();
-            default -> new Class<?>[]{};
-        };
-    }
 }

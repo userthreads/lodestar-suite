@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "name": "Lodestar Client",
-  "id": "lodestar-client",
+  "name": "Lodestar Suite",
+  "id": "lodestar-suite",
   "version": "${version}",
-  "description": "W utility mod.",
+  "description": "A comprehensive Minecraft utility suite with quality of life modules and tools for fair play compliance.",
   "authors": [
     "waythread"
   ],
   "contact": {
-    "homepage": "https://github.com/waythread/lodestar-client",
-    "issues": "https://github.com/waythread/lodestar-client/issues",
-    "sources": "https://github.com/waythread/lodestar-client"
+    "homepage": "https://github.com/waythread/lodestar-suite",
+    "issues": "https://github.com/waythread/lodestar-suite/issues",
+    "sources": "https://github.com/waythread/lodestar-suite"
   },
   "license": "GPL-3.0",
-  "icon": "assets/lodestar-client/icon.png",
+  "icon": "assets/lodestar-suite/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
@@ -24,20 +24,20 @@
     ]
   },
   "mixins": [
-    "lodestar-client.mixins.json",
-    "lodestar-client-indigo.mixins.json",
-    "lodestar-client-sodium.mixins.json",
-    "lodestar-client-lithium.mixins.json",
-    "lodestar-client-viafabricplus.mixins.json"
+    "lodestar-suite.mixins.json",
+    "lodestar-suite-indigo.mixins.json",
+    "lodestar-suite-sodium.mixins.json",
+    "lodestar-suite-lithium.mixins.json",
+    "lodestar-suite-viafabricplus.mixins.json"
   ],
-  "accessWidener": "lodestar-client.accesswidener",
+  "accessWidener": "lodestar-suite.accesswidener",
   "custom": {
-    "lodestar-client:build_number": "${build_number}",
-    "lodestar-client:color": "145,61,226",
-    "lodestar-client:commit": "${commit}",
+    "lodestar-suite:build_number": "${build_number}",
+    "lodestar-suite:color": "145,61,226",
+    "lodestar-suite:commit": "${commit}",
     "modmenu": {
       "links": {
-        "modmenu.discord": "https://github.com/waythread/lodestar-client"
+        "modmenu.discord": "https://github.com/waythread/lodestar-suite"
       }
     }
   },

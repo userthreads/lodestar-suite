@@ -13,6 +13,7 @@ import meteordevelopment.meteorclient.settings.*;
 import meteordevelopment.meteorclient.systems.System;
 import meteordevelopment.meteorclient.systems.Systems;
 import meteordevelopment.meteorclient.systems.hud.elements.*;
+import meteordevelopment.meteorclient.systems.hud.elements.TPSGraphHud;
 import meteordevelopment.meteorclient.systems.hud.screens.HudEditorScreen;
 import meteordevelopment.meteorclient.utils.Utils;
 import meteordevelopment.meteorclient.utils.misc.Keybind;
@@ -45,7 +46,7 @@ public class Hud extends System<Hud> implements Iterable<HudElement> {
     private final Setting<Boolean> customFont = sgGeneral.add(new BoolSetting.Builder()
         .name("custom-font")
         .description("Text will use custom font.")
-        .defaultValue(true)
+        .defaultValue(false)
         .onChanged(aBoolean -> {
             for (HudElement element : elements) element.onFontChanged();
         })
@@ -129,6 +130,7 @@ public class Hud extends System<Hud> implements Iterable<HudElement> {
         register(ModuleInfosHud.INFO);
         register(PotionTimersHud.INFO);
         register(CombatHud.INFO);
+        register(TPSGraphHud.INFO);
 
         // Default config
         if (isFirstInit) resetToDefaultElements();

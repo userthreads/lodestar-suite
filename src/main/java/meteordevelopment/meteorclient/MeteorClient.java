@@ -1,12 +1,10 @@
 /*
- * This file is part of the Lodestar Client distribution (https://github.com/waythread/lodestar-client).
+ * This file is part of the Lodestar Suite distribution (https://github.com/waythread/lodestar-suite).
  * Copyright (c) waythread.
  */
 
 package meteordevelopment.meteorclient;
 
-import meteordevelopment.meteorclient.addons.AddonManager;
-import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.events.game.OpenScreenEvent;
 import meteordevelopment.meteorclient.events.meteor.KeyEvent;
 import meteordevelopment.meteorclient.events.meteor.MouseButtonEvent;
@@ -46,14 +44,13 @@ import java.io.File;
 import java.lang.invoke.MethodHandles;
 
 public class MeteorClient implements ClientModInitializer {
-    public static final String MOD_ID = "lodestar-client";
+    public static final String MOD_ID = "lodestar-suite";
     public static final ModMetadata MOD_META;
     public static final String NAME;
     public static final Version VERSION;
     public static final String BUILD_NUMBER;
 
     public static MeteorClient INSTANCE;
-    public static MeteorAddon ADDON;
 
     public static MinecraftClient mc;
     public static final IEventBus EVENT_BUS = new EventBus();
@@ -100,17 +97,12 @@ public class MeteorClient implements ClientModInitializer {
             Systems.addPreLoadTask(() -> Modules.get().get(DiscordPresence.class).toggle());
         }
 
-        // Register addons
-        AddonManager.init();
-
-        // Register event handlers
-        AddonManager.ADDONS.forEach(addon -> {
-            try {
-                EVENT_BUS.registerLambdaFactory(addon.getPackage(), (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
-            } catch (AbstractMethodError e) {
-                throw new RuntimeException("Addon \"%s\" is too old and cannot be ran.".formatted(addon.name), e);
-            }
-        });
+        // Register event handlers for main package
+        try {
+            EVENT_BUS.registerLambdaFactory("meteordevelopment.meteorclient", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
+        } catch (AbstractMethodError e) {
+            throw new RuntimeException("Failed to register lambda factory for main package.", e);
+        }
 
         // Register init classes
         ReflectInit.registerPackages();
@@ -127,10 +119,7 @@ public class MeteorClient implements ClientModInitializer {
         // Subscribe after systems are loaded
         EVENT_BUS.subscribe(this);
 
-        // Initialise addons
-        AddonManager.ADDONS.forEach(MeteorAddon::onInitialize);
-
-        // Sort modules after addons have added their own
+        // Sort modules
         Modules.get().sortModules();
 
         // Load configs
