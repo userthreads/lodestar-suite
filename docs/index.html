@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lodestar Suite Documentation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            color: white;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 3em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .section {
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #3a3a3a;
+        }
+        .section h2 {
+            margin-top: 0;
+            color: #667eea;
+            font-size: 1.5em;
+        }
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .section li {
+            margin: 10px 0;
+        }
+        .section a {
+            color: #667eea;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .section a:hover {
+            background: #3a3a3a;
+            color: #8b7cf6;
+        }
+        .quick-start {
+            background: #2d4a22;
+            border: 1px solid #4a7c59;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .quick-start h3 {
+            color: #4a7c59;
+            margin-top: 0;
+        }
+        .quick-start ol {
+            margin: 10px 0;
+        }
+        .quick-start li {
+            margin: 5px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #3a3a3a;
+            color: #888;
+        }
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 Lodestar Suite Documentation</h1>
+        <p>Your complete guide to the comprehensive Minecraft utility suite</p>
+    </div>
+
+    <div class="quick-start">
+        <h3>🚀 Quick Start</h3>
+        <ol>
+            <li><strong>Download</strong> the latest release from <a href="https://github.com/waythread/lodestar-suite/releases" style="color: #4a7c59;">GitHub</a></li>
+            <li><strong>Install</strong> <a href="https://fabricmc.net/use/" style="color: #4a7c59;">Fabric Loader</a> for Minecraft 1.21.8</li>
+            <li><strong>Place</strong> the JAR file in your Minecraft mods folder</li>
+            <li><strong>Launch</strong> Minecraft with the Fabric profile</li>
+            <li><strong>Press</strong> Right Shift to open Lodestar Suite menu</li>
+        </ol>
+    </div>
+
+    <div class="sections">
+        <div class="section">
+            <h2>👥 For Everyone</h2>
+            <ul>
+                <li><a href="getting-started.html">🚀 Getting Started Guide</a><br>
+                    <small>How to install and use Lodestar Suite</small></li>
+                <li><a href="user-guide.html">📖 User Guide</a><br>
+                    <small>Complete guide to all features and modules</small></li>
+                <li><a href="faq.html">❓ FAQ</a><br>
+                    <small>Frequently asked questions and answers</small></li>
+                <li><a href="troubleshooting.html">🛠️ Troubleshooting</a><br>
+                    <small>Common issues and solutions</small></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🔧 For Developers</h2>
+            <ul>
+                <li><a href="developer-guide.html">👨‍💻 Developer Guide</a><br>
+                    <small>How to contribute and develop</small></li>
+                <li><a href="architecture.html">🏗️ Architecture Overview</a><br>
+                    <small>Technical system design</small></li>
+                <li><a href="api-reference.html">📚 API Reference</a><br>
+                    <small>Code documentation and examples</small></li>
+                <li><a href="module-development.html">🧩 Module Development</a><br>
+                    <small>How to create custom modules</small></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🎨 For Designers</h2>
+            <ul>
+                <li><a href="ui-guidelines.html">🎨 UI/UX Guidelines</a><br>
+                    <small>Design principles and standards</small></li>
+                <li><a href="theme-development.html">🌈 Theme Development</a><br>
+                    <small>How to create custom themes</small></li>
+                <li><a href="asset-guidelines.html">🖼️ Asset Guidelines</a><br>
+                    <small>Creating textures and resources</small></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="sections">
+        <div class="section">
+            <h2>🎯 Key Features</h2>
+            <ul>
+                <li><strong>🛡️ Fair Play Compliant</strong><br>
+                    All unfair advantage modules removed</li>
+                <li><strong>🎨 Visual Enhancements</strong><br>
+                    Custom themes and animations</li>
+                <li><strong>🔧 Utility Tools</strong><br>
+                    HUD elements and waypoints</li>
+                <li><strong>🎮 Quality of Life</strong><br>
+                    Better tooltips and chat features</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>📞 Support</h2>
+            <ul>
+                <li><a href="https://github.com/waythread/lodestar-suite/issues">🐛 Report Bugs</a><br>
+                    <small>GitHub Issues for bug reports</small></li>
+                <li><a href="https://github.com/waythread/lodestar-suite/discussions">💬 Discussions</a><br>
+                    <small>Community discussions and help</small></li>
+                <li><a href="https://github.com/waythread/lodestar-suite/wiki">📖 Wiki</a><br>
+                    <small>Additional documentation</small></li>
+                <li><a href="https://github.com/waythread/lodestar-suite/releases">⬇️ Downloads</a><br>
+                    <small>Latest releases and updates</small></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>
+            <strong>Lodestar Suite</strong> - A comprehensive Minecraft utility suite<br>
+            <a href="https://github.com/waythread/lodestar-suite">GitHub Repository</a> | 
+            <a href="https://github.com/waythread/lodestar-suite/blob/main/LICENSE">License</a> | 
+            <a href="https://github.com/waythread/lodestar-suite/releases">Releases</a>
+        </p>
+        <p><small>Last updated: October 2024</small></p>
+    </div>
+</body>
+</html>

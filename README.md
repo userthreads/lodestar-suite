@@ -22,6 +22,16 @@ Lodestar Suite is a comprehensive collection of Minecraft utilities designed to 
 - **Visual Suite**: Themes, animations, and UI improvements
 - **Utility Tools**: HUD elements, waypoints, and more
 
+## 📚 Documentation
+**📖 [Complete Documentation](docs/README.md)** - Comprehensive guides for users, developers, and designers
+
+### Quick Links:
+- **[🚀 Getting Started](docs/getting-started.md)** - Installation and first steps
+- **[📖 User Guide](docs/user-guide.md)** - Complete feature overview  
+- **[❓ FAQ](docs/faq.md)** - Common questions and answers
+- **[🛠️ Troubleshooting](docs/troubleshooting.md)** - Problem-solving guide
+- **[👨‍💻 Developer Guide](docs/developer-guide.md)** - Contributing and development
+
 ## Advantages over Meteor Client;
 <p align="left">
 - Seasonal holiday themes (Halloween, Christmas)<br>

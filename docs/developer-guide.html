@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 Developer Guide - Lodestar Suite Documentation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+            border-bottom: 1px solid #3a3a3a;
+        }
+        .header h1 {
+            margin: 0;
+            color: #667eea;
+        }
+        .nav {
+            margin: 20px 0;
+            padding: 15px;
+            background: #2a2a2a;
+            border-radius: 5px;
+            border: 1px solid #3a3a3a;
+        }
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        .nav a:hover {
+            color: #8b7cf6;
+        }
+        h1, h2, h3, h4 {
+            color: #667eea;
+        }
+        h1 {
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #3a3a3a;
+            padding-bottom: 5px;
+        }
+        code {
+            background: #2a2a2a;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #3a3a3a;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #8b7cf6;
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #3a3a3a;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 Lodestar Suite Documentation</h1>
+        <p>Your complete guide to the comprehensive Minecraft utility suite</p>
+    </div>
+    
+    <div class="nav">
+        <a href="index.html">🏠 Home</a>
+        <a href="getting-started.html">🚀 Getting Started</a>
+        <a href="user-guide.html">📖 User Guide</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="troubleshooting.html">🛠️ Troubleshooting</a>
+        <a href="developer-guide.html">👨‍💻 Developer Guide</a>
+        <a href="architecture.html">🏗️ Architecture</a>
+    </div>
+    
+    <div class="content">
+        <h1>🔧 Developer Guide</h1>
+
+<p>Welcome to the Lodestar Suite Developer Guide! This guide will help you understand the codebase, contribute to the project, and develop new features.</p>
+
+<h2>🎯 Table of Contents</h2>
+
+<ul><li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#development-setup">Development Setup</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#contributing-guidelines">Contributing Guidelines</a></li>
+<li><a href="#code-standards">Code Standards</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#building--deployment">Building & Deployment</a></li>
+</ul>
+<h2>🚀 Getting Started</h2>
+
+<h3>Prerequisites</h3>
+<ul><li><strong>Java 21</strong> or later</li>
+<li><strong>Git</strong> for version control</li>
+<li><strong>IntelliJ IDEA</strong> (recommended) or <strong>Eclipse</strong></li>
+<li><strong>Gradle</strong> (included in the project)</li>
+</ul>
+<h3>Quick Start</h3>
+<p><code></code>`bash</p>
+<h1>Clone the repository</h1>
+<p>git clone https://github.com/waythread/lodestar-suite.git cd lodestar-suite</p>
+
+<h1>Build the project</h1>
+<p>./gradlew build</p>
+
+<h1>Run in development</h1>
+<p>./gradlew runClient <code></code>`</p>
+
+<h2>📁 Project Structure</h2>
+
+<p><code></code>` lodestar-suite/ ├── src/main/java/meteordevelopment/meteorclient/ │   ├── commands/          # Command system │   ├── gui/              # User interface │   ├── mixin/            # Minecraft modifications │   ├── systems/          # Core systems │   ├── utils/            # Utility classes │   └── MeteorClient.java # Main entry point ├── src/main/resources/ │   ├── assets/           # Textures, fonts, shaders │   ├── fabric.mod.json   # Mod metadata │   └── *.mixins.json     # Mixin configurations ├── launch/               # Launcher subproject ├── docs/                 # Documentation └── build.gradle.kts      # Build configuration <code></code>`</p>
+
+<h3>Key Directories</h3>
+
+<h4><code>systems/</code></h4>
+<p>Core systems that manage different aspects of the mod:</p>
+<ul><li><strong>modules/</strong>: Individual feature modules</li>
+<li><strong>hud/</strong>: HUD elements and rendering</li>
+<li><strong>config/</strong>: Configuration management</li>
+<li><strong>friends/</strong>: Friend system</li>
+<li><strong>waypoints/</strong>: Waypoint management</li>
+</ul>
+<h4><code>gui/</code></h4>
+<p>User interface components:</p>
+<ul><li><strong>screens/</strong>: Main menu screens</li>
+<li><strong>themes/</strong>: Visual themes</li>
+<li><strong>widgets/</strong>: UI components</li>
+</ul>
+<h4><code>mixin/</code></h4>
+<p>Minecraft modifications using Mixin:</p>
+<ul><li><strong>Client-side modifications</strong></li>
+<li><strong>Rendering enhancements</strong></li>
+<li><strong>Game mechanics changes</strong></li>
+</ul>
+<h2>🛠️ Development Setup</h2>
+
+<h3>1. Clone and Setup</h3>
+<p><code></code>`bash git clone https://github.com/waythread/lodestar-suite.git cd lodestar-suite <code></code>`</p>
+
+<h3>2. IDE Setup (IntelliJ IDEA)</h3>
+<ul><li>Open IntelliJ IDEA</li>
+<li>Select "Open or Import"</li>
+<li>Choose the <code>lodestar-suite</code> folder</li>
+<li>Wait for Gradle sync to complete</li>
+<li>Set up run configurations:</li>
+</ul>   - <strong>Main class</strong>: <code>net.fabricmc.devlaunchinjector.Main</code>
+<p>- <strong>VM options</strong>: <code>-Dfabric.dli.config=C:\Users\YourName\.gradle\caches\fabric-loom\minecraft\1.21.8\minecraft-1.21.8-client.jar -Dfabric.dli.env=client -Dfabric.dli.main=net.fabricmc.loader.impl.launch.knot.KnotClient</code></p>
+
+<h3>3. Build Configuration</h3>
+<p><code></code>`bash</p>
+<h1>Clean build</h1>
+<p>./gradlew clean build</p>
+
+<h1>Run client for testing</h1>
+<p>./gradlew runClient</p>
+
+<h1>Generate sources</h1>
+<p>./gradlew genSources <code></code>`</p>
+
+<h2>🏗️ Architecture Overview</h2>
+
+<h3>Core Systems</h3>
+
+<h4>Module System</h4>
+<p>Modules are the main feature units in Lodestar Suite:</p>
+
+<p><code></code>`java public class ExampleModule extends Module { public static final ModuleInfo<ExampleModule> INFO = new ModuleInfo<>( Categories.MISC, "example", "Example module description", ExampleModule::new );</p>
+
+<p>public ExampleModule() { super(INFO); }</p>
+
+<p>@Override public void onActivate() { // Module activated }</p>
+
+<p>@Override public void onDeactivate() { // Module deactivated } } <code></code>`</p>
+
+<h4>Event System</h4>
+<p>Lodestar Suite uses Orbit for event handling:</p>
+
+<p><code></code>`java public class ExampleModule extends Module { @EventHandler private void onTick(TickEvent.Post event) { // Handle tick event }</p>
+
+<p>@EventHandler private void onRender(RenderEvent event) { // Handle render event } } <code></code>`</p>
+
+<h4>Settings System</h4>
+<p>Modules can have configurable settings:</p>
+
+<p><code></code>`java public class ExampleModule extends Module { private final SettingGroup sgGeneral = settings.getDefaultGroup();</p>
+
+<p>public final Setting<Boolean> enabled = sgGeneral.add(new BoolSetting.Builder() .name("enabled") .description("Enable this feature") .defaultValue(true) .build() );</p>
+
+<p>public final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder() .name("delay") .description("Delay in milliseconds") .defaultValue(1000) .min(100) .max(5000) .build() ); } <code></code>`</p>
+
+<h3>GUI System</h3>
+
+<h4>Screen Creation</h4>
+<p><code></code>`java public class ExampleScreen extends WindowScreen { public ExampleScreen(GuiTheme theme) { super(theme, "Example Screen"); }</p>
+
+<p>@Override public void initWidgets() { add(theme.button("Click Me")).expandX().widget().action = () -> { // Button action }; } } <code></code>`</p>
+
+<h4>Theme System</h4>
+<p><code></code>`java public class ExampleTheme extends GuiTheme { public ExampleTheme() { super("Example Theme"); }</p>
+
+<p>@Override public WWindow window(WWindow.WindowType type) { return w(new ExampleWindow(type)); } } <code></code>`</p>
+
+<h3>Mixin System</h3>
+
+<h4>Creating Mixins</h4>
+<p><code></code>`java @Mixin(ExampleClass.class) public class ExampleClassMixin { @Inject(method = "exampleMethod", at = @At("HEAD")) private void onExampleMethod(CallbackInfo info) { // Inject code at the beginning of the method }</p>
+
+<p>@ModifyVariable(method = "exampleMethod", at = @At("STORE")) private int modifyExampleVariable(int value) { // Modify the variable value return value * 2; } } <code></code>`</p>
+
+<h2>📝 Contributing Guidelines</h2>
+
+<h3>1. Fork and Clone</h3>
+<p><code></code>`bash</p>
+<h1>Fork the repository on GitHub</h1>
+<h1>Then clone your fork</h1>
+<p>git clone https://github.com/your-username/lodestar-suite.git cd lodestar-suite <code></code>`</p>
+
+<h3>2. Create Feature Branch</h3>
+<p><code></code>`bash git checkout -b feature/your-feature-name <code></code>`</p>
+
+<h3>3. Make Changes</h3>
+<ul><li>Follow the code standards</li>
+<li>Add tests if applicable</li>
+<li>Update documentation</li>
+<li>Test your changes thoroughly</li>
+</ul>
+<h3>4. Commit Changes</h3>
+<p><code></code>`bash git add . git commit -m "feat: add your feature description" <code></code>`</p>
+
+<h3>5. Push and Create PR</h3>
+<p><code></code>`bash git push origin feature/your-feature-name</p>
+<h1>Create Pull Request on GitHub</h1>
+<p><code></code>`</p>
+
+<h3>Pull Request Guidelines</h3>
+<ul><li><strong>Clear title</strong>: Describe what the PR does</li>
+<li><strong>Description</strong>: Explain the changes and why</li>
+<li><strong>Testing</strong>: Describe how you tested the changes</li>
+<li><strong>Screenshots</strong>: Include screenshots for UI changes</li>
+<li><strong>Breaking changes</strong>: Note any breaking changes</li>
+</ul>
+<h2>📋 Code Standards</h2>
+
+<h3>Java Code Style</h3>
+<ul><li><strong>Indentation</strong>: 4 spaces</li>
+<li><strong>Line length</strong>: 120 characters max</li>
+<li><strong>Naming</strong>: camelCase for variables, PascalCase for classes</li>
+<li><strong>Comments</strong>: Javadoc for public methods</li>
+</ul>
+<h3>Example Code Style</h3>
+<p><code></code>`java /<em></em> * Example class demonstrating code style */ public class ExampleClass { private static final String CONSTANT = "value"; private final String instanceVariable;</p>
+
+<p>public ExampleClass(String parameter) { this.instanceVariable = parameter; }</p>
+
+<p>/<em></em> * Example method with proper documentation * @param input The input parameter * @return The processed result */ public String processInput(String input) { if (input == null) { return "default"; }</p>
+
+<p>return input.toUpperCase(); } } <code></code>`</p>
+
+<h3>File Organization</h3>
+<ul><li><strong>One class per file</strong></li>
+<li><strong>Package structure</strong>: Follow existing patterns</li>
+<li><strong>Imports</strong>: Organize and remove unused imports</li>
+<li><strong>Static imports</strong>: Use sparingly</li>
+</ul>
+<h3>Documentation</h3>
+<ul><li><strong>Javadoc</strong>: For all public methods and classes</li>
+<li><strong>Inline comments</strong>: For complex logic</li>
+<li><strong>README updates</strong>: For new features</li>
+<li><strong>Changelog</strong>: For user-facing changes</li>
+</ul>
+<h2>🧪 Testing</h2>
+
+<h3>Unit Testing</h3>
+<p><code></code>`java @Test public void testExampleMethod() { ExampleClass example = new ExampleClass("test"); String result = example.processInput("hello"); assertEquals("HELLO", result); } <code></code>`</p>
+
+<h3>Integration Testing</h3>
+<ul><li>Test modules in-game</li>
+<li>Verify GUI functionality</li>
+<li>Check event handling</li>
+<li>Test with different Minecraft versions</li>
+</ul>
+<h3>Manual Testing Checklist</h3>
+<ul><li>[ ] Module enables/disables correctly</li>
+<li>[ ] Settings save and load properly</li>
+<li>[ ] GUI elements work as expected</li>
+<li>[ ] No crashes or errors</li>
+<li>[ ] Performance is acceptable</li>
+</ul>
+<h2>🏗️ Building & Deployment</h2>
+
+<h3>Local Build</h3>
+<p><code></code>`bash</p>
+<h1>Clean build</h1>
+<p>./gradlew clean build</p>
+
+<h1>Build without tests</h1>
+<p>./gradlew build -x test</p>
+
+<h1>Build with specific version</h1>
+<p>./gradlew build -Pversion=1.0.0 <code></code>`</p>
+
+<h3>Release Build</h3>
+<p><code></code>`bash</p>
+<h1>Create release build</h1>
+<p>./gradlew clean build --no-configuration-cache</p>
+
+<h1>JAR will be in build/libs/</h1>
+<h1>Format: lodestar-suite-{version}-{suffix}.jar</h1>
+<p><code></code>`</p>
+
+<h3>Deployment Process</h3>
+<ul><li><strong>Update version</strong> in <code>gradle.properties</code></li>
+<li><strong>Build release</strong> with <code>./gradlew clean build</code></li>
+<li><strong>Test thoroughly</strong> in different environments</li>
+<li><strong>Create GitHub release</strong> with JAR file</li>
+<li><strong>Update documentation</strong> if needed</li>
+</ul>
+<h2>🔍 Debugging</h2>
+
+<h3>Common Issues</h3>
+<ul><li><strong>Mixin conflicts</strong>: Check for conflicting mixins</li>
+<li><strong>Class loading</strong>: Verify classpath and dependencies</li>
+<li><strong>Event handling</strong>: Check event registration</li>
+<li><strong>GUI rendering</strong>: Verify OpenGL context</li>
+</ul>
+<h3>Debug Tools</h3>
+<ul><li><strong>IntelliJ debugger</strong>: Set breakpoints and step through code</li>
+<li><strong>Minecraft logs</strong>: Check <code>logs/latest.log</code> for errors</li>
+<li><strong>Fabric logs</strong>: Look for mixin and mod loading issues</li>
+<li><strong>Performance profiler</strong>: Use JProfiler or similar tools</li>
+</ul>
+<h3>Logging</h3>
+<p><code></code>`java import meteordevelopment.meteorclient.MeteorClient;</p>
+
+<p>// Use the main logger MeteorClient.LOG.info("Info message"); MeteorClient.LOG.warn("Warning message"); MeteorClient.LOG.error("Error message", exception); <code></code>`</p>
+
+<h2>📚 Additional Resources</h2>
+
+<h3>Documentation</h3>
+<ul><li><strong><a href="architecture.md">Architecture Overview</a></strong>: Detailed system design</li>
+<li><strong><a href="api-reference.md">API Reference</a></strong>: Code documentation</li>
+<li><strong><a href="module-development.md">Module Development</a></strong>: Creating new modules</li>
+</ul>
+<h3>External Resources</h3>
+<ul><li><strong><a href="https://fabricmc.net/wiki/">Fabric Documentation</a></strong>: Fabric modding guide</li>
+<li><strong><a href="https://github.com/SpongePowered/Mixin">Mixin Documentation</a></strong>: Mixin system</li>
+<li><strong><a href="https://github.com/orbit/orbit">Orbit Documentation</a></strong>: Event system</li>
+</ul>
+<h3>Community</h3>
+<ul><li><strong>GitHub Discussions</strong>: Ask questions and get help</li>
+<li><strong>Issues</strong>: Report bugs and request features</li>
+<li><strong>Discord</strong>: Join the community (if available)</li>
+</ul>
+<p>---</p>
+
+<p><strong>Ready to contribute?</strong> Check out our <a href="#contributing-guidelines">Contributing Guidelines</a> and start coding!</p>
+
+    </div>
+    
+    <div class="footer">
+        <p>
+            <strong>Lodestar Suite</strong> - A comprehensive Minecraft utility suite<br>
+            <a href="https://github.com/waythread/lodestar-suite">GitHub Repository</a> | 
+            <a href="https://github.com/waythread/lodestar-suite/releases">Releases</a>
+        </p>
+    </div>
+</body>
+</html>

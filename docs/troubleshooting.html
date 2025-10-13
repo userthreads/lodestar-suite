@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛠️ Troubleshooting Guide - Lodestar Suite Documentation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+            border-bottom: 1px solid #3a3a3a;
+        }
+        .header h1 {
+            margin: 0;
+            color: #667eea;
+        }
+        .nav {
+            margin: 20px 0;
+            padding: 15px;
+            background: #2a2a2a;
+            border-radius: 5px;
+            border: 1px solid #3a3a3a;
+        }
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        .nav a:hover {
+            color: #8b7cf6;
+        }
+        h1, h2, h3, h4 {
+            color: #667eea;
+        }
+        h1 {
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #3a3a3a;
+            padding-bottom: 5px;
+        }
+        code {
+            background: #2a2a2a;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #3a3a3a;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #8b7cf6;
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #3a3a3a;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 Lodestar Suite Documentation</h1>
+        <p>Your complete guide to the comprehensive Minecraft utility suite</p>
+    </div>
+    
+    <div class="nav">
+        <a href="index.html">🏠 Home</a>
+        <a href="getting-started.html">🚀 Getting Started</a>
+        <a href="user-guide.html">📖 User Guide</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="troubleshooting.html">🛠️ Troubleshooting</a>
+        <a href="developer-guide.html">👨‍💻 Developer Guide</a>
+        <a href="architecture.html">🏗️ Architecture</a>
+    </div>
+    
+    <div class="content">
+        <h1>🛠️ Troubleshooting Guide</h1>
+
+<p>This guide helps you solve common problems with Lodestar Suite. If you can't find your issue here, check our <a href="faq.md">FAQ</a> or <a href="https://github.com/waythread/lodestar-suite/issues">contact us</a>.</p>
+
+<h2>🎯 Table of Contents</h2>
+
+<ul><li><a href="#installation-issues">Installation Issues</a></li>
+<li><a href="#launch-problems">Launch Problems</a></li>
+<li><a href="#module-issues">Module Issues</a></li>
+<li><a href="#gui-problems">GUI Problems</a></li>
+<li><a href="#performance-issues">Performance Issues</a></li>
+<li><a href="#compatibility-problems">Compatibility Problems</a></li>
+<li><a href="#data-loss-issues">Data Loss Issues</a></li>
+<li><a href="#network-issues">Network Issues</a></li>
+<li><a href="#advanced-troubleshooting">Advanced Troubleshooting</a></li>
+</ul>
+<h2>📥 Installation Issues</h2>
+
+<h3>Problem: "Lodestar Suite doesn't appear in Minecraft"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Minecraft starts normally but no Lodestar Suite menu</li>
+<li>No "Lodestar Suite" text in title screen credits</li>
+<li>Right Shift doesn't open any menu</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Check Fabric Profile</strong></li>
+<p></ul>   <code></code>` - Make sure you're using the Fabric profile in Minecraft launcher - Not the default Minecraft profile - Fabric profile should appear after installing Fabric Loader <code></code>`</p>
+
+<ul><li><strong>Verify JAR File Location</strong></li>
+<p></ul>   <code></code>` Windows: %appdata%\.minecraft\mods\ Mac: ~/Library/Application Support/minecraft/mods/ Linux: ~/.minecraft/mods/</p>
+
+<p>- File should be named: lodestar-suite-1.21.8-*.jar - Not in a subfolder - Not in the main Minecraft folder <code></code>`</p>
+
+<ul><li><strong>Check Java Version</strong></li>
+<p></ul>   <code></code>` - Lodestar Suite requires Java 21 or later - Check: java -version - Update Java if needed <code></code>`</p>
+
+<ul><li><strong>Verify File Integrity</strong></li>
+<p></ul>   <code></code>` - Re-download from official GitHub releases - Check file size (should be ~9.6MB) - Don't use files from unofficial sources <code></code>`</p>
+
+<h3>Problem: "Game crashes on startup"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Minecraft crashes immediately after starting</li>
+<li>Error messages in launcher</li>
+<li>Black screen or freeze</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Check Minecraft Logs</strong></li>
+<p></ul>   <code></code>` Location: .minecraft/logs/latest.log Look for error messages related to: - Fabric Loader - Lodestar Suite - Java version - Missing dependencies <code></code>`</p>
+
+<ul><li><strong>Remove Other Mods</strong></li>
+<p></ul>   <code></code>` - Temporarily move other mods out of mods folder - Test if Lodestar Suite works alone - Add mods back one by one to find conflicts <code></code>`</p>
+
+<ul><li><strong>Update Dependencies</strong></li>
+<p></ul>   <code></code>` - Update Fabric Loader to latest version - Update Fabric API if using other mods - Check for conflicting mod versions <code></code>`</p>
+
+<ul><li><strong>Java Issues</strong></li>
+<p></ul>   <code></code>` - Ensure Java 21+ is installed - Check JAVA_HOME environment variable - Try different Java version if available <code></code>`</p>
+
+<h2>🚀 Launch Problems</h2>
+
+<h3>Problem: "Menu doesn't open"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Right Shift doesn't work</li>
+<li>No response when pressing menu key</li>
+<li>Menu keybind seems broken</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Check Keybind Settings</strong></li>
+<p></ul>   <code></code>` - Go to Minecraft Settings → Controls - Look for "Lodestar Suite Menu" keybind - Change to a different key (like F1) - Test the new keybind <code></code>`</p>
+
+<ul><li><strong>Reset Keybinds</strong></li>
+<p></ul>   <code></code>` - Delete .minecraft/lodestar-suite/ folder - Restart Minecraft - Default keybind (Right Shift) should work <code></code>`</p>
+
+<ul><li><strong>Key Conflicts</strong></li>
+<p></ul>   <code></code>` - Check for conflicting keybinds - Other mods might use same key - Try a unique key like F12 or Insert <code></code>`</p>
+
+<ul><li><strong>Restart Minecraft</strong></li>
+<p></ul>   <code></code>` - Close Minecraft completely - Restart the game - Try opening menu again <code></code>`</p>
+
+<h3>Problem: "Menu opens but is empty/blank"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Menu opens but shows no content</li>
+<li>Blank screen or error messages</li>
+<li>Modules don't appear</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Check Module Loading</strong></li>
+<p></ul>   <code></code>` - Look for error messages in Minecraft logs - Check if modules are being loaded properly - Verify no corrupted files <code></code>`</p>
+
+<ul><li><strong>Reset Configuration</strong></li>
+<p></ul>   <code></code>` - Delete .minecraft/lodestar-suite/ folder - Restart Minecraft - Modules should appear with default settings <code></code>`</p>
+
+<ul><li><strong>Update Lodestar Suite</strong></li>
+<p></ul>   <code></code>` - Download latest version - Replace old JAR file - Check for compatibility issues <code></code>`</p>
+
+<h2>📦 Module Issues</h2>
+
+<h3>Problem: "Module doesn't work as expected"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Module is enabled but doesn't function</li>
+<li>Settings don't take effect</li>
+<li>Module behaves differently than described</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Check Module Settings</strong></li>
+<p></ul>   <code></code>` - Open module settings (gear icon) - Verify all settings are configured correctly - Check for conflicting settings - Reset to defaults if needed <code></code>`</p>
+
+<ul><li><strong>Module Dependencies</strong></li>
+<p></ul>   <code></code>` - Some modules require other modules - Check module descriptions for requirements - Enable required modules first <code></code>`</p>
+
+<ul><li><strong>Server Compatibility</strong></li>
+<p></ul>   <code></code>` - Some modules might not work on all servers - Test on singleplayer first - Check server rules and policies <code></code>`</p>
+
+<ul><li><strong>Update Module</strong></li>
+<p></ul>   <code></code>` - Update to latest Lodestar Suite version - Check for module-specific bug fixes - Report issues if problem persists <code></code>`</p>
+
+<h3>Problem: "Module causes crashes"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Game crashes when enabling specific module</li>
+<li>Error messages related to module</li>
+<li>Inconsistent crashes</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Disable Problematic Module</strong></li>
+<p></ul>   <code></code>` - Disable the module causing issues - Check if crashes stop - Report the issue with module name <code></code>`</p>
+
+<ul><li><strong>Check Module Settings</strong></li>
+<p></ul>   <code></code>` - Reset module to default settings - Check for invalid configuration values - Try different setting combinations <code></code>`</p>
+
+<ul><li><strong>Update and Report</strong></li>
+<p></ul>   <code></code>` - Update to latest version - If problem persists, report with: - Module name - Error messages - Steps to reproduce <code></code>`</p>
+
+<h2>🖥️ GUI Problems</h2>
+
+<h3>Problem: "HUD elements don't appear"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Added HUD elements but they're not visible</li>
+<li>Elements appear but in wrong position</li>
+<li>HUD elements flicker or disappear</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Check HUD Visibility</strong></li>
+<p></ul>   <code></code>` - Open HUD menu in Lodestar Suite - Verify elements are enabled (green toggle) - Check visibility settings - Make sure elements aren't off-screen <code></code>`</p>
+
+<ul><li><strong>HUD Position Issues</strong></li>
+<p></ul>   <code></code>` - Use HUD editor (default key: H) - Drag elements to correct position - Check if elements are behind other UI - Adjust scale if elements are too small <code></code>`</p>
+
+<ul><li><strong>HUD Rendering Issues</strong></li>
+<p></ul>   <code></code>` - Check graphics settings - Update graphics drivers - Try different render distance - Disable other visual mods temporarily <code></code>`</p>
+
+<h3>Problem: "Theme doesn't apply"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Selected theme doesn't change appearance</li>
+<li>Theme changes partially</li>
+<li>Theme reverts to default</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Apply Theme Correctly</strong></li>
+<p></ul>   <code></code>` - Go to Settings → Themes - Click on desired theme - Wait for theme to load - Restart Minecraft if needed <code></code>`</p>
+
+<ul><li><strong>Theme Compatibility</strong></li>
+<p></ul>   <code></code>` - Some themes might not be fully compatible - Try different themes - Check for theme-specific issues <code></code>`</p>
+
+<ul><li><strong>Reset Theme</strong></li>
+<p></ul>   <code></code>` - Delete .minecraft/lodestar-suite/ folder - Restart Minecraft - Default theme should apply <code></code>`</p>
+
+<h2>⚡ Performance Issues</h2>
+
+<h3>Problem: "Game runs slowly with Lodestar Suite"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Lower FPS than without mod</li>
+<li>Stuttering or lag</li>
+<li>Slow menu response</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Disable Unused Modules</strong></li>
+<p></ul>   <code></code>` - Only enable modules you actually use - Disable heavy modules like TPS Graph if not needed - Check module descriptions for performance impact <code></code>`</p>
+
+<ul><li><strong>Reduce HUD Elements</strong></li>
+<p></ul>   <code></code>` - Too many HUD elements can impact performance - Remove unnecessary HUD elements - Use simpler HUD configurations <code></code>`</p>
+
+<ul><li><strong>Graphics Settings</strong></li>
+<p></ul>   <code></code>` - Lower render distance - Reduce graphics quality - Disable fancy graphics options - Update graphics drivers <code></code>`</p>
+
+<ul><li><strong>Memory Issues</strong></li>
+<p></ul>   <code></code>` - Allocate more RAM to Minecraft - Close other applications - Check for memory leaks <code></code>`</p>
+
+<h3>Problem: "TPS Graph shows incorrect values"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>TPS values seem wrong</li>
+<li>Graph doesn't update</li>
+<li>Statistics are inaccurate</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Check Server Connection</strong></li>
+<p></ul>   <code></code>` - TPS Graph only works on multiplayer servers - Singleplayer doesn't show meaningful TPS - Make sure you're connected to a server <code></code>`</p>
+
+<ul><li><strong>Reset TPS Graph</strong></li>
+<p></ul>   <code></code>` - Disable and re-enable TPS Graph module - Clear graph data in settings - Wait for new data to accumulate <code></code>`</p>
+
+<ul><li><strong>Server Compatibility</strong></li>
+<p></ul>   <code></code>` - Some servers might not send TPS data - Check if server supports TPS monitoring - Try on different servers <code></code>`</p>
+
+<h2>🔧 Compatibility Problems</h2>
+
+<h3>Problem: "Conflicts with other mods"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Game crashes with specific mod combinations</li>
+<li>Features don't work together</li>
+<li>Performance issues with multiple mods</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Identify Conflicting Mods</strong></li>
+<p></ul>   <code></code>` - Remove all mods except Lodestar Suite - Add mods back one by one - Test after each addition - Identify the conflicting mod <code></code>`</p>
+
+<ul><li><strong>Mod Load Order</strong></li>
+<p></ul>   <code></code>` - Some mods need to load in specific order - Try different mod combinations - Check mod documentation for compatibility <code></code>`</p>
+
+<ul><li><strong>Version Compatibility</strong></li>
+<p></ul>   <code></code>` - Ensure all mods are for same Minecraft version - Update all mods to latest versions - Check for known compatibility issues <code></code>`</p>
+
+<h3>Problem: "Server compatibility issues"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Kicked from server</li>
+<li>Features don't work on server</li>
+<li>Server shows warnings</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Check Server Rules</strong></li>
+<p></ul>   <code></code>` - Read server rules carefully - Some servers don't allow any mods - Contact server staff if unsure <code></code>`</p>
+
+<ul><li><strong>Disable Problematic Features</strong></li>
+<p></ul>   <code></code>` - Disable modules that might trigger anti-cheat - Use only quality-of-life features - Test on different servers <code></code>`</p>
+
+<ul><li><strong>Server-Specific Issues</strong></li>
+<p></ul>   <code></code>` - Some servers have custom anti-cheat - Try on vanilla-compatible servers - Report server-specific issues <code></code>`</p>
+
+<h2>💾 Data Loss Issues</h2>
+
+<h3>Problem: "Settings and configurations lost"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Custom settings reset to defaults</li>
+<li>Waypoints disappear</li>
+<li>Profiles are lost</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Check File Locations</strong></li>
+<p></ul>   <code></code>` - Settings are stored in .minecraft/lodestar-suite/ - Make sure folder wasn't deleted - Check file permissions <code></code>`</p>
+
+<ul><li><strong>Backup and Restore</strong></li>
+<p></ul>   <code></code>` - Always backup your configurations - Copy .minecraft/lodestar-suite/ folder - Restore from backup if needed <code></code>`</p>
+
+<ul><li><strong>Prevent Future Loss</strong></li>
+<p></ul>   <code></code>` - Don't delete .minecraft/lodestar-suite/ folder - Use profiles to save different configurations - Export important settings <code></code>`</p>
+
+<h3>Problem: "Waypoints disappear"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Created waypoints are gone</li>
+<li>Waypoint file is corrupted</li>
+<li>Can't load waypoints</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Check Waypoint File</strong></li>
+<p></ul>   <code></code>` - Location: .minecraft/lodestar-suite/waypoints.nbt - Make sure file exists and isn't corrupted - Check file permissions <code></code>`</p>
+
+<ul><li><strong>Restore Waypoints</strong></li>
+<p></ul>   <code></code>` - If you have a backup, restore it - Recreate important waypoints - Use waypoint export/import feature <code></code>`</p>
+
+<ul><li><strong>Prevent Future Loss</strong></li>
+<p></ul>   <code></code>` - Regularly backup waypoint files - Use waypoint export feature - Don't manually edit waypoint files <code></code>`</p>
+
+<h2>🌐 Network Issues</h2>
+
+<h3>Problem: "Discord Presence doesn't work"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Discord doesn't show Minecraft activity</li>
+<li>Presence appears but is incorrect</li>
+<li>Presence doesn't update</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Check Discord Integration</strong></li>
+<p></ul>   <code></code>` - Make sure Discord is running - Check if Discord Rich Presence is enabled - Restart Discord if needed <code></code>`</p>
+
+<ul><li><strong>Lodestar Suite Settings</strong></li>
+<p></ul>   <code></code>` - Enable Discord Presence module - Check module settings - Verify Discord application ID <code></code>`</p>
+
+<ul><li><strong>Network Issues</strong></li>
+<p></ul>   <code></code>` - Check internet connection - Try disabling firewall temporarily - Check for proxy/VPN issues <code></code>`</p>
+
+<h3>Problem: "Online player count doesn't update"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Player count is always 0</li>
+<li>Count doesn't change</li>
+<li>Network errors in logs</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Check Network Connection</strong></li>
+<p></ul>   <code></code>` - Ensure stable internet connection - Check firewall settings - Try different network if available <code></code>`</p>
+
+<ul><li><strong>Server Issues</strong></li>
+<p></ul>   <code></code>` - Online player tracking might be down - Check GitHub for service status - This is a non-critical feature <code></code>`</p>
+
+<h2>🔍 Advanced Troubleshooting</h2>
+
+<h3>Problem: "Complex issues not covered above"</h3>
+
+<strong>Symptoms:</strong>
+<ul><li>Multiple problems at once</li>
+<li>Unusual error messages</li>
+<li>Intermittent issues</li>
+</ul>
+<strong>Solutions:</strong>
+
+<ul><li><strong>Gather Information</strong></li>
+<p></ul>   <code></code>` - Minecraft version - Lodestar Suite version - Other mods installed - Error messages from logs - Steps to reproduce issue <code></code>`</p>
+
+<ul><li><strong>Clean Installation</strong></li>
+<p></ul>   <code></code>` - Remove all mods - Delete .minecraft/lodestar-suite/ folder - Fresh install of Lodestar Suite - Test basic functionality <code></code>`</p>
+
+<ul><li><strong>System Information</strong></li>
+<p></ul>   <code></code>` - Operating system version - Java version - Graphics card and drivers - Available RAM <code></code>`</p>
+
+<h3>Debugging Steps</h3>
+
+<ul><li><strong>Enable Debug Logging</strong></li>
+<p></ul>   <code></code>` - Check Minecraft logs for detailed errors - Look for Lodestar Suite specific messages - Note timestamps of issues <code></code>`</p>
+
+<ul><li><strong>Isolate the Problem</strong></li>
+<p></ul>   <code></code>` - Test with minimal configuration - Disable all modules except one - Test on different servers/worlds <code></code>`</p>
+
+<ul><li><strong>Report Issues</strong></li>
+<p></ul>   <code></code>` - Use GitHub Issues for bug reports - Include all gathered information - Provide steps to reproduce - Attach relevant log files <code></code>`</p>
+
+<h2>📞 Getting Help</h2>
+
+<h3>Resources</h3>
+<ul><li><strong><a href="faq.md">FAQ</a></strong>: Common questions and answers</li>
+<li><strong><a href="https://github.com/waythread/lodestar-suite/issues">GitHub Issues</a></strong>: Report bugs</li>
+<li><strong><a href="https://github.com/waythread/lodestar-suite/discussions">Discussions</a></strong>: Ask questions</li>
+<li><strong><a href="https://github.com/waythread/lodestar-suite/wiki">Wiki</a></strong>: Additional documentation</li>
+</ul>
+<h3>When Reporting Issues</h3>
+<p>Include this information:</p>
+<ul><li><strong>Minecraft version</strong>: 1.21.8</li>
+<li><strong>Lodestar Suite version</strong>: From JAR filename</li>
+<li><strong>Other mods</strong>: List of installed mods</li>
+<li><strong>Error messages</strong>: From Minecraft logs</li>
+<li><strong>Steps to reproduce</strong>: What you did before the issue</li>
+<li><strong>Expected behavior</strong>: What should have happened</li>
+<li><strong>Actual behavior</strong>: What actually happened</li>
+</ul>
+<h3>Community Help</h3>
+<ul><li><strong>GitHub Discussions</strong>: Ask questions and get help from community</li>
+<li><strong>Issue Reports</strong>: Report bugs and request features</li>
+<li><strong>Wiki Contributions</strong>: Help improve documentation</li>
+</ul>
+<p>---</p>
+
+<p><strong>Still need help?</strong> Check our <a href="faq.md">FAQ</a> or <a href="https://github.com/waythread/lodestar-suite/issues">contact us</a> with detailed information about your issue!</p>
+
+    </div>
+    
+    <div class="footer">
+        <p>
+            <strong>Lodestar Suite</strong> - A comprehensive Minecraft utility suite<br>
+            <a href="https://github.com/waythread/lodestar-suite">GitHub Repository</a> | 
+            <a href="https://github.com/waythread/lodestar-suite/releases">Releases</a>
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📖 Lodestar Suite User Guide - Lodestar Suite Documentation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+            border-bottom: 1px solid #3a3a3a;
+        }
+        .header h1 {
+            margin: 0;
+            color: #667eea;
+        }
+        .nav {
+            margin: 20px 0;
+            padding: 15px;
+            background: #2a2a2a;
+            border-radius: 5px;
+            border: 1px solid #3a3a3a;
+        }
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        .nav a:hover {
+            color: #8b7cf6;
+        }
+        h1, h2, h3, h4 {
+            color: #667eea;
+        }
+        h1 {
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #3a3a3a;
+            padding-bottom: 5px;
+        }
+        code {
+            background: #2a2a2a;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #3a3a3a;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #8b7cf6;
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #3a3a3a;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 Lodestar Suite Documentation</h1>
+        <p>Your complete guide to the comprehensive Minecraft utility suite</p>
+    </div>
+    
+    <div class="nav">
+        <a href="index.html">🏠 Home</a>
+        <a href="getting-started.html">🚀 Getting Started</a>
+        <a href="user-guide.html">📖 User Guide</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="troubleshooting.html">🛠️ Troubleshooting</a>
+        <a href="developer-guide.html">👨‍💻 Developer Guide</a>
+        <a href="architecture.html">🏗️ Architecture</a>
+    </div>
+    
+    <div class="content">
+        <h1>📖 Lodestar Suite User Guide</h1>
+
+<p>This comprehensive guide covers all features and modules available in Lodestar Suite. Whether you're a new user or looking to explore advanced features, this guide has everything you need.</p>
+
+<h2>🎯 Table of Contents</h2>
+
+<ul><li><a href="#overview">Overview</a></li>
+<li><a href="#interface-guide">Interface Guide</a></li>
+<li><a href="#module-categories">Module Categories</a></li>
+<li><a href="#hud-elements">HUD Elements</a></li>
+<li><a href="#settings--configuration">Settings & Configuration</a></li>
+<li><a href="#advanced-features">Advanced Features</a></li>
+<li><a href="#tips--tricks">Tips & Tricks</a></li>
+</ul>
+<h2>🎮 Overview</h2>
+
+<p>Lodestar Suite is organized into several main areas:</p>
+<ul><li><strong>Modules</strong>: Individual features you can enable/disable</li>
+<li><strong>HUD</strong>: On-screen information displays</li>
+<li><strong>Settings</strong>: Configuration options</li>
+<li><strong>Themes</strong>: Visual customization</li>
+</ul>
+<h2>🖥️ Interface Guide</h2>
+
+<h3>Main Menu</h3>
+<p>Access the main menu with <code>Right Shift</code> (default keybind).</p>
+
+<strong>Left Panel - Categories:</strong>
+<ul><li><strong>Player</strong>: Player-related modules</li>
+<li><strong>Render</strong>: Visual enhancements</li>
+<li><strong>World</strong>: World-related features</li>
+<li><strong>Misc</strong>: Miscellaneous utilities</li>
+</ul>
+<strong>Right Panel - Module Details:</strong>
+<ul><li>Module description</li>
+<li>Settings and options</li>
+<li>Keybind configuration</li>
+</ul>
+<h3>Navigation</h3>
+<ul><li><strong>Search</strong>: Type to find modules quickly</li>
+<li><strong>Toggle</strong>: Click the switch to enable/disable modules</li>
+<li><strong>Settings</strong>: Click the gear icon for module-specific options</li>
+<li><strong>Keybind</strong>: Click the key icon to set custom keybinds</li>
+</ul>
+<h2>📦 Module Categories</h2>
+
+<h3>👤 Player Category</h3>
+
+<h4>Auto Clicker</h4>
+<p><strong>What it does</strong>: Automatically clicks for you at a set rate <strong>Why use it</strong>: Reduces repetitive clicking strain <strong>Settings</strong>:</p>
+<ul><li><strong>Interval</strong>: How fast to click (in milliseconds)</li>
+<li><strong>Range</strong>: How far to reach when clicking</li>
+<li><strong>Hold</strong>: Whether to hold or toggle</li>
+</ul>
+<p><strong>Fair Play Note</strong>: This is a quality-of-life feature that doesn't provide unfair advantages.</p>
+
+<h3>🎨 Render Category</h3>
+
+<h4>Better Tab</h4>
+<p><strong>What it does</strong>: Improves the player list when you press Tab <strong>Why use it</strong>: Shows more information in a cleaner format <strong>Features</strong>:</p>
+<ul><li>Better player list layout</li>
+<li>Ping display</li>
+<li>Player count</li>
+<li>Server information</li>
+</ul>
+<h4>Better Tooltips</h4>
+<p><strong>What it does</strong>: Enhances item tooltips with more information <strong>Why use it</strong>: Get more details about items and blocks <strong>Features</strong>:</p>
+<ul><li>Durability information</li>
+<li>Enchantment details</li>
+<li>Block information</li>
+<li>Recipe hints</li>
+</ul>
+<h4>Break Indicators</h4>
+<p><strong>What it does</strong>: Shows visual indicators when breaking blocks <strong>Why use it</strong>: Better feedback when mining or building <strong>Features</strong>:</p>
+<ul><li>Progress indicators</li>
+<li>Block outline</li>
+<li>Break animation</li>
+<li>Sound effects</li>
+</ul>
+<h4>Waypoints Module</h4>
+<p><strong>What it does</strong>: Shows waypoints on your screen and minimap <strong>Why use it</strong>: Never get lost, mark important locations <strong>Features</strong>:</p>
+<ul><li>Create custom waypoints</li>
+<li>Color coding</li>
+<li>Distance display</li>
+<li>Minimap integration</li>
+</ul>
+<h3>🌍 World Category</h3>
+
+<h4>Ambience</h4>
+<p><strong>What it does</strong>: Enhances the world's atmosphere <strong>Why use it</strong>: More immersive Minecraft experience <strong>Features</strong>:</p>
+<ul><li>Enhanced lighting</li>
+<li>Atmospheric effects</li>
+<li>Weather improvements</li>
+<li>Sound enhancements</li>
+</ul>
+<h3>🔧 Misc Category</h3>
+
+<h4>Auto Reconnect</h4>
+<p><strong>What it does</strong>: Automatically reconnects to servers <strong>Why use it</strong>: No more manual reconnecting after disconnects <strong>Settings</strong>:</p>
+<ul><li><strong>Delay</strong>: How long to wait before reconnecting</li>
+<li><strong>Max Attempts</strong>: How many times to try</li>
+<li><strong>Servers</strong>: Which servers to auto-reconnect to</li>
+</ul>
+<h4>Better Chat</h4>
+<p><strong>What it does</strong>: Improves the chat experience <strong>Why use it</strong>: Better chat organization and features <strong>Features</strong>:</p>
+<ul><li>Chat history</li>
+<li>Message filtering</li>
+<li>Timestamps</li>
+<li>Chat formatting</li>
+</ul>
+<h4>Discord Presence</h4>
+<p><strong>What it does</strong>: Shows your Minecraft activity on Discord <strong>Why use it</strong>: Let friends know what you're doing in Minecraft <strong>Features</strong>:</p>
+<ul><li>Current activity display</li>
+<li>Server information</li>
+<li>Player count</li>
+<li>Custom status</li>
+</ul>
+<h4>Server Spoof</h4>
+<p><strong>What it does</strong>: Modifies how you appear to servers <strong>Why use it</strong>: Privacy and compatibility <strong>Features</strong>:</p>
+<ul><li>Version spoofing</li>
+<li>Client spoofing</li>
+<li>Brand modification</li>
+</ul>
+<h2>🖥️ HUD Elements</h2>
+
+<p>HUD (Heads-Up Display) elements show information on your screen while playing.</p>
+
+<h3>Adding HUD Elements</h3>
+<ul><li>Open Lodestar Suite menu</li>
+<li>Click on <code>HUD</code> in the left panel</li>
+<li>Click <code>Add Element</code></li>
+<li>Choose from available elements</li>
+</ul>
+<h3>Available HUD Elements</h3>
+
+<h4>TPS Graph</h4>
+<p><strong>What it shows</strong>: Server performance over time <strong>Why use it</strong>: Monitor server lag and performance <strong>Features</strong>:</p>
+<ul><li>Real-time TPS (Ticks Per Second) display</li>
+<li>Historical graph</li>
+<li>Statistics (min, max, average)</li>
+<li>Customizable appearance</li>
+</ul>
+<h4>Module Info</h4>
+<p><strong>What it shows</strong>: List of active modules <strong>Why use it</strong>: Keep track of what's enabled <strong>Features</strong>:</p>
+<ul><li>Active module list</li>
+<li>Module status</li>
+<li>Quick toggle options</li>
+</ul>
+<h4>Custom Text</h4>
+<p><strong>What it shows</strong>: Your own custom text <strong>Why use it</strong>: Personal reminders or information <strong>Features</strong>:</p>
+<ul><li>Custom text input</li>
+<li>Color customization</li>
+<li>Position control</li>
+<li>Visibility options</li>
+</ul>
+<h3>HUD Configuration</h3>
+<ul><li><strong>Position</strong>: Drag to move elements around</li>
+<li><strong>Scale</strong>: Resize elements</li>
+<li><strong>Colors</strong>: Customize appearance</li>
+<li><strong>Visibility</strong>: Show/hide in different situations</li>
+</ul>
+<h2>⚙️ Settings & Configuration</h2>
+
+<h3>General Settings</h3>
+<ul><li><strong>Menu Key</strong>: Change the key to open the menu</li>
+<li><strong>Theme</strong>: Choose your preferred theme</li>
+<li><strong>Language</strong>: Select your language</li>
+<li><strong>Auto Save</strong>: Automatically save settings</li>
+</ul>
+<h3>Chat Settings</h3>
+<ul><li><strong>Chat Feedback</strong>: Show module activation messages</li>
+<li><strong>Delete Feedback</strong>: Remove old feedback messages</li>
+<li><strong>Chat History</strong>: How many messages to remember</li>
+</ul>
+<h3>Misc Settings</h3>
+<ul><li><strong>Rotation Hold</strong>: How long to hold server-side rotation</li>
+<li><strong>Team Color</strong>: Use team colors for rendering</li>
+<li><strong>Don't Show Again</strong>: Remember dismissed prompts</li>
+</ul>
+<h2>🎨 Themes</h2>
+
+<h3>Available Themes</h3>
+
+<h4>Meteor Theme (Default)</h4>
+<ul><li>Clean, modern design</li>
+<li>Purple accent color</li>
+<li>Smooth animations</li>
+<li>Professional appearance</li>
+</ul>
+<h4>Halloween Theme</h4>
+<ul><li>Spooky orange and black colors</li>
+<li>Automatic activation in October</li>
+<li>Halloween-themed icons</li>
+<li>Festive atmosphere</li>
+</ul>
+<h4>Christmas Theme</h4>
+<ul><li>Red and green colors</li>
+<li>Automatic activation in December</li>
+<li>Christmas decorations</li>
+<li>Holiday spirit</li>
+</ul>
+<h3>Customizing Themes</h3>
+<ul><li><strong>Colors</strong>: Modify accent colors</li>
+<li><strong>Animations</strong>: Enable/disable animations</li>
+<li><strong>Icons</strong>: Change icon styles</li>
+<li><strong>Background</strong>: Customize backgrounds</li>
+</ul>
+<h2>🔧 Advanced Features</h2>
+
+<h3>Waypoints System</h3>
+<p>Create and manage waypoints for navigation:</p>
+
+<ul><li><strong>Creating Waypoints</strong>:</li>
+<p></ul>   - Press the waypoint key (default: <code>B</code>) - Click "Add Waypoint" - Enter name and choose color - Set coordinates or use current position</p>
+
+<ul><li><strong>Managing Waypoints</strong>:</li>
+<p></ul>   - View all waypoints in the waypoints menu - Edit names, colors, and positions - Delete unwanted waypoints - Import/export waypoint lists</p>
+
+<ul><li><strong>Waypoint Features</strong>:</li>
+<p></ul>   - Distance calculation - Direction indicators - Minimap integration - Color coding system</p>
+
+<h3>Profiles System</h3>
+<p>Save and load different configurations:</p>
+
+<ul><li><strong>Creating Profiles</strong>:</li>
+<p></ul>   - Go to Settings → Profiles - Click "New Profile" - Name your profile - Configure settings</p>
+
+<ul><li><strong>Using Profiles</strong>:</li>
+<p></ul>   - Switch between profiles quickly - Different profiles for different servers - Backup and restore configurations</p>
+
+<h3>Keybind System</h3>
+<p>Customize all keybinds:</p>
+
+<ul><li><strong>Setting Keybinds</strong>:</li>
+<p></ul>   - Go to Settings → Keybinds - Find the action you want to change - Click and press your desired key - Save changes</p>
+
+<ul><li><strong>Useful Keybinds</strong>:</li>
+<p></ul>   - <strong>Menu</strong>: Open Lodestar Suite (default: Right Shift) - <strong>Waypoints</strong>: Open waypoints menu (default: B) - <strong>HUD Editor</strong>: Edit HUD elements (default: H)</p>
+
+<h2>💡 Tips & Tricks</h2>
+
+<h3>Performance Tips</h3>
+<ul><li><strong>Disable unused modules</strong>: Only enable what you need</li>
+<li><strong>Optimize HUD elements</strong>: Too many can impact performance</li>
+<li><strong>Use profiles</strong>: Switch configurations for different situations</li>
+</ul>
+<h3>Organization Tips</h3>
+<ul><li><strong>Use search</strong>: Quickly find modules by typing</li>
+<li><strong>Create profiles</strong>: Different setups for different servers</li>
+<li><strong>Customize keybinds</strong>: Make controls comfortable for you</li>
+</ul>
+<h3>Server Compatibility</h3>
+<ul><li><strong>Fair Play</strong>: All modules are server-friendly</li>
+<li><strong>No Bans</strong>: Lodestar Suite won't get you banned</li>
+<li><strong>Compatibility</strong>: Works with most servers and mods</li>
+</ul>
+<h3>Troubleshooting Tips</h3>
+<ul><li><strong>Check keybinds</strong>: Make sure keys aren't conflicting</li>
+<li><strong>Restart Minecraft</strong>: Sometimes fixes minor issues</li>
+<li><strong>Check logs</strong>: Look for error messages in Minecraft logs</li>
+</ul>
+<h2>🎯 Best Practices</h2>
+
+<h3>For New Users</h3>
+<ul><li><strong>Start simple</strong>: Enable one module at a time</li>
+<li><strong>Read descriptions</strong>: Understand what each module does</li>
+<li><strong>Test on singleplayer</strong>: Try features before using on servers</li>
+<li><strong>Ask for help</strong>: Use GitHub discussions for questions</li>
+</ul>
+<h3>For Experienced Users</h3>
+<ul><li><strong>Use profiles</strong>: Create different setups for different needs</li>
+<li><strong>Customize HUD</strong>: Create your perfect information display</li>
+<li><strong>Share configurations</strong>: Help other users with your setups</li>
+<li><strong>Contribute</strong>: Report bugs and suggest features</li>
+</ul>
+<h2>🆘 Getting Help</h2>
+
+<h3>Resources</h3>
+<ul><li><strong><a href="faq.md">FAQ</a></strong>: Common questions and answers</li>
+<li><strong><a href="troubleshooting.md">Troubleshooting</a></strong>: Detailed problem-solving</li>
+<li><strong><a href="https://github.com/waythread/lodestar-suite/issues">GitHub Issues</a></strong>: Report bugs</li>
+<li><strong><a href="https://github.com/waythread/lodestar-suite/discussions">Discussions</a></strong>: Ask questions</li>
+</ul>
+<h3>Community</h3>
+<ul><li><strong>GitHub</strong>: Main development and support</li>
+<li><strong>Discussions</strong>: Community help and tips</li>
+<li><strong>Issues</strong>: Bug reports and feature requests</li>
+</ul>
+<p>---</p>
+
+<em>This guide covers all the main features of Lodestar Suite. For more specific information, check out our <a href="faq.md">FAQ</a> or <a href="https://github.com/waythread/lodestar-suite/issues">contact us</a>!</em>
+
+    </div>
+    
+    <div class="footer">
+        <p>
+            <strong>Lodestar Suite</strong> - A comprehensive Minecraft utility suite<br>
+            <a href="https://github.com/waythread/lodestar-suite">GitHub Repository</a> | 
+            <a href="https://github.com/waythread/lodestar-suite/releases">Releases</a>
+        </p>
+    </div>
+</body>
+</html>

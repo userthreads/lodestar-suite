@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏗️ Architecture Overview - Lodestar Suite Documentation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+            border-bottom: 1px solid #3a3a3a;
+        }
+        .header h1 {
+            margin: 0;
+            color: #667eea;
+        }
+        .nav {
+            margin: 20px 0;
+            padding: 15px;
+            background: #2a2a2a;
+            border-radius: 5px;
+            border: 1px solid #3a3a3a;
+        }
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        .nav a:hover {
+            color: #8b7cf6;
+        }
+        h1, h2, h3, h4 {
+            color: #667eea;
+        }
+        h1 {
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #3a3a3a;
+            padding-bottom: 5px;
+        }
+        code {
+            background: #2a2a2a;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #3a3a3a;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #8b7cf6;
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #3a3a3a;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 Lodestar Suite Documentation</h1>
+        <p>Your complete guide to the comprehensive Minecraft utility suite</p>
+    </div>
+    
+    <div class="nav">
+        <a href="index.html">🏠 Home</a>
+        <a href="getting-started.html">🚀 Getting Started</a>
+        <a href="user-guide.html">📖 User Guide</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="troubleshooting.html">🛠️ Troubleshooting</a>
+        <a href="developer-guide.html">👨‍💻 Developer Guide</a>
+        <a href="architecture.html">🏗️ Architecture</a>
+    </div>
+    
+    <div class="content">
+        <h1>🏗️ Architecture Overview</h1>
+
+<p>This document provides a detailed technical overview of Lodestar Suite's architecture, systems, and design patterns.</p>
+
+<h2>🎯 Table of Contents</h2>
+
+<ul><li><a href="#system-overview">System Overview</a></li>
+<li><a href="#core-architecture">Core Architecture</a></li>
+<li><a href="#module-system">Module System</a></li>
+<li><a href="#event-system">Event System</a></li>
+<li><a href="#gui-system">GUI System</a></li>
+<li><a href="#rendering-pipeline">Rendering Pipeline</a></li>
+<li><a href="#data-persistence">Data Persistence</a></li>
+<li><a href="#network-layer">Network Layer</a></li>
+<li><a href="#security-architecture">Security Architecture</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+</ul>
+<h2>🎯 System Overview</h2>
+
+<p>Lodestar Suite is built on a modular architecture with clear separation of concerns:</p>
+
+<p><code></code>` ┌─────────────────────────────────────────────────────────────┐ │                    Lodestar Suite                           │ ├─────────────────────────────────────────────────────────────┤ │  User Interface Layer (GUI, HUD, Themes)                   │ ├─────────────────────────────────────────────────────────────┤ │  Module System (Player, Render, World, Misc)               │ ├─────────────────────────────────────────────────────────────┤ │  Core Systems (Config, Friends, Waypoints, Profiles)       │ ├─────────────────────────────────────────────────────────────┤ │  Event System (Orbit Event Bus)                            │ ├─────────────────────────────────────────────────────────────┤ │  Utility Layer (Utils, Network, Rendering)                 │ ├─────────────────────────────────────────────────────────────┤ │  Minecraft Integration (Mixins, Fabric API)                │ └─────────────────────────────────────────────────────────────┘ <code></code>`</p>
+
+<h2>🏗️ Core Architecture</h2>
+
+<h3>Main Entry Point</h3>
+<p><code></code>`java public class MeteorClient implements ClientModInitializer { public static final String MOD_ID = "lodestar-suite"; public static final IEventBus EVENT_BUS = new EventBus(); public static final File FOLDER = FabricLoader.getInstance().getGameDir().resolve(MOD_ID).toFile();</p>
+
+<p>@Override public void onInitializeClient() { // Initialize core systems Systems.init();</p>
+
+<p>// Register event handlers EVENT_BUS.registerLambdaFactory("meteordevelopment.meteorclient", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));</p>
+
+<p>// Setup shutdown hooks Runtime.getRuntime().addShutdownHook(new Thread(() -> { OnlinePlayers.leave(); Systems.save(); GuiThemes.save(); })); } } <code></code>`</p>
+
+<h3>System Initialization</h3>
+<p><code></code>`java public class Systems { private static final List<System<?>> systems = new ArrayList<>();</p>
+
+<p>public static void init() { // Initialize core systems in order add(new Modules()); Config config = new Config(); System<?> configSystem = add(config); configSystem.init(); configSystem.load();</p>
+
+<p>// Initialize other systems add(new Macros()); add(new Friends()); add(new Waypoints()); add(new Profiles()); add(new Hud()); add(new HalloweenMode()); add(new ChristmasMode()); } } <code></code>`</p>
+
+<h2>📦 Module System</h2>
+
+<h3>Module Architecture</h3>
+<p>Modules are the primary feature units in Lodestar Suite:</p>
+
+<p><code></code>`java public abstract class Module { protected final ModuleInfo<?> info; protected final SettingGroup settings;</p>
+
+<p>public Module(ModuleInfo<?> info) { this.info = info; this.settings = new SettingGroup(); }</p>
+
+<p>// Lifecycle methods public void onActivate() {} public void onDeactivate() {} public void onTick() {} public void onRender(Renderer2D renderer) {} } <code></code>`</p>
+
+<h3>Module Categories</h3>
+<p><code></code>`java public class Categories { public static final Category PLAYER = new Category("Player", "Player-related modules"); public static final Category RENDER = new Category("Render", "Visual enhancement modules"); public static final Category WORLD = new Category("World", "World-related modules"); public static final Category MISC = new Category("Misc", "Miscellaneous modules");</p>
+
+<p>// Combat and Movement categories are empty (removed for fair play) public static final Category COMBAT = new Category("Combat", "Combat modules (removed)"); public static final Category MOVEMENT = new Category("Movement", "Movement modules (removed)"); } <code></code>`</p>
+
+<h3>Module Registration</h3>
+<p><code></code>`java public class Modules extends System<Modules> { private void initPlayer() { add(new AutoClicker()); }</p>
+
+<p>private void initRender() { add(new BetterTab()); add(new BetterTooltips()); add(new BreakIndicators()); add(new WaypointsModule()); }</p>
+
+<p>private void initWorld() { add(new Ambience()); }</p>
+
+<p>private void initMisc() { add(new AutoReconnect()); add(new BetterChat()); add(new DiscordPresence()); add(new ServerSpoof()); } } <code></code>`</p>
+
+<h2>🎪 Event System</h2>
+
+<h3>Orbit Event Bus</h3>
+<p>Lodestar Suite uses Orbit for event handling:</p>
+
+<p><code></code>`java public class EventBus implements IEventBus { private final Map<Class<?>, List<EventHandler>> handlers = new ConcurrentHashMap<>();</p>
+
+<p>@Override public <T> void subscribe(Class<T> klass, EventHandler<T> handler) { handlers.computeIfAbsent(klass, k -> new ArrayList<>()).add(handler); }</p>
+
+<p>@Override public <T> void post(T event) { List<EventHandler> eventHandlers = handlers.get(event.getClass()); if (eventHandlers != null) { for (EventHandler handler : eventHandlers) { handler.handle(event); } } } } <code></code>`</p>
+
+<h3>Event Types</h3>
+<p><code></code>`java // Tick events public class TickEvent { public static class Pre extends TickEvent {} public static class Post extends TickEvent {} }</p>
+
+<p>// Render events public class RenderEvent { public static class Pre extends RenderEvent {} public static class Post extends RenderEvent {} }</p>
+
+<p>// Packet events public class PacketEvent { public static class Receive extends PacketEvent { public Packet<?> packet; } public static class Send extends PacketEvent { public Packet<?> packet; } } <code></code>`</p>
+
+<h3>Event Handling Example</h3>
+<p><code></code>`java public class ExampleModule extends Module { @EventHandler private void onTick(TickEvent.Post event) { // Handle tick event }</p>
+
+<p>@EventHandler private void onRender(RenderEvent event) { // Handle render event }</p>
+
+<p>@EventHandler private void onReceivePacket(PacketEvent.Receive event) { if (event.packet instanceof WorldTimeUpdateS2CPacket) { // Handle time update packet } } } <code></code>`</p>
+
+<h2>🖥️ GUI System</h2>
+
+<h3>GUI Architecture</h3>
+<p><code></code>`java public abstract class WindowScreen extends Screen { protected final GuiTheme theme; protected final String title; protected final List<WWidget> widgets = new ArrayList<>();</p>
+
+<p>public WindowScreen(GuiTheme theme, String title) { super(Text.literal(title)); this.theme = theme; this.title = title; }</p>
+
+<p>@Override protected void init() { initWidgets(); super.init(); }</p>
+
+<p>protected abstract void initWidgets(); } <code></code>`</p>
+
+<h3>Theme System</h3>
+<p><code></code>`java public abstract class GuiTheme { protected final String name;</p>
+
+<p>public GuiTheme(String name) { this.name = name; }</p>
+
+<p>// Widget creation methods public abstract WWindow window(WWindow.WindowType type); public abstract WButton button(String text); public abstract WLabel label(String text); public abstract WSlider slider(double value, double min, double max); // ... more widget types } <code></code>`</p>
+
+<h3>Widget System</h3>
+<p><code></code>`java public abstract class WWidget { protected double x, y; protected double width, height; protected boolean visible = true; protected boolean active = true;</p>
+
+<p>public abstract void render(Renderer2D renderer, double mouseX, double mouseY, double delta); public abstract boolean mouseClicked(double mouseX, double mouseY, int button); public abstract boolean keyPressed(int key, int scanCode, int modifiers); } <code></code>`</p>
+
+<h2>🎨 Rendering Pipeline</h2>
+
+<h3>Renderer2D</h3>
+<p><code></code>`java public class Renderer2D { private final MatrixStack matrices; private final BufferBuilder buffer;</p>
+
+<p>public void begin() { buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR_TEXTURE); }</p>
+
+<p>public void end() { BufferRenderer.drawWithGlobalProgram(buffer.end()); }</p>
+
+<p>public void quad(double x1, double y1, double x2, double y2, Color color) { // Render quad with specified coordinates and color }</p>
+
+<p>public void text(String text, double x, double y, Color color) { // Render text at specified position } } <code></code>`</p>
+
+<h3>HUD Rendering</h3>
+<p><code></code>`java public class HudRenderer { private final Renderer2D renderer;</p>
+
+<p>public void render(HudElement element) { element.render(renderer); }</p>
+
+<p>public void renderAll() { for (HudElement element : Hud.INSTANCE.elements) { if (element.isActive()) { render(element); } } } } <code></code>`</p>
+
+<h2>💾 Data Persistence</h2>
+
+<h3>System Base Class</h3>
+<p><code></code>`java public abstract class System<T> implements ISerializable<T> { protected abstract NbtCompound toTag(); protected abstract T fromTag(NbtCompound tag);</p>
+
+<p>public void save(File folder) { try { NbtCompound tag = toTag(); File tempFile = new File(folder, getName() + ".tmp"); File file = new File(folder, getName() + ".nbt");</p>
+
+<p>// Atomic write with backup NbtIo.write(tag, tempFile.toPath()); Files.move(tempFile.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING); } catch (Exception e) { MeteorClient.LOG.error("Failed to save system " + getName(), e); } }</p>
+
+<p>public void load(File folder) { File file = new File(folder, getName() + ".nbt"); if (!file.exists()) return;</p>
+
+<p>try { NbtCompound tag = NbtIo.read(file.toPath()); fromTag(tag); } catch (Exception e) { MeteorClient.LOG.error("Failed to load system " + getName(), e); // Create backup of corrupted file try { Files.copy(file.toPath(), new File(folder, getName() + ".corrupted").toPath()); } catch (IOException ignored) {} } } } <code></code>`</p>
+
+<h3>Settings Persistence</h3>
+<p><code></code>`java public class Setting<T> { protected T value; protected final T defaultValue;</p>
+
+<p>public NbtCompound save(NbtCompound tag) { // Save setting value to NBT return tag; }</p>
+
+<p>public T load(NbtCompound tag) { // Load setting value from NBT return value; } } <code></code>`</p>
+
+<h2>🌐 Network Layer</h2>
+
+<h3>HTTP Client</h3>
+<p><code></code>`java public class Http { public static class Request { private final HttpRequest.Builder builder; private final Method method;</p>
+
+<p>public static Request get(String url) { return new Request(Method.GET, url); }</p>
+
+<p>public static Request post(String url) { return new Request(Method.POST, url); }</p>
+
+<p>public Response send() { try { HttpClient client = HttpClient.newHttpClient(); HttpRequest request = builder.build(); HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString()); return new Response(response); } catch (Exception e) { return new FailedHttpResponse(e); } } } } <code></code>`</p>
+
+<h3>Online Players Tracking</h3>
+<p><code></code>`java public class OnlinePlayers { private static final Timer timer = new Timer();</p>
+
+<p>public static void init() { timer.scheduleAtFixedRate(new TimerTask() { @Override public void run() { update(); } }, 0, 5 <em> 60 </em> 1000); // Every 5 minutes }</p>
+
+<p>public static void update() { MeteorExecutor.execute(() -> { Http.post("https://meteorclient.com/api/online/ping") .ignoreExceptions() .send(); }); } } <code></code>`</p>
+
+<h2>🔒 Security Architecture</h2>
+
+<h3>Removed Security Risks</h3>
+<p>Lodestar Suite has removed several security-sensitive components:</p>
+
+<p><code></code>`java // REMOVED: Proxy system for security reasons // REMOVED: Account system for security reasons // REMOVED: Baritone pathfinding for fair play compliance <code></code>`</p>
+
+<h3>Input Validation</h3>
+<p><code></code>`java public class Http { private Request(Method method, String url) { try { URI uri = new URI(url); String scheme = uri.getScheme(); if (scheme == null || (!scheme.equals("http") && !scheme.equals("https"))) { throw new IllegalArgumentException("Invalid URL scheme: " + scheme); } if (scheme.equals("http")) { System.err.println("Warning: Using HTTP instead of HTTPS for URL: " + url); } } catch (URISyntaxException e) { throw new IllegalArgumentException("Invalid URL: " + url, e); } } } <code></code>`</p>
+
+<h3>Safe File Operations</h3>
+<p><code></code>`java public class System<T> { public void save(File folder) { // Atomic file operations with backup File tempFile = new File(folder, getName() + ".tmp"); File file = new File(folder, getName() + ".nbt");</p>
+
+<p>NbtIo.write(tag, tempFile.toPath()); Files.move(tempFile.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING); } } <code></code>`</p>
+
+<h2>⚡ Performance Considerations</h2>
+
+<h3>Event System Optimization</h3>
+<p><code></code>`java public class EventBus { private final Map<Class<?>, List<EventHandler>> handlers = new ConcurrentHashMap<>();</p>
+
+<p>// Use ConcurrentHashMap for thread-safe access // Pre-compute handler lists to avoid repeated lookups } <code></code>`</p>
+
+<h3>Rendering Optimization</h3>
+<p><code></code>`java public class Renderer2D { private final BufferBuilder buffer;</p>
+
+<p>// Batch rendering operations public void begin() { buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR_TEXTURE); }</p>
+
+<p>public void end() { BufferRenderer.drawWithGlobalProgram(buffer.end()); } } <code></code>`</p>
+
+<h3>Memory Management</h3>
+<p><code></code>`java public class TPSGraphHud extends HudElement { private final List<Float> tpsHistory = new ArrayList<>(); private final List<Long> timeHistory = new ArrayList<>();</p>
+
+<p>@Override public void tick(HudRenderer renderer) { // Limit history size to prevent memory leaks while (tpsHistory.size() > maxDataPoints.get()) { tpsHistory.remove(0); timeHistory.remove(0); } } } <code></code>`</p>
+
+<h2>🔧 Build System</h2>
+
+<h3>Gradle Configuration</h3>
+<p><code></code>`kotlin plugins { id("fabric-loom") version "1.10-SNAPSHOT" id("maven-publish") }</p>
+
+<p>// Custom JAR naming with random suffix fun generateRandomSuffix(): String { val chars = "abcdefghijklmnopqrstuvwxyz0123456789" return (1..5).map { chars.random() }.joinToString("") }</p>
+
+<p>val versionSuffix = generateRandomSuffix() val customArchivesName = "${baseName}-${minecraftVersion}-${versionSuffix}" <code></code>`</p>
+
+<h3>Dependency Management</h3>
+<p><code></code>`kotlin dependencies { // Fabric minecraft("com.mojang:minecraft:${project.property("minecraft_version")}") mappings("net.fabricmc:yarn:${project.property("yarn_mappings")}:v2") modImplementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")</p>
+
+<p>// Fabric API modImplementation("net.fabricmc.fabric-api:fabric-api:${project.property("fapi_version")}")</p>
+
+<p>// Dependencies implementation("meteordevelopment:orbit:${project.property("orbit_version")}") implementation("meteordevelopment:starscript:${project.property("starscript_version")}") implementation("meteordevelopment:discord-ipc:${project.property("discordipc_version")}") } <code></code>`</p>
+
+<h2>🧪 Testing Architecture</h2>
+
+<h3>Unit Testing</h3>
+<p><code></code>`java @Test public void testModuleActivation() { ExampleModule module = new ExampleModule(); assertFalse(module.isActive());</p>
+
+<p>module.toggle(); assertTrue(module.isActive()); } <code></code>`</p>
+
+<h3>Integration Testing</h3>
+<p><code></code>`java @Test public void testSystemInitialization() { Systems.init(); assertNotNull(Systems.get(Modules.class)); assertNotNull(Systems.get(Config.class)); } <code></code>`</p>
+
+<h2>📊 Monitoring & Debugging</h2>
+
+<h3>Logging System</h3>
+<p><code></code>`java public class MeteorClient { public static final Logger LOG = LoggerFactory.getLogger(NAME);</p>
+
+<p>// Use appropriate log levels LOG.info("System initialized"); LOG.warn("Deprecated feature used"); LOG.error("Error occurred", exception); } <code></code>`</p>
+
+<h3>Performance Monitoring</h3>
+<p><code></code>`java public class TPSGraphHud extends HudElement { private float minTPS = Float.MAX_VALUE; private float maxTPS = 0.0f; private float totalTPS = 0.0f; private int dataPointCount = 0;</p>
+
+<p>// Track performance metrics private void updateStatistics(float currentTPS) { minTPS = Math.min(minTPS, currentTPS); maxTPS = Math.max(maxTPS, currentTPS); totalTPS += currentTPS; dataPointCount++; } } <code></code>`</p>
+
+<p>---</p>
+
+<p>This architecture provides a solid foundation for Lodestar Suite's functionality while maintaining clean separation of concerns, good performance, and security best practices.</p>
+
+    </div>
+    
+    <div class="footer">
+        <p>
+            <strong>Lodestar Suite</strong> - A comprehensive Minecraft utility suite<br>
+            <a href="https://github.com/waythread/lodestar-suite">GitHub Repository</a> | 
+            <a href="https://github.com/waythread/lodestar-suite/releases">Releases</a>
+        </p>
+    </div>
+</body>
+</html>
