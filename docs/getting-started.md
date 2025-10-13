@@ -64,8 +64,8 @@ Try enabling the **Better Tab** module:
 ### Themes
 Lodestar Suite comes with beautiful themes:
 - **Meteor**: The default theme
-- **Halloween**: Spooky seasonal theme (automatic in October)
-- **Christmas**: Festive seasonal theme (automatic in December)
+- **Halloween**: Spooky seasonal theme (automatic October 1 - November 1)
+- **Christmas**: Festive seasonal theme (automatic December 1 - December 30)
 
 ### HUD Elements
 Add useful information to your screen:

@@ -67,10 +67,10 @@ public class GuiThemes {
         // Auto-switch to seasonal themes based on date
         if (HalloweenMode.get().isActive() && !(get() instanceof HalloweenGuiTheme)) {
             select("Halloween");
-            MeteorClient.LOG.info("Auto-switched to Halloween theme for Halloween week!");
+            MeteorClient.LOG.info("Auto-switched to Halloween theme for Halloween season (October 1 - November 1)!");
         } else if (ChristmasMode.get().isActive() && !(get() instanceof ChristmasGuiTheme)) {
             select("Christmas");
-            MeteorClient.LOG.info("Auto-switched to Christmas theme for Christmas season!");
+            MeteorClient.LOG.info("Auto-switched to Christmas theme for Christmas season (December 1 - December 30)!");
         } else if (!HalloweenMode.get().isActive() && !ChristmasMode.get().isActive() && 
                    (get() instanceof HalloweenGuiTheme || get() instanceof ChristmasGuiTheme)) {
             // Switch back to default theme when not in seasonal periods

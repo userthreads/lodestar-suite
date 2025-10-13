@@ -68,9 +68,8 @@ public class ChristmasMode extends System<ChristmasMode> {
         // Use UTC time for consistent checking across time zones
         LocalDate now = LocalDate.now(ZoneOffset.UTC);
         
-        // Check if we're in Christmas season (December 20 - January 6)
-        boolean isChristmasSeason = (now.getMonth() == Month.DECEMBER && now.getDayOfMonth() >= 20) ||
-                                   (now.getMonth() == Month.JANUARY && now.getDayOfMonth() <= 6);
+        // Check if we're in Christmas season (December 1 - December 30)
+        boolean isChristmasSeason = (now.getMonth() == Month.DECEMBER && now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 30);
         
         this.isChristmasSeason = isChristmasSeason;
     }

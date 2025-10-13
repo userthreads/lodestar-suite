@@ -68,9 +68,9 @@ public class HalloweenMode extends System<HalloweenMode> {
         // Use UTC time for consistent checking across time zones
         LocalDate now = LocalDate.now(ZoneOffset.UTC);
         
-        // Check if we're in Halloween week (October 27 - November 2)
-        boolean isHalloweenWeek = (now.getMonth() == Month.OCTOBER && now.getDayOfMonth() >= 27) ||
-                                 (now.getMonth() == Month.NOVEMBER && now.getDayOfMonth() <= 2);
+        // Check if we're in Halloween season (October 1 - November 1)
+        boolean isHalloweenWeek = (now.getMonth() == Month.OCTOBER) ||
+                                 (now.getMonth() == Month.NOVEMBER && now.getDayOfMonth() <= 1);
         
         this.isHalloweenWeek = isHalloweenWeek;
     }

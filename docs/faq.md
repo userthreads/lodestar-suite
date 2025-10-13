@@ -77,8 +77,8 @@ Lodestar Suite includes modules in these categories:
 2. Go to Settings → Themes
 3. Select your preferred theme:
    - **Meteor**: Default theme
-   - **Halloween**: Automatic in October
-   - **Christmas**: Automatic in December
+   - **Halloween**: Automatic October 1 - November 1
+   - **Christmas**: Automatic December 1 - December 30
 
 ### Can I create custom themes?
 Currently, custom theme creation requires development knowledge. However, you can customize colors and some visual elements in the settings.

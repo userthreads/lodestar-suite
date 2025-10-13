@@ -215,13 +215,13 @@ HUD (Heads-Up Display) elements show information on your screen while playing.
 
 #### Halloween Theme
 - Spooky orange and black colors
-- Automatic activation in October
+- Automatic activation from October 1 to November 1
 - Halloween-themed icons
 - Festive atmosphere
 
 #### Christmas Theme
 - Red and green colors
-- Automatic activation in December
+- Automatic activation from December 1 to December 30
 - Christmas decorations
 - Holiday spirit
 
