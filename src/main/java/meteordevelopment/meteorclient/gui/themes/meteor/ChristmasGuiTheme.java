@@ -7,7 +7,7 @@ package meteordevelopment.meteorclient.gui.themes.meteor;
 
 import meteordevelopment.meteorclient.utils.render.color.SettingColor;
 
-public class ChristmasGuiTheme extends MeteorGuiTheme {
+public class ChristmasGuiTheme extends LodestarGuiTheme {
     public ChristmasGuiTheme() {
         super("Christmas");
         

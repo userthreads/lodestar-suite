@@ -33,9 +33,9 @@ public class BlurBackdropWidget extends WWidget {
     @Override
     protected void onRender(GuiRenderer renderer, double mouseX, double mouseY, double delta) {
         // Check if blur is enabled in the theme
-        if (parent != null && parent.theme instanceof meteordevelopment.meteorclient.gui.themes.meteor.MeteorGuiTheme) {
-            meteordevelopment.meteorclient.gui.themes.meteor.MeteorGuiTheme theme = 
-                (meteordevelopment.meteorclient.gui.themes.meteor.MeteorGuiTheme) parent.theme;
+        if (parent != null && parent.theme instanceof meteordevelopment.meteorclient.gui.themes.meteor.LodestarGuiTheme) {
+            meteordevelopment.meteorclient.gui.themes.meteor.LodestarGuiTheme theme = 
+                (meteordevelopment.meteorclient.gui.themes.meteor.LodestarGuiTheme) parent.theme;
             
             if (!theme.blurEnabled.get()) {
                 return; // Don't render if blur is disabled

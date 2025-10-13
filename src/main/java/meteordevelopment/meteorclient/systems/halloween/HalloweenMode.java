@@ -12,6 +12,7 @@ import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.settings.Settings;
 import meteordevelopment.meteorclient.systems.System;
+import meteordevelopment.meteorclient.systems.timezone.TimezoneManager;
 import meteordevelopment.orbit.EventHandler;
 
 import java.time.Instant;
@@ -36,6 +37,13 @@ public class HalloweenMode extends System<HalloweenMode> {
         .name("enabled")
         .description("Enable Halloween theme regardless of date.")
         .defaultValue(false)
+        .build()
+    );
+    
+    public final Setting<Boolean> useLocalTimezone = sgGeneral.add(new BoolSetting.Builder()
+        .name("use-local-timezone")
+        .description("Use your local timezone instead of UTC for date checking.")
+        .defaultValue(true)
         .build()
     );
 
@@ -65,8 +73,14 @@ public class HalloweenMode extends System<HalloweenMode> {
 
 
     private void checkHalloweenWeek() {
-        // Use UTC time for consistent checking across time zones
-        LocalDate now = LocalDate.now(ZoneOffset.UTC);
+        // Use timezone-aware date checking
+        LocalDate now;
+        if (useLocalTimezone.get() && TimezoneManager.get() != null) {
+            now = TimezoneManager.get().getLocalDate();
+        } else {
+            // Fallback to UTC for consistent checking across time zones
+            now = LocalDate.now(ZoneOffset.UTC);
+        }
         
         // Check if we're in Halloween season (October 1 - November 1)
         boolean isHalloweenWeek = (now.getMonth() == Month.OCTOBER) ||
@@ -86,8 +100,12 @@ public class HalloweenMode extends System<HalloweenMode> {
         // Rate limit debug logs to every 5 minutes to reduce console spam
         long currentTime = Instant.now().toEpochMilli();
         if (currentTime - lastLogTime >= LOG_INTERVAL) {
-            MeteorClient.LOG.info("HalloweenMode.isActive() - enabled: {}, isHalloweenWeek: {}, active: {} (UTC: {})", 
-                enabled.get(), isHalloweenWeek, active, LocalDate.now(ZoneOffset.UTC));
+            String timezoneInfo = useLocalTimezone.get() && TimezoneManager.get() != null ? 
+                TimezoneManager.get().formatTimeWithTimezone() : 
+                "UTC: " + LocalDate.now(ZoneOffset.UTC);
+            
+            MeteorClient.LOG.info("HalloweenMode.isActive() - enabled: {}, isHalloweenWeek: {}, active: {} ({})", 
+                enabled.get(), isHalloweenWeek, active, timezoneInfo);
             lastLogTime = currentTime;
         }
         

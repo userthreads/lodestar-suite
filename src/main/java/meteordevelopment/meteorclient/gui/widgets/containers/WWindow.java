@@ -127,16 +127,16 @@ public abstract class WWindow extends WVerticalList {
 
     protected void renderBlurBackdrop(GuiRenderer renderer) {
         // Check if blur is enabled in the theme
-        if (theme instanceof meteordevelopment.meteorclient.gui.themes.meteor.MeteorGuiTheme) {
-            meteordevelopment.meteorclient.gui.themes.meteor.MeteorGuiTheme meteorTheme = 
-                (meteordevelopment.meteorclient.gui.themes.meteor.MeteorGuiTheme) theme;
+        if (theme instanceof meteordevelopment.meteorclient.gui.themes.meteor.LodestarGuiTheme) {
+            meteordevelopment.meteorclient.gui.themes.meteor.LodestarGuiTheme lodestarTheme = 
+                (meteordevelopment.meteorclient.gui.themes.meteor.LodestarGuiTheme) theme;
             
-            if (meteorTheme.blurEnabled.get()) {
+            if (lodestarTheme.blurEnabled.get()) {
                 // Render blur backdrop for the window
                 BlurRenderer.getInstance().renderSimpleBlurBackdrop(
                     x, y, width, height,
-                    meteorTheme.blurIntensity.get().floatValue(),
-                    meteorTheme.blurTintColor.get()
+                    lodestarTheme.blurIntensity.get().floatValue(),
+                    lodestarTheme.blurTintColor.get()
                 );
             }
         }

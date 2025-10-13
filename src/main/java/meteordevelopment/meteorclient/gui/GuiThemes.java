@@ -9,7 +9,7 @@ import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.events.game.GameLeftEvent;
 import meteordevelopment.meteorclient.gui.themes.meteor.ChristmasGuiTheme;
 import meteordevelopment.meteorclient.gui.themes.meteor.HalloweenGuiTheme;
-import meteordevelopment.meteorclient.gui.themes.meteor.MeteorGuiTheme;
+import meteordevelopment.meteorclient.gui.themes.meteor.LodestarGuiTheme;
 import meteordevelopment.meteorclient.systems.christmas.ChristmasMode;
 import meteordevelopment.meteorclient.systems.halloween.HalloweenMode;
 import meteordevelopment.meteorclient.utils.PostInit;
@@ -37,7 +37,7 @@ public class GuiThemes {
 
     @PreInit
     public static void init() {
-        add(new MeteorGuiTheme());
+        add(new LodestarGuiTheme());
         add(new HalloweenGuiTheme());
         add(new ChristmasGuiTheme());
     }
@@ -109,6 +109,9 @@ public class GuiThemes {
 
             // Select new theme
             GuiThemes.theme = theme;
+            
+            // Log theme switch for debugging
+            MeteorClient.LOG.info("Switched to theme: {}", theme.name);
 
             // Load new theme
             try {
@@ -122,9 +125,10 @@ public class GuiThemes {
                 e.printStackTrace();
             }
 
-
             // Save global gui settings with the new theme
             saveGlobal();
+        } else {
+            MeteorClient.LOG.error("Theme '{}' not found!", name);
         }
     }
 

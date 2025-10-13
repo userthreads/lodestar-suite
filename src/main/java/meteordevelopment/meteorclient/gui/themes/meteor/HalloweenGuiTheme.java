@@ -7,7 +7,7 @@ package meteordevelopment.meteorclient.gui.themes.meteor;
 
 import meteordevelopment.meteorclient.utils.render.color.SettingColor;
 
-public class HalloweenGuiTheme extends MeteorGuiTheme {
+public class HalloweenGuiTheme extends LodestarGuiTheme {
     public HalloweenGuiTheme() {
         super("Halloween");
         

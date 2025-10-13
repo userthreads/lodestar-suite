@@ -23,6 +23,7 @@ import meteordevelopment.meteorclient.systems.modules.misc.AutoReconnect;
 import meteordevelopment.meteorclient.systems.modules.misc.BetterChat;
 import meteordevelopment.meteorclient.systems.modules.misc.DiscordPresence;
 import meteordevelopment.meteorclient.systems.modules.misc.ServerSpoof;
+import meteordevelopment.meteorclient.systems.modules.misc.TimezoneModule;
 import meteordevelopment.meteorclient.systems.modules.player.AutoClicker;
 import meteordevelopment.meteorclient.systems.modules.render.BetterTab;
 import meteordevelopment.meteorclient.systems.modules.render.BetterTooltips;
@@ -420,5 +421,6 @@ public class Modules extends System<Modules> {
         add(new BetterChat());
         add(new DiscordPresence());
         add(new ServerSpoof());
+        add(new TimezoneModule());
     }
 }

@@ -12,6 +12,7 @@ import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.settings.SettingGroup;
 import meteordevelopment.meteorclient.settings.Settings;
 import meteordevelopment.meteorclient.systems.System;
+import meteordevelopment.meteorclient.systems.timezone.TimezoneManager;
 import meteordevelopment.orbit.EventHandler;
 
 import java.time.Instant;
@@ -36,6 +37,13 @@ public class ChristmasMode extends System<ChristmasMode> {
         .name("enabled")
         .description("Enable Christmas theme regardless of date.")
         .defaultValue(false)
+        .build()
+    );
+    
+    public final Setting<Boolean> useLocalTimezone = sgGeneral.add(new BoolSetting.Builder()
+        .name("use-local-timezone")
+        .description("Use your local timezone instead of UTC for date checking.")
+        .defaultValue(true)
         .build()
     );
 
@@ -65,8 +73,14 @@ public class ChristmasMode extends System<ChristmasMode> {
 
 
     private void checkChristmasSeason() {
-        // Use UTC time for consistent checking across time zones
-        LocalDate now = LocalDate.now(ZoneOffset.UTC);
+        // Use timezone-aware date checking
+        LocalDate now;
+        if (useLocalTimezone.get() && TimezoneManager.get() != null) {
+            now = TimezoneManager.get().getLocalDate();
+        } else {
+            // Fallback to UTC for consistent checking across time zones
+            now = LocalDate.now(ZoneOffset.UTC);
+        }
         
         // Check if we're in Christmas season (December 1 - December 30)
         boolean isChristmasSeason = (now.getMonth() == Month.DECEMBER && now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 30);
@@ -85,8 +99,12 @@ public class ChristmasMode extends System<ChristmasMode> {
         // Rate limit debug logs to every 5 minutes to reduce console spam
         long currentTime = Instant.now().toEpochMilli();
         if (currentTime - lastLogTime >= LOG_INTERVAL) {
-            MeteorClient.LOG.info("ChristmasMode.isActive() - enabled: {}, isChristmasSeason: {}, active: {} (UTC: {})", 
-                enabled.get(), isChristmasSeason, active, LocalDate.now(ZoneOffset.UTC));
+            String timezoneInfo = useLocalTimezone.get() && TimezoneManager.get() != null ? 
+                TimezoneManager.get().formatTimeWithTimezone() : 
+                "UTC: " + LocalDate.now(ZoneOffset.UTC);
+            
+            MeteorClient.LOG.info("ChristmasMode.isActive() - enabled: {}, isChristmasSeason: {}, active: {} ({})", 
+                enabled.get(), isChristmasSeason, active, timezoneInfo);
             lastLogTime = currentTime;
         }
         

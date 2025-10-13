@@ -18,6 +18,8 @@ import meteordevelopment.meteorclient.systems.macros.Macros;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.systems.profiles.Profiles;
 // Proxy system removed for security reasons
+import meteordevelopment.meteorclient.systems.timezone.InternetTimeSync;
+import meteordevelopment.meteorclient.systems.timezone.TimezoneManager;
 import meteordevelopment.meteorclient.systems.waypoints.Waypoints;
 import meteordevelopment.orbit.EventHandler;
 
@@ -52,6 +54,8 @@ public class Systems {
         add(new Waypoints());
         add(new Profiles());
         add(new Hud());
+        add(new InternetTimeSync());
+        add(new TimezoneManager());
         add(new HalloweenMode());
         add(new ChristmasMode());
 

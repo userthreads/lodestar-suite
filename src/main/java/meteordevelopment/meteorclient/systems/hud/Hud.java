@@ -205,6 +205,9 @@ public class Hud extends System<Hud> implements Iterable<HudElement> {
         add(MeteorTextHud.POSITION, -4, -4, XAnchor.Right, YAnchor.Bottom);
         add(MeteorTextHud.OPPOSITE_POSITION, -4, -4 - h, XAnchor.Right, YAnchor.Bottom);
         add(MeteorTextHud.ROTATION, -4, -4 - h * 2, XAnchor.Right, YAnchor.Bottom);
+        
+        // Top Right - TPS Graph
+        add(TPSGraphHud.INFO, -4, 4, XAnchor.Right, YAnchor.Top);
     }
 
     @EventHandler
