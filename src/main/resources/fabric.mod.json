@@ -5,22 +5,22 @@
   "version": "${version}",
   "description": "A comprehensive Minecraft utility suite with quality of life modules and tools for fair play compliance.",
   "authors": [
-    "waythread"
+    "userthreads"
   ],
   "contact": {
-    "homepage": "https://github.com/waythread/lodestar-suite",
-    "issues": "https://github.com/waythread/lodestar-suite/issues",
-    "sources": "https://github.com/waythread/lodestar-suite"
+    "homepage": "https://github.com/userthreads/lodestar-suite",
+    "issues": "https://github.com/userthreads/lodestar-suite/issues",
+    "sources": "https://github.com/userthreads/lodestar-suite"
   },
-  "license": "GPL-3.0",
+  "license": "BSD-3-Clause",
   "icon": "assets/lodestar-suite/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "meteordevelopment.meteorclient.MeteorClient"
+      "userthreads.lodestarsuite.LodestarSuite"
     ],
     "modmenu": [
-      "meteordevelopment.meteorclient.ModMenuIntegration"
+      "userthreads.lodestarsuite.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -37,7 +37,7 @@
     "lodestar-suite:commit": "${commit}",
     "modmenu": {
       "links": {
-        "modmenu.discord": "https://github.com/waythread/lodestar-suite"
+        "modmenu.discord": "https://github.com/userthreads/lodestar-suite"
       }
     }
   },

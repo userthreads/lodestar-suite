@@ -1,8 +1,8 @@
 {
   "required": false,
-  "package": "meteordevelopment.meteorclient.mixin.lithium",
+  "package": "userthreads.lodestarsuite.mixin.lithium",
   "compatibilityLevel": "JAVA_21",
-  "plugin": "meteordevelopment.meteorclient.MixinPlugin",
+  "plugin": "userthreads.lodestarsuite.MixinPlugin",
   "client": [
     "ChunkAwareBlockCollisionSweeperMixin",
     "LithiumEntityCollisionsMixin"

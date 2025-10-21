@@ -1,8 +1,8 @@
 {
   "required": false,
-  "package": "meteordevelopment.meteorclient.mixin.indigo",
+  "package": "userthreads.lodestarsuite.mixin.indigo",
   "compatibilityLevel": "JAVA_21",
-  "plugin": "meteordevelopment.meteorclient.MixinPlugin",
+  "plugin": "userthreads.lodestarsuite.MixinPlugin",
   "client": [
     "AbstractTerrainRenderContextMixin"
   ],

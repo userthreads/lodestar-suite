@@ -137,7 +137,7 @@ tasks {
         }
 
         manifest {
-            attributes["Main-Class"] = "meteordevelopment.meteorclient.Main"
+            attributes["Main-Class"] = "userthreads.lodestarsuite.Main"
         }
     }
 

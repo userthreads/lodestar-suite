@@ -323,8 +323,8 @@ Customize all keybinds:
 ### Resources
 - **[FAQ](faq.md)**: Common questions and answers
 - **[Troubleshooting](troubleshooting.md)**: Detailed problem-solving
-- **[GitHub Issues](https://github.com/waythread/lodestar-suite/issues)**: Report bugs
-- **[Discussions](https://github.com/waythread/lodestar-suite/discussions)**: Ask questions
+- **[GitHub Issues](https://github.com/userthreads/lodestar-suite/issues)**: Report bugs
+- **[Discussions](https://github.com/userthreads/lodestar-suite/discussions)**: Ask questions
 
 ### Community
 - **GitHub**: Main development and support
@@ -333,4 +333,4 @@ Customize all keybinds:
 
 ---
 
-*This guide covers all the main features of Lodestar Suite. For more specific information, check out our [FAQ](faq.md) or [contact us](https://github.com/waythread/lodestar-suite/issues)!*
+*This guide covers all the main features of Lodestar Suite. For more specific information, check out our [FAQ](faq.md) or [contact us](https://github.com/userthreads/lodestar-suite/issues)!*

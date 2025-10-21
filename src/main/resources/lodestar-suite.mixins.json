@@ -1,8 +1,8 @@
 {
   "required": true,
-  "package": "meteordevelopment.meteorclient.mixin",
+  "package": "userthreads.lodestarsuite.mixin",
   "compatibilityLevel": "JAVA_21",
-  "plugin": "meteordevelopment.meteorclient.MixinPlugin",
+  "plugin": "userthreads.lodestarsuite.MixinPlugin",
   "client": [
     "AbstractBlockAccessor",
     "AbstractBlockMixin",

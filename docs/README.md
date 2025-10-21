@@ -81,9 +81,9 @@ Lodestar Suite is a comprehensive collection of Minecraft utilities designed to 
 
 ## 📞 Support
 
-- **GitHub Issues**: [Report bugs and request features](https://github.com/waythread/lodestar-suite/issues)
-- **Discussions**: [Community discussions](https://github.com/waythread/lodestar-suite/discussions)
-- **Wiki**: [Additional documentation](https://github.com/waythread/lodestar-suite/wiki)
+- **GitHub Issues**: [Report bugs and request features](https://github.com/userthreads/lodestar-suite/issues)
+- **Discussions**: [Community discussions](https://github.com/userthreads/lodestar-suite/discussions)
+- **Wiki**: [Additional documentation](https://github.com/userthreads/lodestar-suite/wiki)
 
 ## 📄 License
 

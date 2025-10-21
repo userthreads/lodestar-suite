@@ -1,6 +1,6 @@
 # 🛠️ Troubleshooting Guide
 
-This guide helps you solve common problems with Lodestar Suite. If you can't find your issue here, check our [FAQ](faq.md) or [contact us](https://github.com/waythread/lodestar-suite/issues).
+This guide helps you solve common problems with Lodestar Suite. If you can't find your issue here, check our [FAQ](faq.md) or [contact us](https://github.com/userthreads/lodestar-suite/issues).
 
 ## 🎯 Table of Contents
 
@@ -619,9 +619,9 @@ This guide helps you solve common problems with Lodestar Suite. If you can't fin
 
 ### Resources
 - **[FAQ](faq.md)**: Common questions and answers
-- **[GitHub Issues](https://github.com/waythread/lodestar-suite/issues)**: Report bugs
-- **[Discussions](https://github.com/waythread/lodestar-suite/discussions)**: Ask questions
-- **[Wiki](https://github.com/waythread/lodestar-suite/wiki)**: Additional documentation
+- **[GitHub Issues](https://github.com/userthreads/lodestar-suite/issues)**: Report bugs
+- **[Discussions](https://github.com/userthreads/lodestar-suite/discussions)**: Ask questions
+- **[Wiki](https://github.com/userthreads/lodestar-suite/wiki)**: Additional documentation
 
 ### When Reporting Issues
 Include this information:
@@ -640,4 +640,4 @@ Include this information:
 
 ---
 
-**Still need help?** Check our [FAQ](faq.md) or [contact us](https://github.com/waythread/lodestar-suite/issues) with detailed information about your issue!
+**Still need help?** Check our [FAQ](faq.md) or [contact us](https://github.com/userthreads/lodestar-suite/issues) with detailed information about your issue!

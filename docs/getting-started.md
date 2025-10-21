@@ -15,7 +15,7 @@ Welcome to Lodestar Suite! This guide will help you get started quickly, whether
 ## 📥 Installation
 
 ### Step 1: Download Lodestar Suite
-1. Go to the [Releases page](https://github.com/waythread/lodestar-suite/releases)
+1. Go to the [Releases page](https://github.com/userthreads/lodestar-suite/releases)
 2. Download the latest `lodestar-suite-1.21.8-*.jar` file
 3. Save it somewhere you can find it (like your Desktop)
 
@@ -111,9 +111,9 @@ Customize your keybinds:
 - Restart Minecraft
 
 ### Getting Help
-- **GitHub Issues**: [Report problems](https://github.com/waythread/lodestar-suite/issues)
-- **Discussions**: [Ask questions](https://github.com/waythread/lodestar-suite/discussions)
-- **Wiki**: [More detailed guides](https://github.com/waythread/lodestar-suite/wiki)
+- **GitHub Issues**: [Report problems](https://github.com/userthreads/lodestar-suite/issues)
+- **Discussions**: [Ask questions](https://github.com/userthreads/lodestar-suite/discussions)
+- **Wiki**: [More detailed guides](https://github.com/userthreads/lodestar-suite/wiki)
 
 ## 🎯 Next Steps
 
@@ -128,4 +128,4 @@ You're now ready to enjoy an enhanced Minecraft experience with Lodestar Suite. 
 
 ---
 
-*Need help? Check out our [FAQ](faq.md) or [contact us](https://github.com/waythread/lodestar-suite/issues)!*
+*Need help? Check out our [FAQ](faq.md) or [contact us](https://github.com/userthreads/lodestar-suite/issues)!*

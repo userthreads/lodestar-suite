@@ -24,7 +24,7 @@ Welcome to the Lodestar Suite Developer Guide! This guide will help you understa
 ### Quick Start
 ```bash
 # Clone the repository
-git clone https://github.com/waythread/lodestar-suite.git
+git clone https://github.com/userthreads/lodestar-suite.git
 cd lodestar-suite
 
 # Build the project
@@ -80,7 +80,7 @@ Minecraft modifications using Mixin:
 
 ### 1. Clone and Setup
 ```bash
-git clone https://github.com/waythread/lodestar-suite.git
+git clone https://github.com/userthreads/lodestar-suite.git
 cd lodestar-suite
 ```
 

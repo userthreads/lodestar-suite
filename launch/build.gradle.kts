@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-group = "waythread"
+group = "userthreads"
 version = "0.1.0"
 
 java {

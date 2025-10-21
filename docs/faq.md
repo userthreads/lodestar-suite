@@ -1,6 +1,6 @@
 # ❓ Frequently Asked Questions (FAQ)
 
-This FAQ answers the most common questions about Lodestar Suite. If you can't find your answer here, check our [Troubleshooting Guide](troubleshooting.md) or [contact us](https://github.com/waythread/lodestar-suite/issues).
+This FAQ answers the most common questions about Lodestar Suite. If you can't find your answer here, check our [Troubleshooting Guide](troubleshooting.md) or [contact us](https://github.com/userthreads/lodestar-suite/issues).
 
 ## 🎯 General Questions
 
@@ -29,7 +29,7 @@ Lodestar Suite focuses on **quality of life** and **fair play**:
 ## 🚀 Installation & Setup
 
 ### How do I install Lodestar Suite?
-1. Download the latest release from [GitHub](https://github.com/waythread/lodestar-suite/releases)
+1. Download the latest release from [GitHub](https://github.com/userthreads/lodestar-suite/releases)
 2. Install [Fabric Loader](https://fabricmc.net/use/) for Minecraft 1.21.8
 3. Place the JAR file in your Minecraft `mods` folder
 4. Launch Minecraft with the Fabric profile
@@ -158,7 +158,7 @@ Profiles let you save different configurations:
 
 ### Is Lodestar Suite safe to download?
 **Yes!** Only download from official sources:
-- ✅ [GitHub Releases](https://github.com/waythread/lodestar-suite/releases)
+- ✅ [GitHub Releases](https://github.com/userthreads/lodestar-suite/releases)
 - ❌ Never download from unofficial sources
 - ❌ Avoid random websites or forums
 
@@ -214,9 +214,9 @@ Updates are released as needed:
 ## 🤝 Community & Support
 
 ### Where can I get help?
-- **GitHub Issues**: [Report bugs](https://github.com/waythread/lodestar-suite/issues)
-- **Discussions**: [Ask questions](https://github.com/waythread/lodestar-suite/discussions)
-- **Wiki**: [Detailed guides](https://github.com/waythread/lodestar-suite/wiki)
+- **GitHub Issues**: [Report bugs](https://github.com/userthreads/lodestar-suite/issues)
+- **Discussions**: [Ask questions](https://github.com/userthreads/lodestar-suite/discussions)
+- **Wiki**: [Detailed guides](https://github.com/userthreads/lodestar-suite/wiki)
 
 ### How can I contribute?
 - **Report bugs**: Help improve the project
@@ -239,11 +239,11 @@ Updates are released as needed:
 - **[Troubleshooting](troubleshooting.md)**: Detailed problem-solving
 
 ### Links
-- **GitHub Repository**: [waythread/lodestar-suite](https://github.com/waythread/lodestar-suite)
-- **Releases**: [Latest downloads](https://github.com/waythread/lodestar-suite/releases)
-- **Issues**: [Bug reports](https://github.com/waythread/lodestar-suite/issues)
-- **Discussions**: [Community help](https://github.com/waythread/lodestar-suite/discussions)
+- **GitHub Repository**: [userthreads/lodestar-suite](https://github.com/userthreads/lodestar-suite)
+- **Releases**: [Latest downloads](https://github.com/userthreads/lodestar-suite/releases)
+- **Issues**: [Bug reports](https://github.com/userthreads/lodestar-suite/issues)
+- **Discussions**: [Community help](https://github.com/userthreads/lodestar-suite/discussions)
 
 ---
 
-**Still have questions?** Check out our [Troubleshooting Guide](troubleshooting.md) or [contact us](https://github.com/waythread/lodestar-suite/issues)!
+**Still have questions?** Check out our [Troubleshooting Guide](troubleshooting.md) or [contact us](https://github.com/userthreads/lodestar-suite/issues)!

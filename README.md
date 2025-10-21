@@ -6,9 +6,9 @@
 <p align="center">The comprehensive Fabric Minecraft mod suite based off Meteor Client, with quality of life modules and tools for fair play compliance, for everyone.</p>
 
 <div align="center">
-    <img src="https://img.shields.io/github/last-commit/waythread/lodestar-suite" alt="GitHub last commit"/>
-    <img src="https://img.shields.io/github/languages/code-size/waythread/lodestar-suite" alt="GitHub code size in bytes"/>
-    <img src="https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/waythread/lodestar-suite/badge?filter=.java$&label=lines%20of%20code&color=blue" alt="GitHub lines of code"/>
+    <img src="https://img.shields.io/github/last-commit/userthreads/lodestar-suite" alt="GitHub last commit"/>
+    <img src="https://img.shields.io/github/languages/code-size/userthreads/lodestar-suite" alt="GitHub code size in bytes"/>
+    <img src="https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/userthreads/lodestar-suite/badge?filter=.java$&label=lines%20of%20code&color=blue" alt="GitHub lines of code"/>
 </div>
 
 ## Important notice: All unfair advantage modules have been removed for fair play compliance. The suite now only includes quality-of-life and visual enhancement modules.
@@ -67,7 +67,7 @@ The [Fabric Team](https://github.com/FabricMC) for [Fabric](https://github.com/F
 
 ### Latest Release: see the release section
 - **Note**: Each build generates a unique random 5-character suffix for file identification matching mod version random 5-character suffix
-- **Download**: [Latest Release](https://github.com/waythread/lodestar-suite/releases/latest)
+- **Download**: [Latest Release](https://github.com/userthreads/lodestar-suite/releases/latest)
 - **File Format**: `lodestar-suite-{minecraft_version}-{random_suffix}.jar`
 - **Example**: `lodestar-suite-1.21.8-qg6z4.jar`
 - **Compatible with**: Minecraft 1.21.8

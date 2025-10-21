@@ -1,8 +1,8 @@
 {
   "required": false,
-  "package": "meteordevelopment.meteorclient.mixin.sodium",
+  "package": "userthreads.lodestarsuite.mixin.sodium",
   "compatibilityLevel": "JAVA_21",
-  "plugin": "meteordevelopment.meteorclient.MixinPlugin",
+  "plugin": "userthreads.lodestarsuite.MixinPlugin",
   "client": [
     "MeshVertexConsumerMixin",
     "SodiumBlockOcclusionCacheMixin",
