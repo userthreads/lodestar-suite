@@ -27,7 +27,6 @@ public class Tabs {
         add(new HudTab());
         add(new FriendsTab());
         add(new MacrosTab());
-        add(new ProfilesTab());
     }
 
     public static void add(Tab tab) {

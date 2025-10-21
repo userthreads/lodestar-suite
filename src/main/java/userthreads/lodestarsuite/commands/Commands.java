@@ -34,7 +34,6 @@ public class Commands {
         add(new CommandsCommand());
         add(new NbtCommand());
         add(new PeekCommand());
-        add(new ProfilesCommand());
         add(new ReloadCommand());
         add(new ResetCommand());
         add(new SayCommand());

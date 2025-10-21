@@ -5,7 +5,7 @@
 
 package userthreads.lodestarsuite.systems.modules.misc;
 
-//Created by waythread
+//Created by userthreads
 
 import meteordevelopment.discordipc.DiscordIPC;
 import meteordevelopment.discordipc.RichPresence;
@@ -196,7 +196,7 @@ public class DiscordPresence extends Module {
         if (!LodestarSuite.BUILD_NUMBER.isEmpty()) largeText += " Build: " + LodestarSuite.BUILD_NUMBER;
         rpc.setLargeImage("lodestar_client", largeText);
 
-        currentSmallImage = SmallImage.waythread;
+        currentSmallImage = SmallImage.userthreads;
 
         recompileLine1();
         recompileLine2();
@@ -380,7 +380,7 @@ public class DiscordPresence extends Module {
     }
 
     private enum SmallImage {
-        waythread("waythread", "waythread");
+        userthreads("userthreads", "userthreads");
 
         private final String key, text;
 
@@ -394,7 +394,7 @@ public class DiscordPresence extends Module {
         }
 
         SmallImage next() {
-            return waythread;
+            return userthreads;
         }
     }
 }

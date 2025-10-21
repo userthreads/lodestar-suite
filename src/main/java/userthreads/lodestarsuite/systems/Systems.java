@@ -16,7 +16,6 @@ import userthreads.lodestarsuite.systems.halloween.HalloweenMode;
 import userthreads.lodestarsuite.systems.hud.Hud;
 import userthreads.lodestarsuite.systems.macros.Macros;
 import userthreads.lodestarsuite.systems.modules.Modules;
-import userthreads.lodestarsuite.systems.profiles.Profiles;
 // Proxy system removed for security reasons
 import userthreads.lodestarsuite.systems.timezone.InternetTimeSync;
 import userthreads.lodestarsuite.systems.timezone.TimezoneManager;
@@ -52,7 +51,6 @@ public class Systems {
         add(new Macros());
         add(new Friends());
         add(new Waypoints());
-        add(new Profiles());
         add(new Hud());
         add(new InternetTimeSync());
         add(new TimezoneManager());

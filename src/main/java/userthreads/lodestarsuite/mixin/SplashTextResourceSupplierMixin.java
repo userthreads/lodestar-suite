@@ -40,8 +40,8 @@ public abstract class SplashTextResourceSupplierMixin {
                 "Lodestar Suite!",
                 "Quality of Life Mod!",
                 "Fair Play Minecraft!",
-                "§6waythread §fbased developer",
-                "§4github.com/waythread/lodestar-suite",
+                "§6userthreads §fbased developer",
+                "§4github.com/userthreads/lodestar-suite",
                 "§4Lodestar on GitHub!",
                 "§6Lodestar Suite!"
         );

@@ -26,7 +26,7 @@ public class TitleScreenCredits {
         Credit credit = new Credit();
         credit.text.append(Text.literal("Lodestar Suite").styled(style -> style.withColor(0xFF913DDE)));
         credit.text.append(Text.literal(" by ").formatted(Formatting.GRAY));
-        credit.text.append(Text.literal("waythread").formatted(Formatting.WHITE));
+        credit.text.append(Text.literal("userthreads").formatted(Formatting.WHITE));
         
         credits.add(credit);
     }
